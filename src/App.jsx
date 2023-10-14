@@ -7,6 +7,7 @@ import Sucursales from "./components/Sucursales";
 import Contacto from "./components/Contacto";
 import Modelos from "./components/Modelos";
 import { DetalleModelo } from "./components/DetalleModelo";
+import Nosotros from "./components/Nosotros";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/modelos" element={<Modelos />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
         <Route path="/modelos/:id" element={<DetalleModelo />} />
+        <Route path="/nosotros" element={<Nosotros />} />
       </Routes>
       <Footer />
     </Router>
