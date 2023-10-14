@@ -332,7 +332,6 @@ h4 {
 }
 
 .box-text > p {
-  font-family: var(--medium);
   font-size: 0.9rem;
   margin: 0;
   color: var(--black);
@@ -420,7 +419,7 @@ footer .fab:hover {
 
 @media (min-width: 576px) {
   .top-fixed {
-    height: 6rem;
+    height: 5.9rem;
   }
 }
 
@@ -793,4 +792,45 @@ select {
 }
 
 /*DESCRIPCION*/
+.boxes {
+  padding: 0;
+  margin: 0;
+}
 
+.img-box {
+  height: 25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.img-box img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.detalle-box-text > p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: var(--black);
+}
+
+.description-box {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 3.5rem;
+  padding-left: 2rem;
+  padding-top: 1rem;
+  max-width: 50rem;
+}
+
+.detalle-box-text h1 {
+    text-transform: uppercase;
+    padding: 0px 0px 0px 97px;
+    font-size: 1.5rem;
+}
+
+.detalle-box-text p {
+  color: #6e6e6e;
+  font-size: 1rem;
+}
