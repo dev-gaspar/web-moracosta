@@ -797,6 +797,17 @@ select {
   margin: 0;
 }
 
+@media (max-width: 767px) {
+  .my-boxes-rev {
+    flex-direction: column-reverse;
+    margin-bottom: 1rem;
+  }
+
+  .description-box {
+    margin-bottom: 1rem;
+  }
+}
+
 .img-box {
   height: 25rem;
   margin: 0;
@@ -825,12 +836,44 @@ select {
 }
 
 .detalle-box-text h1 {
-    text-transform: uppercase;
-    padding: 0px 0px 0px 97px;
-    font-size: 1.5rem;
+  text-transform: uppercase;
+  padding: 0px 0px 0px 97px;
+  font-size: 1.5rem;
 }
 
 .detalle-box-text p {
   color: #6e6e6e;
   font-size: 1rem;
+}
+.links {
+  justify-content: center;
+  display: flex;
+}
+
+.descargar {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  color: var(--white);
+  text-decoration: none;
+  background-color: var(--primary);
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.descargar:hover {
+  color: var(--primary);
+  text-decoration: none;
+  background-color: var(--secondary);
+}
+
+/*ESPECIFICACIONES*/
+.row {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-tabs .nav-link {
+  color: var(--primary);
 }
