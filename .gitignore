@@ -25,5 +25,3 @@ dist-ssr
 
 #variables de entorno
 .env.local
-
-*.webm

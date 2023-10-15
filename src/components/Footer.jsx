@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-3">
-              <img src="../assets/logo-letras.png" alt="logo" height="35" />
+              <img src="../assets/moracosta-manabi.png" alt="logo" height="190" />
             </div>
             <div className="col-md-3">
               <h3><strong>Servicio al cliente</strong></h3>

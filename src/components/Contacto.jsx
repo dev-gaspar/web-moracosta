@@ -9,12 +9,14 @@ const Contacto = () => {
     numeroDocumento: '',
     correo: '',
     telefono: '',
+    direccion: '',
     ciudad: '',
-    mediosContacto: {
+    check: {
       whatsapp: false,
       llamada: false,
+      aceptoTerminos: false,
     },
-    aceptoTerminos: false,
+
   });
 
   const handleChange = (e) => {
@@ -22,8 +24,8 @@ const Contacto = () => {
     if (type === 'checkbox') {
       setFormData({
         ...formData,
-        mediosContacto: {
-          ...formData.mediosContacto,
+        check: {
+          ...formData.check,
           [name]: checked,
         },
       });
@@ -139,6 +141,19 @@ const Contacto = () => {
                       required
                     />
                   </div>
+
+                  <div className="form-group">
+                    <label htmlFor="direccion">Direccion</label>
+                    <input
+                      type="tel"
+                      className="form-control"
+                      id="direccion"
+                      name="direccion"
+                      value={formData.direccion}
+                      onChange={handleChange}
+                    />
+                  </div>
+
                   <div className="form-group">
                     <label htmlFor="ciudad">Ciudad</label>
                     <select
@@ -161,7 +176,7 @@ const Contacto = () => {
                           className="form-check-input"
                           id="whatsapp"
                           name="whatsapp"
-                          checked={formData.mediosContacto.whatsapp}
+                          checked={formData.check.whatsapp}
                           onChange={handleChange}
                         />
                         <label className="form-check-label" htmlFor="whatsapp">
@@ -174,7 +189,7 @@ const Contacto = () => {
                           className="form-check-input"
                           id="llamada"
                           name="llamada"
-                          checked={formData.mediosContacto.llamada}
+                          checked={formData.check.llamada}
                           onChange={handleChange}
                         />
                         <label className="form-check-label" htmlFor="llamada">
@@ -189,7 +204,7 @@ const Contacto = () => {
                       className="form-check-input"
                       id="aceptoTerminos"
                       name="aceptoTerminos"
-                      checked={formData.aceptoTerminos}
+                      checked={formData.check.aceptoTerminos}
                       onChange={handleChange}
                       required
                     />
