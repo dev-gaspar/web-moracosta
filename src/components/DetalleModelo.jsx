@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const DetalleModelo = () => {
   return (
@@ -187,6 +188,8 @@ export const DetalleModelo = () => {
                 </table>
               </div>
             </div>
+
+            <Link to={"/cotizador"} className="btn btn-solodev-red-reversed">Simular cotizacion</Link>
 
           </div>
         </div>
