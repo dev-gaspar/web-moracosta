@@ -14,7 +14,6 @@ const Contacto = () => {
     check: {
       whatsapp: false,
       llamada: false,
-      aceptoTerminos: false,
     },
 
   });
@@ -54,16 +53,18 @@ const Contacto = () => {
               <div className="box-form">
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="modelo">Modelo de interés</label>
+                    <label htmlFor="modelo">Modelo de interés *</label>
                     <select
-                      className="form-control"
+                      className="form-control selectpicker"
                       id="modelo"
                       name="modelo"
                       value={formData.modelo}
                       onChange={handleChange}
+                      required
                     >
                       <option value="">Selecciona un modelo</option>
                       {/* Add model options here */}
+                      <option value="123">MAZDA CX-90</option>
                     </select>
                   </div>
                   <div className="form-row">
@@ -197,20 +198,6 @@ const Contacto = () => {
                         </label>
                       </div>
                     </div>
-                  </div>
-                  <div className="form-check">
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      id="aceptoTerminos"
-                      name="aceptoTerminos"
-                      checked={formData.check.aceptoTerminos}
-                      onChange={handleChange}
-                      required
-                    />
-                    <label className="form-check-label" htmlFor="aceptoTerminos">
-                      ACEPTO LOS TÉRMINOS Y CONDICIONES
-                    </label>
                   </div>
                   <button type="submit" className="button-submit">
                     CONTACTARME
