@@ -961,6 +961,7 @@ body,
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   border: var(--primary) solid 1px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 

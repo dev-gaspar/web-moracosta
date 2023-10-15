@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const Cotizador = () => {
   return (
     <div>
@@ -17,7 +19,7 @@ const Cotizador = () => {
               <div className="form-group">
                 <label htmlFor="modelo">Modelo de interes</label>
                 <select className="form-control" id="modelo" name="modelo">
-                  <option value="sedan">Sedán</option>
+                  <option value="sedan">MAZDA CX-90</option>
                   <option value="deportivo">Deportivo</option>
                   <option value="SUV">SUV</option>
                   <option value="camioneta">Camioneta</option>
@@ -84,10 +86,10 @@ const Cotizador = () => {
                 </p>
               </div>
             </div>
+            <Link type="submit" to={"/contacto"} className="btn btn-solodev-red-reversed" >Contactenos</Link>
           </div>
         </div>
       </div>
-
     </div>
   )
 }

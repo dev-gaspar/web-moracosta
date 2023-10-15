@@ -29,7 +29,7 @@ const Nosotros = () => {
           <div className="row ct-u-paddingBoth20">
             <div className="col-xs-6 col-md-4">
               <div className="company-icons-white">
-                <i class="fas fa-handshake"></i>
+                <i className="fas fa-handshake"></i>
                 <p>LEALTAD</p>
                 <p className="company-icons-subtext hidden-xs">
                   La lealtad es un pilar fundamental. Nos comprometemos a ser leales a nuestros clientes, empleados y a los principios en los que se basa nuestra empresa.
@@ -38,7 +38,7 @@ const Nosotros = () => {
             </div>
             <div className="col-xs-6 col-md-4">
               <div className="company-icons-white">
-                <i class="fas fa-balance-scale"></i>
+                <i className="fas fa-balance-scale"></i>
                 <p>HONESTIDAD</p>
                 <p className="company-icons-subtext hidden-xs">
                   La honestidad guía cada una de nuestras acciones diarias. Mantenemos la transparencia en todos nuestros tratos y relaciones comerciales, creando así un ambiente de confianza.
@@ -47,7 +47,7 @@ const Nosotros = () => {
             </div>
             <div className="col-xs-6 col-md-4">
               <div className="company-icons-white">
-                <i class="fas fa-star"></i>
+                <i className="fas fa-star"></i>
                 <p>CALIDAD</p>
                 <p className="company-icons-subtext hidden-xs">
                   La calidad es esencial en todo lo que hacemos. Nos esforzamos por ofrecer productos y servicios de la más alta calidad para garantizar la satisfacción y la confianza de nuestros clientes.
