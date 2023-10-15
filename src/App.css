@@ -876,3 +876,93 @@ select {
 .nav-tabs .nav-link {
   color: var(--primary);
 }
+
+/*QUIENES SOMOS*/
+.two-content {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+.company-heading h1 {
+  margin-bottom: 40px;
+  line-height: 80px;
+  color: #fff;
+  font-weight: 700 !important;
+  text-align: center;
+}
+
+.seo-header,
+.product-header,
+.intro-type .container h1.white,
+.company-heading h1 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 100 !important;
+  text-transform: capitalize;
+  font-size: 65px;
+  margin-bottom: 20px;
+}
+.company-sections h2,
+.careers-sections h2,
+.perks-section h2 {
+  font-weight: 800;
+  font-size: 50px;
+}
+.company-sections h2,
+.company-sections h3,
+.careers-sections h2,
+.perks-section h2 {
+  font-family: "proxima-nova", sans-serif;
+}
+.company-sections h3 {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 14px 0;
+  font-family: "proxima-nova", sans-serif;
+  text-transform: capitalize;
+}
+.red-border {
+  width: 50%;
+  border-bottom: 1px solid #d2282e;
+  margin: 0 auto;
+  height: 16px;
+}
+.company-sections p {
+  margin-top: 20px;
+}
+.ct-u-size22 {
+  font-size: 22px;
+}
+.ct-u-fontWeight300 {
+  font-weight: 300;
+}
+.marginTop40 {
+  margin-top: 40px !important;
+}
+
+.ct-u-paddingBoth100 {
+  padding: 100px 15px;
+}
+
+.culture-section {
+  background-color: var(--black);
+  color: #fff;
+}
+
+.company-sections,
+.careers-sections {
+  text-align: center;
+}
+
+.btn-solodev-red-reversed {
+  background-color: #fff;
+  color: var(--primary);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 12px 35px;
+}
+
+.btn-solodev-red-reversed:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
