@@ -37,7 +37,7 @@ const Footer = () => {
               <ul className="list-unstyled">
                 <li><a href="#">Test Drive</a></li>
                 <li><Link to={"/cotizador"}>Cotizador Online</Link></li>
-                <li><a href="#">Panel de control</a></li>
+                <li><Link to={"/login"}>Panel de control</Link></li>
               </ul>
             </div>
           </div>

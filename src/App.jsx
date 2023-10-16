@@ -9,6 +9,7 @@ import Modelos from "./components/Modelos";
 import { DetalleModelo } from "./components/DetalleModelo";
 import Nosotros from "./components/Nosotros";
 import Cotizador from "./components/Cotizador";
+import Login from "./components/Login";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/modelos/:id" element={<DetalleModelo />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/cotizador" element={<Cotizador />} />
+        <Route path="/login" element={<Login />} />
 
         <Route path="*" element={<div>
           <div className="top-fixed" />

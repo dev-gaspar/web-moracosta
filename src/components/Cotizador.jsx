@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const Cotizador = () => {
   return (
-    <div>
+    <>
       <div className="top-fixed" />
       <div className="section_banner">
         <div className="container">
@@ -90,7 +90,7 @@ const Cotizador = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
