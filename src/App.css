@@ -14,7 +14,7 @@
   background-color: rgba(35, 31, 32, 0.6);
   backdrop-filter: blur(10px);
   border-top: 3px solid var(--primary);
-  z-index: 1000;
+  z-index: 10000;
 }
 
 .navbar-toggler,
@@ -1021,3 +1021,4 @@ body,
   height: 100%;
   object-fit: cover;
 }
+

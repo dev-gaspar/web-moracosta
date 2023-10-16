@@ -10,6 +10,7 @@ import { DetalleModelo } from "./components/DetalleModelo";
 import Nosotros from "./components/Nosotros";
 import Cotizador from "./components/Cotizador";
 import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/cotizador" element={<Cotizador />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
         <Route path="*" element={<div>
           <div className="top-fixed" />

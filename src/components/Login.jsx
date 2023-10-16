@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Login = () => {
+
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="top-fixed" />
@@ -49,7 +52,7 @@ const Login = () => {
                 ¿Olvidaste tu contraseña?
               </a>
             </div>
-            <button type="submit" className="btn btn-solodev-red-reversed">
+            <button onClick={() => {navigate("/dashboard")}} type="submit" className="btn btn-solodev-red-reversed">
               Ingresar
             </button>
           </form>
