@@ -15,7 +15,7 @@
   justify-content: space-between;
   min-width: 0;
   flex-grow: 1;
-  min-height: calc(100vh - 56px);
+  min-height: calc(100vh);
   margin-left: -225px;
 }
 
@@ -30,7 +30,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background:  var(--black);
+  background: var(--black);
   z-index: 1037;
   opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
@@ -99,6 +99,7 @@
   padding-left: 0;
   height: 56px;
   z-index: 1039;
+  background-color: var(--black);
 }
 .sb-topnav .navbar-brand {
   width: 225px;
@@ -106,9 +107,7 @@
 }
 .sb-topnav.navbar-dark #sidebarToggle {
   color: rgba(255, 255, 255, 0.5);
-}
-.sb-topnav.navbar-light #sidebarToggle {
-  color:  var(--black);
+  font-size: 1.5rem;
 }
 
 .sb-sidenav {

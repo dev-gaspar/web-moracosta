@@ -33,12 +33,11 @@ function Sidenav({ mainContent }) {
 
   return (
     <>
-      <div className="top-fixed" />
       <div className="sidenav">
-        <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav className="sb-topnav navbar navbar-expand navbar-dark">
           {/*<!-- Navbar Brand-->*/}
           <a className="navbar-brand ps-3" href="#!">
-            Personalizados
+            Moracosta
           </a>
           {/*<!-- Sidebar Toggle-->*/}
           <button
@@ -46,59 +45,10 @@ function Sidenav({ mainContent }) {
             id="sidebarToggle"
             href="#!"
           >
-            <i className="fas fa-bars"></i>
+            <i className="fas fa-bars" />
           </button>
           {/*<!-- Navbar Margen-->*/}
           <div className="d-none d-md-inline-block ms-auto"></div>
-          {/*<!-- Navbar-->*/}
-          <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                id="navbarDropdown"
-                href="#!"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <figure className="avatar avatar-nav">
-                  <img
-                    src={response.avatar.url}
-                    alt={response.nombre}
-                    className="rounded-circle"
-                    width={30}
-                    height={30}
-                  />
-                </figure>
-              </a>
-              <ul
-                className="dropdown-menu dropdown-menu-end"
-                aria-labelledby="navbarDropdown"
-              >
-                <li>
-                  <span className="dropdown-item ">{response.nombre}</span>
-                </li>
-
-                <li>
-                  <button
-                    className="dropdown-item"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modal-perfil"
-                  >
-                    Mi perfil
-                  </button>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <button className="dropdown-item" onClick={() => { }}>
-                    Cerrar sesión
-                  </button>
-                </li>
-              </ul>
-            </li>
-          </ul>
         </nav>
         <div id="layoutSidenav">
           <div id="layoutSidenav_nav">
@@ -125,9 +75,9 @@ function Sidenav({ mainContent }) {
                     aria-controls="collapseLayouts"
                   >
                     <div className="sb-nav-link-icon">
-                      <i className="fa fa-person-walking"></i>
+                      <i className="fa fa-user"></i>
                     </div>
-                    Entrenadores
+                    Usuarios
                     <div className="sb-sidenav-collapse-arrow">
                       <i className="fas fa-angle-down"></i>
                     </div>
@@ -147,41 +97,9 @@ function Sidenav({ mainContent }) {
                       </Link>
                     </nav>
                   </div>
-                  <a
-                    className="nav-link collapsed"
-                    href="#!"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapsePages"
-                    aria-expanded="false"
-                    aria-controls="collapsePages"
-                  >
-                    <div className="sb-nav-link-icon">
-                      <i className="fas fa-futbol"></i>
-                    </div>
-                    Jugadores
-                    <div className="sb-sidenav-collapse-arrow">
-                      <i className="fas fa-angle-down"></i>
-                    </div>
-                  </a>
-                  <div
-                    className="collapse"
-                    id="collapsePages"
-                    aria-labelledby="headingTwo"
-                    data-bs-parent="#sidenavAccordion"
-                  >
-                    <nav
-                      className="sb-sidenav-menu-nested nav accordion"
-                      id="sidenavAccordionPages"
-                    >
-                      <a className="nav-link" href="#!">
-                        Todos
-                      </a>
-                      <a className="nav-link" href="#!">
-                        Registrar
-                      </a>
-                    </nav>
-                  </div>
-                  <div className="sb-sidenav-menu-heading">Personalizados</div>
+
+
+                  <div className="sb-sidenav-menu-heading">Autos</div>
                   <a className="nav-link" href="#!">
                     <div className="sb-nav-link-icon">
                       <i className="fas fa-table"></i>
@@ -190,21 +108,21 @@ function Sidenav({ mainContent }) {
                   </a>
                   <a className="nav-link" href="#!">
                     <div className="sb-nav-link-icon">
-                      <i className="fas fa-file-circle-plus"></i>
+                      <i className="fa fa-plus"></i>
                     </div>
                     Nuevo
-                  </a>
-                  <a className="nav-link" href="#!">
-                    <div className="sb-nav-link-icon">
-                      <i className="fas fa-chart-area"></i>
-                    </div>
-                    Informes
                   </a>
                 </div>
               </div>
               <div className="sb-sidenav-footer">
-                <div className="small">Conectado como:</div>
-                {"Usuario"}
+                <button
+                  className="dropdown-item"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal-perfil"
+                >
+                  <i className="fas fa-user fa-fw"></i>
+                  {" "}Ver mi perfil
+                </button>
               </div>
             </nav>
           </div>
@@ -217,7 +135,7 @@ function Sidenav({ mainContent }) {
 
         {/* Modal */}
         <div
-          className="modal fade "
+          className="modal fade"
           id="modal-perfil"
           tabIndex="-1"
           aria-labelledby="modal-perfil"

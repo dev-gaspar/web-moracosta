@@ -6,7 +6,6 @@ const Login = () => {
 
   return (
     <>
-      <div className="top-fixed" />
       <div className="row vh-100" >
         <div className="col-md-5 d-flex p-5 justify-content-center flex-column">
           <div className="text-center">
