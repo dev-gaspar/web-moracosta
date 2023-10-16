@@ -36,19 +36,17 @@ function Sidenav({ mainContent }) {
       <div className="sidenav">
         <nav className="sb-topnav navbar navbar-expand navbar-dark">
           {/*<!-- Navbar Brand-->*/}
-          <Link className="navbar-brand ps-3"to={"/"}>
+          <Link className="navbar-brand ps-3" to={"/"}>
             Moracosta
           </Link>
           {/*<!-- Sidebar Toggle-->*/}
           <button
-            className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+            className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-3"
             id="sidebarToggle"
             href="#!"
           >
             <i className="fas fa-bars" />
           </button>
-          {/*<!-- Navbar Margen-->*/}
-          <div className="d-none d-md-inline-block ms-auto"></div>
         </nav>
         <div id="layoutSidenav">
           <div id="layoutSidenav_nav">

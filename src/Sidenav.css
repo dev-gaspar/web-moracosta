@@ -101,6 +101,11 @@
   z-index: 1039;
   background-color: var(--black);
 }
+
+.navbar-expand {
+  justify-content: space-between;
+}
+
 .sb-topnav .navbar-brand {
   width: 225px;
   margin: 0;
