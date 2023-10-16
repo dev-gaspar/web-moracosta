@@ -36,9 +36,9 @@ function Sidenav({ mainContent }) {
       <div className="sidenav">
         <nav className="sb-topnav navbar navbar-expand navbar-dark">
           {/*<!-- Navbar Brand-->*/}
-          <a className="navbar-brand ps-3" href="#!">
+          <Link className="navbar-brand ps-3"to={"/"}>
             Moracosta
-          </a>
+          </Link>
           {/*<!-- Sidebar Toggle-->*/}
           <button
             className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
