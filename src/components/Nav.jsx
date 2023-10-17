@@ -7,6 +7,10 @@ const Header = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const navbar = document.getElementById("navbarNav");
+    if (navbar) {
+      navbar.classList.remove("show");
+    }
   }, [pathname]);
 
   return (

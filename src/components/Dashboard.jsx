@@ -10,7 +10,7 @@ const Dashboard = () => {
             <div className="col-xl-12">
               <div
                 className="card"
-                style={{ marginTop: "30px", marginBottom: "30px" }}
+                style={{ marginTop: "5rem", marginBottom: "1.5rem" }}
               >
                 <div className="card-body">
                   <h4 className="page-title">Vision general</h4>

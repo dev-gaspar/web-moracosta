@@ -1022,3 +1022,8 @@ body,
   object-fit: cover;
 }
 
+/*Dasboard*/
+.card-body .page-title {
+  color: var(--black);
+  padding-bottom: 0;
+}
