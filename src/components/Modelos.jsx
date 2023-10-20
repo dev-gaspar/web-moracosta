@@ -1,9 +1,35 @@
-import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { useEffect } from "react"
+import { selectAllVehiculos, getVehiculosStatus, getVehiculosError, getVehiculos } from "../features/vehiculos/vehiculosSlice"
+import Modelo from "./Modelo"
 
 const Modelos = () => {
+  const dispatch = useDispatch()
+  const vehiculos = useSelector(selectAllVehiculos)
+  const status = useSelector(getVehiculosStatus)
+  const error = useSelector(getVehiculosError)
 
-  const vehiculos = useSelector((state) => state.vehiculos)
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(getVehiculos())
+    }
+  }, [status, dispatch])
+
+  let contenido;
+
+  if (status === 'loading') {
+    contenido = <div className="w-100 my-6 text-center">
+      <div className="spinner-border text-danger" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+    </div>
+  } else if (status === 'succeeded') {
+    contenido = vehiculos.map((vehiculo) => (
+      <Modelo key={vehiculo.vehiculo_id} vehiculo={vehiculo} />
+    ))
+  } else if (status === 'failed') {
+    contenido = <div>{error}</div>
+  }
 
   return (
     <div>
@@ -17,22 +43,7 @@ const Modelos = () => {
       </div>
       <div className="container">
         <div className="row">
-          
-          {vehiculos.map((vehiculo) => (
-            <div className="col-12 col-md-4 col-lg-4 vehicles" key={vehiculo.vehiculo_id}>
-              <Link className="box-items" to={`/modelos/${vehiculo.vehiculo_id}`}>
-                <img src={vehiculo.imagen_principal} alt={vehiculo.nombre} />
-                <div className="text">
-                  <h3>{vehiculo.nombre}</h3>
-                  <p>{vehiculo.descripcion}</p>
-                </div>
-                <div>
-                  <span className="btn-custom">VER MÁS <i className="fa fa-chevron-right"></i></span>
-                </div>
-              </Link>
-            </div>
-          ))}
-
+          {contenido}
         </div>
       </div>
     </div>
