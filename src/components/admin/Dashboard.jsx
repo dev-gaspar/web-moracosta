@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidenav from './Sidenav'
+import Sidenav from '../layout/Sidenav'
 
 const Dashboard = () => {
   return (

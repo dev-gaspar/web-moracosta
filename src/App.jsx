@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Route, Routes, Outlet } from "react-router-dom";
 import './App.css';
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
-import Home from "./components/Home";
-import Sucursales from "./components/Sucursales";
-import Contacto from "./components/Contacto";
-import Modelos from "./components/Modelos";
-import { DetalleModelo } from "./components/DetalleModelo";
-import Nosotros from "./components/Nosotros";
-import Cotizador from "./components/Cotizador";
-import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
+import Nav from "./components/layout/Nav";
+import Footer from "./components/layout/Footer";
+import Home from "./components/pages/Home";
+import Sucursales from "./components/pages/Sucursales";
+import Contacto from "./components/pages/Contacto";
+import Modelos from "./components/modelos/Modelos";
+import { DetalleModelo } from "./components/modelos/DetalleModelo";
+import Nosotros from "./components/pages/Nosotros";
+import Cotizador from "./components/pages/Cotizador";
+import Login from "./components/auth/Login";
+import Dashboard from "./components/admin/Dashboard";
 
 function App() {
   return (

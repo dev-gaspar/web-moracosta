@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
-import { selectAllVehiculos, getVehiculosStatus, getVehiculosError, getVehiculos } from "../features/vehiculos/vehiculosSlice"
+import { selectAllVehiculos, getVehiculosStatus, getVehiculosError, getVehiculos } from "../../features/vehiculos/vehiculosSlice"
 import Modelo from "./Modelo"
-import Banner from "./Banner"
+import Banner from "../layout/Banner"
 
 const Modelos = () => {
   const dispatch = useDispatch()

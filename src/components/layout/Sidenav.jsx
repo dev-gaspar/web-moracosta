@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "../Sidenav.css";
+import "./Sidenav.css";
 import { Link } from "react-router-dom";
 
 function Sidenav({ mainContent }) {
