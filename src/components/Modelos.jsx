@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { selectAllVehiculos, getVehiculosStatus, getVehiculosError, getVehiculos } from "../features/vehiculos/vehiculosSlice"
 import Modelo from "./Modelo"
+import Banner from "./Banner"
 
 const Modelos = () => {
   const dispatch = useDispatch()
@@ -18,7 +19,7 @@ const Modelos = () => {
   let contenido;
 
   if (status === 'loading') {
-    contenido = <div className="w-100 my-6 text-center">
+    contenido = <div className="w-100 text-center">
       <div className="spinner-border text-danger" role="status">
         <span className="sr-only">Loading...</span>
       </div>
@@ -34,13 +35,7 @@ const Modelos = () => {
   return (
     <div>
       <div className="top-fixed" />
-      <div className="section_banner">
-        <div className="container">
-          <h1 className="text-center text-uppercase text-white">
-            MODELOS EN MORACOSTA
-          </h1>
-        </div>
-      </div>
+      <Banner text={"MODELOS EN MORACOSTA"} />
       <div className="container">
         <div className="row">
           {contenido}

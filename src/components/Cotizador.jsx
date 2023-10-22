@@ -1,16 +1,11 @@
 import { Link } from "react-router-dom"
+import Banner from "./Banner"
 
 const Cotizador = () => {
   return (
     <>
       <div className="top-fixed" />
-      <div className="section_banner">
-        <div className="container">
-          <h1 className="text-center text-uppercase text-white">
-            COTIZADOR ONLINE
-          </h1>
-        </div>
-      </div>
+      <Banner text={"COTIZADOR ONLINE"} />
       <div className="container my-5">
         <div className="row simulacion">
           <div className="col-md-6">
