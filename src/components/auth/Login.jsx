@@ -19,14 +19,13 @@ const Login = () => {
 
   const loginClicked = () => {
     dispatch(signin({ email, password }))
-
-    setEmail("")
-    setPassword("")
   }
 
   useEffect(() => {
     if (status === 'succeeded') {
       navigate('/dashboard')
+      setEmail("")
+      setPassword("")
     }
   }, [status, navigate])
 

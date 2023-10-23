@@ -11,8 +11,14 @@ import Nosotros from "./components/pages/Nosotros";
 import Cotizador from "./components/pages/Cotizador";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/admin/Dashboard";
+import { loadUser } from "./features/user/userSlice";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch()
+  dispatch(loadUser())
+
   return (
     <Router>
       <Routes>

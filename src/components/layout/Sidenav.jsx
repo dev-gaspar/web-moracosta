@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Sidenav.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserStatus, selectUser } from "../../features/user/userSlice";
+import { getUserStatus, selectUser, signout } from "../../features/user/userSlice";
 
 function Sidenav({ mainContent }) {
 
@@ -26,7 +26,7 @@ function Sidenav({ mainContent }) {
 
   useEffect(() => {
     if (status === 'idle' || status === 'failed') {
-      navigate('/')
+      navigate('/login')
     }
   }, [status, navigate])
 
@@ -49,6 +49,10 @@ function Sidenav({ mainContent }) {
       document.body.classList.contains("sb-sidenav-toggled")
     );
   };
+
+  const signoutClicked = () => {
+    dispatch(signout())
+  }
 
   return (
     <>
@@ -204,7 +208,7 @@ function Sidenav({ mainContent }) {
                   type="button"
                   className="btn btn-secondary"
                   data-bs-dismiss="modal"
-                  onClick={() => { }}
+                  onClick={signoutClicked}
                 >
                   Cerrar sesión
                 </button>
