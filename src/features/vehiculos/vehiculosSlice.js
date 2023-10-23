@@ -5,7 +5,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const initialState = {
   vehiculos: [],
-  status: "idle",
+  status: "idle", // loading, succeeded, failed
   error: null,
 };
 
@@ -32,6 +32,7 @@ export const vehiculosSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(getVehiculos.pending, (state, action) => {
       state.status = "loading";
+      state.error = null;
     });
     builder.addCase(getVehiculos.fulfilled, (state, action) => {
       state.status = "succeeded";

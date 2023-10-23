@@ -1,8 +1,34 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom"
+import { getUserError, getUserStatus, signin } from "../../features/user/userSlice"
 
 const Login = () => {
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const status = useSelector(getUserStatus)
+  const error = useSelector(getUserError)
+
+  const onEmailChange = (e) => setEmail(e.target.value);
+  const onPasswordChange = (e) => setPassword(e.target.value);
+
+  const loginClicked = () => {
+    dispatch(signin({ email, password }))
+
+    setEmail("")
+    setPassword("")
+  }
+
+  useEffect(() => {
+    if (status === 'succeeded') {
+      navigate('/dashboard')
+    }
+  }, [status, navigate])
 
   return (
     <>
@@ -30,8 +56,8 @@ const Login = () => {
                 type="email"
                 className="form-control"
                 id="email"
-                value=""
-                onChange={() => { }}
+                value={email}
+                onChange={onEmailChange}
               />
             </div>
             <div className="mb-3">
@@ -42,22 +68,29 @@ const Login = () => {
                 type="password"
                 className="form-control"
                 id="password"
-                value=""
-                onChange={() => { }}
+                autoComplete="on"
+                value={password}
+                onChange={onPasswordChange}
               />
             </div>
+            {/* 
             <div className="mb-3 ">
               <a href="#null" className="text-secondary">
                 ¿Olvidaste tu contraseña?
               </a>
             </div>
-            <button onClick={() => {navigate("/dashboard")}} type="submit" className="btn btn-solodev-red-reversed">
-              Ingresar
-            </button>
+            */}
           </form>
-          <div className="mt-3">
-            Las 'Cookies' deben estar habilitadas en su navegador.
-          </div>
+          {status === "failed" && <div className="alert alert-danger" role="alert">
+            {error}
+          </div>}
+          <button
+            onClick={loginClicked}
+            className="btn btn-solodev-red-reversed"
+            disabled={status === "loading"}
+          >
+            Ingresar
+          </button>
         </div>
         <div className="col-md-7 d-md-block d-none p-0">
           <img

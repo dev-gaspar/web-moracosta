@@ -1,15 +1,34 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./Sidenav.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserStatus, selectUser } from "../../features/user/userSlice";
 
 function Sidenav({ mainContent }) {
 
-  const response = {
-    nombre: "Jose Gaspar",
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const status = useSelector(getUserStatus)
+  const user = useSelector(selectUser)
+
+  let fecha = new Date(user.createdAt).toLocaleDateString();
+
+  let response = {
     avatar: {
       url: "https://res.cloudinary.com/areachica-lms/image/upload/v1686582264/avatars/avatar_default.webp"
-    }
+    },
+    nombre: user.username,
+    email: user.email,
+    createdAt: fecha,
+    roles: user.roles
   }
+
+  useEffect(() => {
+    if (status === 'idle' || status === 'failed') {
+      navigate('/')
+    }
+  }, [status, navigate])
 
 
   useEffect(() => {
@@ -163,23 +182,24 @@ function Sidenav({ mainContent }) {
                   />
                 </figure>
                 <h5 className="text-center mt-2 text-capitalize ">
-                  Jose Gaspar
+                  {response.nombre}
                 </h5>
                 <p className="text-center mt-0 text-capitalize ">
-                  Dev
+                  {response.roles && response.roles.map((rol) => (
+                    <span key={rol._id} className="badge bg-secondary me-1">
+                      {rol.name}
+                    </span>
+                  ))}
                 </p>
                 <div className="text-center">
                   <b>Email: </b>
-                  dev@dev.com
+                  {response.email}
                   <br />
                   <b>Registrado el: </b>
-                  15-10-2023
+                  {response.createdAt}
                 </div>
               </div>
               <div className="modal-footer d-flex justify-content-center">
-                <a type="button" className="btn btn-secondary" href="#!">
-                  Actualizar
-                </a>
                 <button
                   type="button"
                   className="btn btn-secondary"
