@@ -11,6 +11,7 @@ import Nosotros from "./components/pages/Nosotros";
 import Cotizador from "./components/pages/Cotizador";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/admin/Dashboard";
+import Usuarios from "./components/admin/Usuarios";
 import { loadUser } from "./features/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -47,6 +48,10 @@ function App() {
         <Route
           path="/dashboard"
           element={<Dashboard />}
+        />
+        <Route
+          path="/usuarios"
+          element={<Usuarios />}
         />
       </Routes>
     </Router>

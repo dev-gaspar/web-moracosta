@@ -110,10 +110,10 @@ function Sidenav({ mainContent }) {
                     data-bs-parent="#sidenavAccordion"
                   >
                     <nav className="sb-sidenav-menu-nested nav">
-                      <Link className="nav-link" to={"/entrenadores"}>
+                      <Link className="nav-link" to={"/usuarios"}>
                         Todos
                       </Link>
-                      <Link className="nav-link" to={"/entrenadores/registrar"}>
+                      <Link className="nav-link" to={"/usuarios/registrar"}>
                         Registrar
                       </Link>
                     </nav>
