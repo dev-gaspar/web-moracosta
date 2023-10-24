@@ -4,34 +4,33 @@ import { Link, useNavigate } from "react-router-dom"
 import { getUserError, getUserStatus, signin } from "../../features/user/userSlice"
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ email: "", password: "" });
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const status = useSelector(getUserStatus);
+  const error = useSelector(getUserError);
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const onFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-  const status = useSelector(getUserStatus)
-  const error = useSelector(getUserError)
-
-  const onEmailChange = (e) => setEmail(e.target.value);
-  const onPasswordChange = (e) => setPassword(e.target.value);
-
-  const loginClicked = () => {
-    dispatch(signin({ email, password }))
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(signin(formData));
+  };
 
   useEffect(() => {
     if (status === 'succeeded') {
-      navigate('/dashboard')
-      setEmail("")
-      setPassword("")
+      navigate('/dashboard');
+      setFormData({ email: "", password: "" });
     }
-  }, [status, navigate])
+  }, [status, navigate]);
 
   return (
     <>
-      <div className="row vh-100" >
+      <div className="row vh-100">
         <div className="col-md-5 d-flex p-5 justify-content-center flex-column">
           <div className="text-center">
             <Link to="/">
@@ -46,7 +45,7 @@ const Login = () => {
             <h1 className="text-center fs-3">Panel de control</h1>
           </div>
           <h2 className="mt-3">Ingresar</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-3 mt-3">
               <label htmlFor="email" className="form-label">
                 <i className="fas fa-envelope"></i> Correo Electrónico
@@ -55,8 +54,9 @@ const Login = () => {
                 type="email"
                 className="form-control"
                 id="email"
-                value={email}
-                onChange={onEmailChange}
+                name="email"
+                value={formData.email}
+                onChange={onFormChange}
               />
             </div>
             <div className="mb-3">
@@ -67,29 +67,23 @@ const Login = () => {
                 type="password"
                 className="form-control"
                 id="password"
+                name="password"
                 autoComplete="on"
-                value={password}
-                onChange={onPasswordChange}
+                value={formData.password}
+                onChange={onFormChange}
               />
             </div>
-            {/* 
-            <div className="mb-3 ">
-              <a href="#null" className="text-secondary">
-                ¿Olvidaste tu contraseña?
-              </a>
-            </div>
-            */}
+            {status === "failed" && <div className="alert alert-danger" role="alert">
+              {error}
+            </div>}
+            <button
+              type="submit"
+              className="btn btn-solodev-red-reversed"
+              disabled={status === "loading"}
+            >
+              Ingresar
+            </button>
           </form>
-          {status === "failed" && <div className="alert alert-danger" role="alert">
-            {error}
-          </div>}
-          <button
-            onClick={loginClicked}
-            className="btn btn-solodev-red-reversed"
-            disabled={status === "loading"}
-          >
-            Ingresar
-          </button>
         </div>
         <div className="col-md-7 d-md-block d-none p-0">
           <img
@@ -98,9 +92,9 @@ const Login = () => {
             className="img-fluid full-height-image"
           />
         </div>
-      </div >
+      </div>
     </>
   )
 }
 
-export default Login
+export default Login;

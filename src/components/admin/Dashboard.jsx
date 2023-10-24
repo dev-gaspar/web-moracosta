@@ -12,7 +12,7 @@ const Dashboard = () => {
                 className="card"
                 style={{ marginTop: "5rem", marginBottom: "1.5rem" }}
               >
-                <div className="card-body">
+                <div className="d-flex justify-content-between card-body">
                   <h4 className="page-title">Vision general</h4>
                 </div>
               </div>

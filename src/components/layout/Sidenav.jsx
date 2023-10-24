@@ -113,8 +113,8 @@ function Sidenav({ mainContent }) {
                       <Link className="nav-link" to={"/usuarios"}>
                         Todos
                       </Link>
-                      <Link className="nav-link" to={"/usuarios/registrar"}>
-                        Registrar
+                      <Link className="nav-link" to={"/usuarios/nuevo"}>
+                        Nuevo
                       </Link>
                     </nav>
                   </div>

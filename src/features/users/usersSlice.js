@@ -18,7 +18,19 @@ export const getUsers = createAsyncThunk("users/getUsers", async () => {
 
     return response.data;
   } catch (error) {
-    throw new Error(error.response.data.message);
+    throw error;
+  }
+});
+
+export const newUser = createAsyncThunk("users/newUser", async (user) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/api/users`, user, {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
   }
 });
 
@@ -31,6 +43,7 @@ export const usersSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    //getUsers
     builder.addCase(getUsers.pending, (state, action) => {
       state.status = "loading";
       state.error = null;
@@ -40,6 +53,19 @@ export const usersSlice = createSlice({
       state.users = action.payload;
     });
     builder.addCase(getUsers.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+    //newUser
+    builder.addCase(newUser.pending, (state, action) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(newUser.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.users.push(action.payload);
+    });
+    builder.addCase(newUser.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });

@@ -15,6 +15,7 @@ import Usuarios from "./components/admin/Usuarios";
 import { loadUser } from "./features/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { NuevoUsuario } from "./components/admin/NuevoUsuario";
 
 function App() {
   const dispatch = useDispatch()
@@ -52,6 +53,10 @@ function App() {
         <Route
           path="/usuarios"
           element={<Usuarios />}
+        />
+        <Route
+          path="/usuarios/nuevo"
+          element={<NuevoUsuario />}
         />
       </Routes>
     </Router>
