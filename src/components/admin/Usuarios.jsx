@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Sidenav from '../layout/Sidenav'
 import { MDBDataTable } from "mdbreact";
-import { getUsers, getUsersError, getUsersStatus, selectAllUsers } from '../../features/users/usersSlice';
+import { getUsers, deleteUser, getUsersError, getUsersStatus, selectAllUsers } from '../../features/users/usersSlice';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const Usuarios = () => {
 
@@ -76,12 +77,12 @@ const Usuarios = () => {
           creado: fecha,
           acciones: (
             <div className="d-flex justify-content-center">
-              <Link
-                to={"#"}
+              <button
+                onClick={() => handleDelete(user._id)}
                 className="btn btn-sm btn-danger py-1 px-2 me-1"
               >
                 <i className="fas fa-trash"></i>
-              </Link>
+              </button>
             </div>
           ),
         });
@@ -101,7 +102,17 @@ const Usuarios = () => {
       noBottomColumns={true}
     />
   } else if (status === 'failed') {
-    contenido = <div>{error}</div>
+    contenido =
+      <div className="alert alert-danger" role="alert">
+        {error}
+      </div>
+  }
+
+  const handleDelete = async (id) => {
+    const res = await dispatch(deleteUser(id))
+    if (res.payload !== undefined) {
+      toast.success('Usuario eliminado', { icon: '🗑️' })
+    }
   }
 
   return (

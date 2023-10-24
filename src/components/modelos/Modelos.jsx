@@ -29,7 +29,10 @@ const Modelos = () => {
       <Modelo key={vehiculo.vehiculo_id} vehiculo={vehiculo} />
     ))
   } else if (status === 'failed') {
-    contenido = <div>{error}</div>
+    contenido =
+      <div className="alert alert-danger" role="alert">
+        {error}
+      </div>
   }
 
   return (

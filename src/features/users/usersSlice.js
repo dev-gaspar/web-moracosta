@@ -34,6 +34,18 @@ export const newUser = createAsyncThunk("users/newUser", async (user) => {
   }
 });
 
+export const deleteUser = createAsyncThunk("users/deleteUser", async (id) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/api/users/${id}`, {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+});
+
 export const usersSlice = createSlice({
   name: "users",
   initialState,
@@ -66,6 +78,21 @@ export const usersSlice = createSlice({
       state.users.push(action.payload);
     });
     builder.addCase(newUser.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+    //deleteUser
+    builder.addCase(deleteUser.pending, (state, action) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(deleteUser.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.users = state.users.filter(
+        (user) => user._id !== action.payload._id
+      );
+    });
+    builder.addCase(deleteUser.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });
