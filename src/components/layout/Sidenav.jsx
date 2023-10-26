@@ -120,19 +120,19 @@ function Sidenav({ mainContent }) {
                   </div>
 
 
-                  <div className="sb-sidenav-menu-heading">Autos</div>
-                  <a className="nav-link" href="#!">
+                  <div className="sb-sidenav-menu-heading">Vehiculos</div>
+                  <Link className="nav-link" to={"/vehiculos"}>
                     <div className="sb-nav-link-icon">
                       <i className="fas fa-table"></i>
                     </div>
                     Todos
-                  </a>
-                  <a className="nav-link" href="#!">
+                  </Link>
+                  <Link className="nav-link" to={"/vehiculos/nuevo"}>
                     <div className="sb-nav-link-icon">
                       <i className="fa fa-plus"></i>
                     </div>
                     Nuevo
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="sb-sidenav-footer">

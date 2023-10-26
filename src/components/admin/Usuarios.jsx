@@ -97,9 +97,12 @@ const Usuarios = () => {
       striped
       hover
       displayEntries={false}
-      paging={false}
+      paging={true}
       info={false}
       noBottomColumns={true}
+      paginationLabel={["<", ">"]}
+      searchLabel="Buscar"
+      entries={10}
     />
   } else if (status === 'failed') {
     contenido =

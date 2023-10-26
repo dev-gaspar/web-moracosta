@@ -16,6 +16,9 @@ import { loadUser } from "./features/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { NuevoUsuario } from "./components/admin/NuevoUsuario";
+import Vehiculos from "./components/admin/Vehiculos";
+import NuevoVehiculo from "./components/admin/NuevoVehiculo";
+import AdminModelos from "./components/admin/AdminModelos";
 
 function App() {
   const dispatch = useDispatch()
@@ -57,6 +60,18 @@ function App() {
         <Route
           path="/usuarios/nuevo"
           element={<NuevoUsuario />}
+        />
+        <Route
+          path="/vehiculos"
+          element={<Vehiculos />}
+        />
+        <Route
+          path="/vehiculos/nuevo"
+          element={<NuevoVehiculo />}
+        />
+        <Route
+          path="/vehiculos/modelos"
+          element={<AdminModelos />}
         />
       </Routes>
     </Router>

@@ -32,7 +32,7 @@ export const DetalleModelo = () => {
       <section className="banner" style={{ height: "85vh" }}>
         <div className="banner-background">
           <video className="video-background" loop autoPlay="autoplay" muted playsInline defaultmuted="true">
-            <source src="https://res.cloudinary.com/dxuauzyp9/video/upload/v1697326776/pacesivmm4jjwv2aavra.webm" type="video/webm" />
+            <source src="https://res.cloudinary.com/dxuauzyp9/video/upload/v1697326581/iukrbuwd6edhfjmti8n6.webm" type="video/webm" />
             Your browser does not support HTML5 video
           </video>
           <div className="container-fluid">
