@@ -3,6 +3,7 @@ import "./Sidenav.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserStatus, selectUser, signout } from "../../features/user/userSlice";
+import CollapseSidenav from "./CollapseSidenav";
 
 function Sidenav({ mainContent }) {
 
@@ -87,52 +88,26 @@ function Sidenav({ mainContent }) {
                     Dashboard
                   </Link>
                   <div className="sb-sidenav-menu-heading">USUARIOS</div>
-                  <a
-                    className="nav-link collapsed"
-                    href="#!"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseLayouts"
-                    aria-expanded="false"
-                    aria-controls="collapseLayouts"
-                  >
-                    <div className="sb-nav-link-icon">
-                      <i className="fa fa-user"></i>
-                    </div>
-                    Usuarios
-                    <div className="sb-sidenav-collapse-arrow">
-                      <i className="fas fa-angle-down"></i>
-                    </div>
-                  </a>
-                  <div
-                    className="collapse"
-                    id="collapseLayouts"
-                    aria-labelledby="headingOne"
-                    data-bs-parent="#sidenavAccordion"
-                  >
-                    <nav className="sb-sidenav-menu-nested nav">
-                      <Link className="nav-link" to={"/usuarios"}>
-                        Todos
-                      </Link>
-                      <Link className="nav-link" to={"/usuarios/nuevo"}>
-                        Nuevo
-                      </Link>
-                    </nav>
-                  </div>
+                  <CollapseSidenav icon="fa fa-user" name="Usuarios" links={[
+                    { name: "Todos", to: "/usuarios" },
+                    { name: "Nuevo", to: "/usuarios/nuevo" }
+                  ]} />
 
+                  <div className="sb-sidenav-menu-heading">AUTOS</div>
+                  <CollapseSidenav icon="fa fa-suitcase" name="Marcas" links={[
+                    { name: "Todos", to: "#" },
+                    { name: "Nuevo", to: "#" }
+                  ]} />
 
-                  <div className="sb-sidenav-menu-heading">Vehiculos</div>
-                  <Link className="nav-link" to={"/vehiculos"}>
-                    <div className="sb-nav-link-icon">
-                      <i className="fas fa-table"></i>
-                    </div>
-                    Todos
-                  </Link>
-                  <Link className="nav-link" to={"/vehiculos/nuevo"}>
-                    <div className="sb-nav-link-icon">
-                      <i className="fa fa-plus"></i>
-                    </div>
-                    Nuevo
-                  </Link>
+                  <CollapseSidenav icon="fa fa-tag" name="Modelos" links={[
+                    { name: "Todos", to: "/vehiculos/modelos" },
+                  ]} />
+
+                  <CollapseSidenav icon="fa fa-car" name={"Vehiculos"} links={[
+                    { name: "Todos", to: "/vehiculos" },
+                    { name: "Nuevo", to: "/vehiculos/nuevo" }
+                  ]} />
+
                 </div>
               </div>
               <div className="sb-sidenav-footer">

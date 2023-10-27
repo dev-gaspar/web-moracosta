@@ -20,10 +20,11 @@ const NuevoVehiculo = () => {
 
   const CustomMenu = ({ innerRef, innerProps, isDisabled, children }) =>
     !isDisabled ? (
-      <div ref={innerRef} {...innerProps} className="customReactSelectMenu">
+      <div ref={innerRef} {...innerProps}>
         {children}
         <Link
           className="btn btn-primary btn-sm w-100"
+          style={{ zIndex: 1000 }}
           to={"/vehiculos/modelos"}
         >
           <i className="fa fa-plus" />
@@ -75,11 +76,14 @@ const NuevoVehiculo = () => {
                           label: modelo.nombre
                         }))
                         }
+                        isLoading={status === 'loading'}
                         components={{ Menu: CustomMenu }}
                         onChange={(e) => console.log(e)}
+                        menuPosition='fixed'
                       />
                     </div>
                     <div className='col-md-8'>
+                      
                     </div>
                   </div>
                 </div>
