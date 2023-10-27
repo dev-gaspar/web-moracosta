@@ -117,20 +117,15 @@ const AdminModelos = () => {
   } else if (statusModelos === 'failed') {
     contenido =
       <div className="alert alert-danger" role="alert">
-        {error}
+        {errorModelos}
       </div>
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (marcaId === '') {
-      toast.error('Seleccione una marca', { icon: '💼' })
-      return
-    }
     dispatch(newModelo({ marcaId, nombre }));
     if (statusModelos === 'succeeded') {
       setNombre('')
-      setMarcaId('')
       toast.success('Modelo registrado', { icon: '🚗' })
     }
   };
@@ -181,6 +176,7 @@ const AdminModelos = () => {
                             components={{ Menu: CustomMenu }}
                             onChange={(e) => setMarcaId(e.value)}
                             menuPosition='fixed'
+                            required
                           />
 
                           <label htmlFor="modelo" className="form-label">Modelo</label>
