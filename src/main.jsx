@@ -10,7 +10,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
-      <Toaster position="bottom-center" reverseOrder={false} />
+      <Toaster position="bottom-center" reverseOrder={false} toastOptions={{
+        style: {
+          color: '#fff',
+          background: '#231f20',
+        },
+      }} />
     </Provider>
   </React.StrictMode>,
 )

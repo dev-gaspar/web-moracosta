@@ -29,7 +29,7 @@ export const DetalleModelo = () => {
         </div>
       </div>
 
-      <section className="banner" style={{ height: "85vh" }}>
+      <section className="banner" style={{ height: "86vh" }}>
         <div className="banner-background">
           <video className="video-background" loop autoPlay="autoplay" muted playsInline defaultmuted="true">
             <source src="https://res.cloudinary.com/dxuauzyp9/video/upload/v1697326581/iukrbuwd6edhfjmti8n6.webm" type="video/webm" />

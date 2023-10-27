@@ -22,6 +22,7 @@ const CollapseSidenav = ({ icon, name, links }) => {
         data-bs-target={`#collapse${name}`}
         aria-expanded="false"
         aria-controls={`collapse${name}`}
+        style={{ cursor: "pointer" }}
       >
         <div className="sb-nav-link-icon">
           <i className={icon}></i>

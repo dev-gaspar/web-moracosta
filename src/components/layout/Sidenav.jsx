@@ -95,8 +95,7 @@ function Sidenav({ mainContent }) {
 
                   <div className="sb-sidenav-menu-heading">AUTOS</div>
                   <CollapseSidenav icon="fa fa-suitcase" name="Marcas" links={[
-                    { name: "Todos", to: "#" },
-                    { name: "Nuevo", to: "#" }
+                    { name: "Todos", to: "/vehiculos/marcas" },
                   ]} />
 
                   <CollapseSidenav icon="fa fa-tag" name="Modelos" links={[

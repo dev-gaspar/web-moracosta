@@ -83,7 +83,7 @@ const NuevoVehiculo = () => {
                       />
                     </div>
                     <div className='col-md-8'>
-                      
+
                     </div>
                   </div>
                 </div>
