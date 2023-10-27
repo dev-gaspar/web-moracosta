@@ -110,7 +110,7 @@ const AdminMarcas = () => {
           <div className="row ">
             <div className="col-xl-12">
               <div
-                className="card"
+                className="card shadow bg-body rounded"
                 style={{ marginTop: "5rem", marginBottom: "1.5rem" }}
               >
                 <div className="d-flex justify-content-between card-body">
@@ -122,7 +122,7 @@ const AdminMarcas = () => {
 
           <div className="row">
             <div className="col-xl-12">
-              <div className="card">
+              <div className="card shadow bg-body rounded">
                 <div className="card-body">
                   <div className='row'>
                     <div className='col-md-5 pb-3'>
