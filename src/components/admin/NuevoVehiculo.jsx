@@ -73,7 +73,7 @@ const NuevoVehiculo = () => {
                         placeholder='Seleccionar'
                         options={modelos.map((modelo) => ({
                           value: modelo._id,
-                          label: modelo.nombre
+                          label: `${modelo.marca.nombre} - ${modelo.nombre}`
                         }))
                         }
                         isLoading={status === 'loading'}
