@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
  * @param {string} vehiculo.nombre - Nombre del vehículo (ej. "MAZDA CX-90").
  * @param {string} vehiculo.modelo - Modelo del vehículo (ej. "MAZDA").
  * @param {string} vehiculo.descripcion - Descripción del vehículo.
- * @param {string} vehiculo.imagen_principal - URL de la imagen principal del vehículo.
+ * @param {string} vehiculo.imagen_principal.url - URL de la imagen principal del vehículo.
  * @param {number} vehiculo.precio - Precio del vehículo.
  * @param {string} vehiculo.ficha_tecnica - URL de la ficha técnica del vehículo.
  * @param {string} vehiculo.video_banner - URL del video de presentación del vehículo.
@@ -19,11 +19,11 @@ import { Link } from 'react-router-dom'
  * @param {Object} vehiculo.detalles - Detalles adicionales del vehículo.
  * @param {string} vehiculo.detalles.titulo1 - Título del detalle 1.
  * @param {string} vehiculo.detalles.texto1 - Texto del detalle 1.
- * @param {string} vehiculo.detalles.imagen1 - URL de la imagen del detalle 1.
- * @param {string} vehiculo.detalles.titulo2 - Título del detalle 2.
+ * @param {string} vehiculo.detalles.imagen1.url - URL de la imagen del detalle 1.
+ * @param {string} vehiculo.detalles.titulo2.url - Título del detalle 2.
  * @param {string} vehiculo.detalles.texto2 - Texto del detalle 2.
- * @param {string} vehiculo.detalles.imagen2 - URL de la imagen del detalle 2.
- * @param {string} vehiculo.imagen_especificaciones - URL de la imagen de especificaciones del vehículo.
+ * @param {string} vehiculo.detalles.imagen2.url - URL de la imagen del detalle 2.
+ * @param {string} vehiculo.imagen_especificaciones.url - URL de la imagen de especificaciones del vehículo.
  * @param {Object} vehiculo.especificaciones - Especificaciones técnicas del vehículo.
  * @param {Object} vehiculo.especificaciones.potencia - Especificaciones de potencia del motor.
  * @param {string} vehiculo.especificaciones.potencia.potencia_motor - Potencia del motor en HP.
@@ -75,7 +75,7 @@ const DetalleComponents = ({ vehiculo }) => {
       <section className="banner" style={{ height: "86vh" }}>
         <div className="banner-background">
           <video className="video-background" loop autoPlay="autoplay" muted playsInline defaultmuted="true">
-            <source src={vehiculo.video_banner} type="video/webm" />
+            <source src={vehiculo.video_banner.url} type="video/webm" />
             Your browser does not support HTML5 video
           </video>
           <div className="container-fluid">
@@ -113,18 +113,19 @@ const DetalleComponents = ({ vehiculo }) => {
               <br />
               <p>{vehiculo.detalles.texto1}</p>
               <div className="links">
-                <a href={vehiculo.ficha_tecnica} download="" className="btn descargar"><span>FICHA TÉCNICA <i className="fa fa-book"></i></span></a>
+                <Link to={vehiculo.ficha_tecnica} target="_blank"
+                  className="btn descargar"><span>FICHA TÉCNICA <i className="fa fa-book"></i></span></Link>
               </div>
             </div>
           </div>
           <div className="col-md-6 img-box">
-            <img src={vehiculo.detalles.imagen1} alt="Mazda CX-90" className="img-parallax" />
+            <img src={vehiculo.detalles.imagen1.url} alt="Mazda CX-90" className="img-parallax" />
           </div>
         </div>
 
         <div id='descripcion' className="row my-boxes-rev">
           <div className="col-md-6 img-box">
-            <img src={vehiculo.detalles.imagen2} alt="Mazda CX-90" className="img-parallax" />
+            <img src={vehiculo.detalles.imagen2.url} alt="Mazda CX-90" className="img-parallax" />
           </div>
           <div className="col-md-6 description-box">
             <div className="detalle-box-text">
@@ -138,7 +139,7 @@ const DetalleComponents = ({ vehiculo }) => {
       <div id='especficaciones' className="row">
         <div className='col-md-6'>
           <div className='img-box'>
-            <img src={vehiculo.imagen_especificaciones} />
+            <img src={vehiculo.imagen_especificaciones.url} />
           </div>
         </div>
         <div className='col-md-6'>

@@ -25,6 +25,22 @@ export const getVehiculos = createAsyncThunk(
   }
 );
 
+export const createVehiculo = createAsyncThunk(
+  "vehiculos/createVehiculo",
+  async (formData) => {
+    try {
+      const response = await axios.post(`${BASE_URL}/api/vehiculos`, formData, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 export const deleteVehiculo = createAsyncThunk(
   "vehiculos/deleteVehiculo",
   async (id) => {
@@ -75,6 +91,19 @@ export const vehiculosSlice = createSlice({
       );
     });
     builder.addCase(deleteVehiculo.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+    // Create
+    builder.addCase(createVehiculo.pending, (state, action) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(createVehiculo.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.vehiculos.push(action.payload);
+    });
+    builder.addCase(createVehiculo.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });
