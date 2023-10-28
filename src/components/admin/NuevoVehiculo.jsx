@@ -46,10 +46,15 @@ const NuevoVehiculo = () => {
               >
                 <div className="d-flex justify-content-between card-body">
                   <h4 className="page-title">Nuevo vehiculo</h4>
-                  <button className="btn btn-sm btn-primary">
+                  <a className="btn btn-sm btn-primary"
+                    href="../assets/instructivo-registro-vehiculos.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    download={true}
+                  >
                     <i className="fa fa-download" />
                     {" "}Instructivo
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

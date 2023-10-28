@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = import.meta.env.VITE_URL_API;
 
 const initialState = {
   vehiculos: [],
@@ -13,7 +13,11 @@ export const getVehiculos = createAsyncThunk(
   "vehiculos/getVehiculos",
   async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/vehiculos`);
+      const response = await axios.get(`${BASE_URL}/api/vehiculos`, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      
       return response.data;
     } catch (error) {
       throw error;
