@@ -133,7 +133,7 @@ const Usuarios = () => {
                   <Link className='btn btn-sm btn-primary'
                     to={"/usuarios/nuevo"}
                   >
-                    <i className="fas fa-plus"></i> Nuevo usuario
+                    <i className="fas fa-plus"></i> Nuevo
                   </Link>
                 </div>
               </div>

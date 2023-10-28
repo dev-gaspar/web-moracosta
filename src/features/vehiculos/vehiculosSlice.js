@@ -17,7 +17,23 @@ export const getVehiculos = createAsyncThunk(
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      
+
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+export const deleteVehiculo = createAsyncThunk(
+  "vehiculos/deleteVehiculo",
+  async (id) => {
+    try {
+      const response = await axios.delete(`${BASE_URL}/api/vehiculos/${id}`, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+
       return response.data;
     } catch (error) {
       throw error;
@@ -34,6 +50,7 @@ export const vehiculosSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    // getVehiculos
     builder.addCase(getVehiculos.pending, (state, action) => {
       state.status = "loading";
       state.error = null;
@@ -43,6 +60,21 @@ export const vehiculosSlice = createSlice({
       state.vehiculos = action.payload;
     });
     builder.addCase(getVehiculos.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+    // Delete
+    builder.addCase(deleteVehiculo.pending, (state, action) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(deleteVehiculo.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.vehiculos = state.vehiculos.filter(
+        (vehiculo) => vehiculo._id !== action.payload._id
+      );
+    });
+    builder.addCase(deleteVehiculo.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });

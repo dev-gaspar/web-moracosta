@@ -183,23 +183,23 @@ const NuevoVehiculo = () => {
                         }
                       </div>
 
-                      <div class="mb-3">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required />
+                      <div className="mb-3">
+                        <label htmlFor="nombre">Nombre</label>
+                        <input type="text" className="form-control" id="nombre" name="nombre" required />
                       </div>
-                      <div class="mb-3">
-                        <label for="descripcion">Descripción</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" />
+                      <div className="mb-3">
+                        <label htmlFor="descripcion">Descripción</label>
+                        <textarea className="form-control" id="descripcion" name="descripcion" />
                       </div>
-                      <div class="mb-3">
-                        <label for="precio">Precio</label>
-                        <input type="number" class="form-control" id="precio" name="precio" value="0" />
+                      <div className="mb-3">
+                        <label htmlFor="precio">Precio</label>
+                        <input type="number" className="form-control" id="precio" name="precio" value="0" />
                       </div>
 
                       <h5>Banner</h5>
 
                       <div className="mb-3">
-                        <label for="videoBanner">Video Banner</label>
+                        <label htmlFor="videoBanner">Video Banner</label>
                         <input
                           type="file"
                           className="form-control"
@@ -225,36 +225,36 @@ const NuevoVehiculo = () => {
                         }
                       </div>
 
-                      <div class="mb-3">
-                        <label for="aspecto1">Aspecto 1</label>
-                        <input type="text" class="form-control" id="aspecto1" name="aspecto1" />
+                      <div className="mb-3">
+                        <label htmlFor="aspecto1">Aspecto 1</label>
+                        <input type="text" className="form-control" id="aspecto1" name="aspecto1" />
                       </div>
-                      <div class="mb-3">
-                        <label for="aspecto2">Aspecto 2</label>
-                        <input type="text" class="form-control" id="aspecto2" name="aspecto2" />
+                      <div className="mb-3">
+                        <label htmlFor="aspecto2">Aspecto 2</label>
+                        <input type="text" className="form-control" id="aspecto2" name="aspecto2" />
                       </div>
-                      <div class="mb-3">
-                        <label for="aspecto3">Aspecto 3</label>
-                        <input type="text" class="form-control" id="aspecto3" name="aspecto3" />
+                      <div className="mb-3">
+                        <label htmlFor="aspecto3">Aspecto 3</label>
+                        <input type="text" className="form-control" id="aspecto3" name="aspecto3" />
                       </div>
 
                       <h5>Detalles</h5>
 
-                      <div class="mb-3">
-                        <label for="urlFichaTecnica">URL Ficha Técnica</label>
-                        <input type="text" class="form-control" id="urlFichaTecnica" name="urlFichaTecnica" />
+                      <div className="mb-3">
+                        <label htmlFor="urlFichaTecnica">URL Ficha Técnica</label>
+                        <input type="text" className="form-control" id="urlFichaTecnica" name="urlFichaTecnica" />
                       </div>
 
-                      <div class="mb-3">
-                        <label for="titulo1">Título 1</label>
-                        <input type="text" class="form-control" id="titulo1" name="titulo1" />
+                      <div className="mb-3">
+                        <label htmlFor="titulo1">Título 1</label>
+                        <input type="text" className="form-control" id="titulo1" name="titulo1" />
                       </div>
-                      <div class="mb-3">
-                        <label for="texto1">Texto 1</label>
-                        <textarea class="form-control" id="texto1" name="texto1" />
+                      <div className="mb-3">
+                        <label htmlFor="texto1">Texto 1</label>
+                        <textarea className="form-control" id="texto1" name="texto1" />
                       </div>
-                      <div class="mb-3">
-                        <label for="imagen1">Imagen 1</label>
+                      <div className="mb-3">
+                        <label htmlFor="imagen1">Imagen 1</label>
                         <input
                           type="file"
                           className="form-control"
@@ -276,16 +276,16 @@ const NuevoVehiculo = () => {
                         }
                       </div>
 
-                      <div class="mb-3">
-                        <label for="titulo2">Título 2</label>
-                        <input type="text" class="form-control" id="titulo2" name="titulo2" />
+                      <div className="mb-3">
+                        <label htmlFor="titulo2">Título 2</label>
+                        <input type="text" className="form-control" id="titulo2" name="titulo2" />
                       </div>
-                      <div class="mb-3">
-                        <label for="texto2">Texto 2</label>
-                        <textarea class="form-control" id="texto2" name="texto2" />
+                      <div className="mb-3">
+                        <label htmlFor="texto2">Texto 2</label>
+                        <textarea className="form-control" id="texto2" name="texto2" />
                       </div>
-                      <div class="mb-3">
-                        <label for="imagen1">Imagen 2</label>
+                      <div className="mb-3">
+                        <label htmlFor="imagen1">Imagen 2</label>
                         <input
                           type="file"
                           className="form-control"
@@ -331,121 +331,121 @@ const NuevoVehiculo = () => {
                         }
                       </div>
 
-                      <div class="mb-3">
+                      <div className="mb-3">
                         <h5> - Potencia</h5>
-                        <div class="mb-3">
-                          <label for="potencia_motor">Potencia del Motor</label>
-                          <input type="text" class="form-control" id="potencia_motor" name="potencia.potencia_motor" />
+                        <div className="mb-3">
+                          <label htmlFor="potencia_motor">Potencia del Motor</label>
+                          <input type="text" className="form-control" id="potencia_motor" name="potencia.potencia_motor" />
                         </div>
-                        <div class="mb-3">
-                          <label for="torque">Torque</label>
-                          <input type="text" class="form-control" id="torque" name="potencia.torque" />
+                        <div className="mb-3">
+                          <label htmlFor="torque">Torque</label>
+                          <input type="text" className="form-control" id="torque" name="potencia.torque" />
                         </div>
-                        <div class="mb-3">
-                          <label for="velocidad_maxima">Velocidad Máxima</label>
-                          <input type="text" class="form-control" id="velocidad_maxima" name="potencia.velocidad_maxima" />
+                        <div className="mb-3">
+                          <label htmlFor="velocidad_maxima">Velocidad Máxima</label>
+                          <input type="text" className="form-control" id="velocidad_maxima" name="potencia.velocidad_maxima" />
                         </div>
-                        <div class="mb-3">
-                          <label for="aceleracion_0_100">Aceleración 0-100 km/h</label>
-                          <input type="text" class="form-control" id="aceleracion_0_100" name="potencia.aceleracion_0_100" />
+                        <div className="mb-3">
+                          <label htmlFor="aceleracion_0_100">Aceleración 0-100 km/h</label>
+                          <input type="text" className="form-control" id="aceleracion_0_100" name="potencia.aceleracion_0_100" />
                         </div>
                       </div>
 
-                      <div class="mb-3">
+                      <div className="mb-3">
                         <h5> - Seguridad</h5>
-                        <div class="mb-3">
-                          <label for="airbags">Airbags</label>
-                          <input type="number" class="form-control" id="airbags" name="seguridad.Airbags" />
+                        <div className="mb-3">
+                          <label htmlFor="airbags">Airbags</label>
+                          <input type="number" className="form-control" id="airbags" name="seguridad.Airbags" />
                         </div>
-                        <div class="mb-3">
-                          <label for="frenos_antibloqueo">Frenos Antibloqueo (ABC)</label>
-                          <input type="text" class="form-control" id="frenos_antibloqueo" name="seguridad.Frenos_Antibloqueo_ABC" />
+                        <div className="mb-3">
+                          <label htmlFor="frenos_antibloqueo">Frenos Antibloqueo (ABC)</label>
+                          <input type="text" className="form-control" id="frenos_antibloqueo" name="seguridad.Frenos_Antibloqueo_ABC" />
                         </div>
-                        <div class="mb-3">
-                          <label for="control_traccion">Control de Tracción</label>
-                          <input type="text" class="form-control" id="control_traccion" name="seguridad.Control_traccion" />
+                        <div className="mb-3">
+                          <label htmlFor="control_traccion">Control de Tracción</label>
+                          <input type="text" className="form-control" id="control_traccion" name="seguridad.Control_traccion" />
                         </div>
-                        <div class="mb-3">
-                          <label for="control_estabilidad">Control de Estabilidad</label>
-                          <input type="text" class="form-control" id="control_estabilidad" name="seguridad.Control_estabilidad" />
+                        <div className="mb-3">
+                          <label htmlFor="control_estabilidad">Control de Estabilidad</label>
+                          <input type="text" className="form-control" id="control_estabilidad" name="seguridad.Control_estabilidad" />
                         </div>
-                        <div class="mb-3">
-                          <label for="sistema_retencion_infantil">Sistema de Retención Infantil</label>
-                          <input type="text" class="form-control" id="sistema_retencion_infantil" name="seguridad.Sistema_retencion_infantil" />
+                        <div className="mb-3">
+                          <label htmlFor="sistema_retencion_infantil">Sistema de Retención Infantil</label>
+                          <input type="text" className="form-control" id="sistema_retencion_infantil" name="seguridad.Sistema_retencion_infantil" />
                         </div>
                       </div>
 
-                      <div class="mb-3">
+                      <div className="mb-3">
                         <h5> - Equipamiento</h5>
-                        <div class="mb-3">
-                          <label for="sistema_navegacion">Sistema de Navegación</label>
-                          <input type="text" class="form-control" id="sistema_navegacion" name="equipamiento.Sistema_navegacion" />
+                        <div className="mb-3">
+                          <label htmlFor="sistema_navegacion">Sistema de Navegación</label>
+                          <input type="text" className="form-control" id="sistema_navegacion" name="equipamiento.Sistema_navegacion" />
                         </div>
-                        <div class="mb-3">
-                          <label for="sistema_sonido_premium">Sistema de Sonido Premium</label>
-                          <input type="text" class="form-control" id="sistema_sonido_premium" name="equipamiento.Sistema_sonido_premium" />
+                        <div className="mb-3">
+                          <label htmlFor="sistema_sonido_premium">Sistema de Sonido Premium</label>
+                          <input type="text" className="form-control" id="sistema_sonido_premium" name="equipamiento.Sistema_sonido_premium" />
                         </div>
-                        <div class="mb-3">
-                          <label for="asiento_cuero">Asiento de Cuero</label>
-                          <input type="text" class="form-control" id="asiento_cuero" name="equipamiento.Asiento_cuero" />
+                        <div className="mb-3">
+                          <label htmlFor="asiento_cuero">Asiento de Cuero</label>
+                          <input type="text" className="form-control" id="asiento_cuero" name="equipamiento.Asiento_cuero" />
                         </div>
-                        <div class="mb-3">
-                          <label for="techo_solar">Techo Solar</label>
-                          <input type="text" class="form-control" id="techo_solar" name="equipamiento.Techo_solar" />
+                        <div className="mb-3">
+                          <label htmlFor="techo_solar">Techo Solar</label>
+                          <input type="text" className="form-control" id="techo_solar" name="equipamiento.Techo_solar" />
                         </div>
-                        <div class="mb-3">
-                          <label for="conectividad_bluetooth">Conectividad Bluetooth</label>
-                          <input type="text" class="form-control" id="conectividad_bluetooth" name="equipamiento.Conectividad_bluetooth" />
+                        <div className="mb-3">
+                          <label htmlFor="conectividad_bluetooth">Conectividad Bluetooth</label>
+                          <input type="text" className="form-control" id="conectividad_bluetooth" name="equipamiento.Conectividad_bluetooth" />
                         </div>
                       </div>
 
                       <h5>Caracteristicas banner principal</h5>
 
-                      <div class="mb-3">
+                      <div className="mb-3">
                         <h5> - Característica 1</h5>
-                        <div class="mb-3">
-                          <label for="tituloOne">Título</label>
-                          <input type="text" class="form-control" id="tituloOne" name="caracteristicas.one.titulo" />
+                        <div className="mb-3">
+                          <label htmlFor="tituloOne">Título</label>
+                          <input type="text" className="form-control" id="tituloOne" name="caracteristicas.one.titulo" />
                         </div>
-                        <div class="mb-3">
-                          <label for="subtituloOne">Subtítulo</label>
-                          <input type="text" class="form-control" id="subtituloOne" name="caracteristicas.one.subtitulo" />
+                        <div className="mb-3">
+                          <label htmlFor="subtituloOne">Subtítulo</label>
+                          <input type="text" className="form-control" id="subtituloOne" name="caracteristicas.one.subtitulo" />
                         </div>
                       </div>
 
-                      <div class="mb-3">
+                      <div className="mb-3">
                         <h5> - Característica 2</h5>
-                        <div class="mb-3">
-                          <label for="tituloTwo">Título</label>
-                          <input type="text" class="form-control" id="tituloTwo" name="caracteristicas.two.titulo" />
+                        <div className="mb-3">
+                          <label htmlFor="tituloTwo">Título</label>
+                          <input type="text" className="form-control" id="tituloTwo" name="caracteristicas.two.titulo" />
                         </div>
-                        <div class="mb-3">
-                          <label for="subtituloTwo">Subtítulo</label>
-                          <input type="text" class="form-control" id="subtituloTwo" name="caracteristicas.two.subtitulo" />
+                        <div className="mb-3">
+                          <label htmlFor="subtituloTwo">Subtítulo</label>
+                          <input type="text" className="form-control" id="subtituloTwo" name="caracteristicas.two.subtitulo" />
                         </div>
                       </div>
 
-                      <div class="mb-3">
+                      <div className="mb-3">
                         <h5> - Característica 3</h5>
-                        <div class="mb-3">
-                          <label for="tituloThree">Título</label>
-                          <input type="text" class="form-control" id="tituloThree" name="caracteristicas.tree.titulo" />
+                        <div className="mb-3">
+                          <label htmlFor="tituloThree">Título</label>
+                          <input type="text" className="form-control" id="tituloThree" name="caracteristicas.tree.titulo" />
                         </div>
-                        <div class="mb-3">
-                          <label for="subtituloThree">Subtítulo</label>
-                          <input type="text" class="form-control" id="subtituloThree" name="caracteristicas.tree.subtitulo" />
+                        <div className="mb-3">
+                          <label htmlFor="subtituloThree">Subtítulo</label>
+                          <input type="text" className="form-control" id="subtituloThree" name="caracteristicas.tree.subtitulo" />
                         </div>
                       </div>
 
-                      <div class="mb-3">
+                      <div className="mb-3">
                         <h5> - Característica 4</h5>
-                        <div class="mb-3">
-                          <label for="tituloFour">Título</label>
-                          <input type="text" class="form-control" id="tituloFour" name="caracteristicas.four.titulo" />
+                        <div className="mb-3">
+                          <label htmlFor="tituloFour">Título</label>
+                          <input type="text" className="form-control" id="tituloFour" name="caracteristicas.four.titulo" />
                         </div>
-                        <div class="mb-3">
-                          <label for="subtituloFour">Subtítulo</label>
-                          <input type="text" class="form-control" id="subtituloFour" name="caracteristicas.four.subtitulo" />
+                        <div className="mb-3">
+                          <label htmlFor="subtituloFour">Subtítulo</label>
+                          <input type="text" className="form-control" id="subtituloFour" name="caracteristicas.four.subtitulo" />
                         </div>
                       </div>
                       <button type="submit" className="btn btn-primary">Guardar</button>
