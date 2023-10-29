@@ -641,7 +641,7 @@ const NuevoVehiculo = () => {
             </div>
           </div >
           {showModal && (
-            <div className="modal" tabIndex="-1" role="dialog" style={{ display: "block" }}>
+            <div className="modal" data-bs-backdrop="static" tabIndex="-1" role="dialog" style={{ display: "block" }}>
               <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                   <div className="modal-header">
@@ -650,7 +650,9 @@ const NuevoVehiculo = () => {
                       {statusVehiculos === "succeeded" && "Registrado"}
                       {statusVehiculos === "failed" && "Error"}
                     </h5>
-                    <button type="button" className="btn-close" onClick={closeModal}></button>
+                    {statusVehiculos !== "loading" && (
+                      <button type="button" className="btn-close" onClick={closeModal}></button>
+                    )}
                   </div>
 
 

@@ -1031,3 +1031,7 @@ body,
 .img-thumbnail {
   border: var(--secondary) 2px dashed;
 }
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
