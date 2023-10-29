@@ -827,10 +827,10 @@ body,
 
 .description-box {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: center;
   padding-right: 3.5rem;
   padding-left: 2rem;
-  padding-top: 1rem;
   max-width: 50rem;
 }
 
@@ -1026,4 +1026,8 @@ body,
 .card-body .page-title {
   color: var(--black);
   padding-bottom: 0;
+}
+
+.img-thumbnail {
+  border: var(--secondary) 2px dashed;
 }

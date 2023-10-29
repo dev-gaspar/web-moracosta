@@ -25,9 +25,15 @@ const Modelos = () => {
       </div>
     </div>
   } else if (status === 'succeeded') {
-    contenido = vehiculos.map((vehiculo) => (
-      <Modelo key={vehiculo.vehiculo_id} vehiculo={vehiculo} />
-    ))
+    if (vehiculos.length > 0) {
+      contenido = vehiculos.map((vehiculo) => (
+        <Modelo key={vehiculo._id} vehiculo={vehiculo} />
+      ))
+    } else {
+      contenido = <div className="alert alert-warning" role="alert">
+        No hay vehículos registrados
+      </div>
+    }
   } else if (status === 'failed') {
     contenido =
       <div className="alert alert-danger" role="alert">

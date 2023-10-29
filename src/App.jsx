@@ -19,6 +19,7 @@ import { NuevoUsuario } from "./components/admin/NuevoUsuario";
 import Vehiculos from "./components/admin/Vehiculos";
 import NuevoVehiculo from "./components/admin/NuevoVehiculo";
 import AdminModelos from "./components/admin/AdminModelos";
+import AdminMarcas from "./components/admin/AdminMarcas";
 
 function App() {
   const dispatch = useDispatch()
@@ -62,16 +63,20 @@ function App() {
           element={<NuevoUsuario />}
         />
         <Route
+          path="/vehiculos/marcas"
+          element={<AdminMarcas />}
+        />
+        <Route
+          path="/vehiculos/modelos"
+          element={<AdminModelos />}
+        />
+        <Route
           path="/vehiculos"
           element={<Vehiculos />}
         />
         <Route
           path="/vehiculos/nuevo"
           element={<NuevoVehiculo />}
-        />
-        <Route
-          path="/vehiculos/modelos"
-          element={<AdminModelos />}
         />
       </Routes>
     </Router>

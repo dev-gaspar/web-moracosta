@@ -4,35 +4,68 @@ import { useEffect, useState } from "react"
 import { deleteModelo, getModelos, getModelosError, getModelosStatus, newModelo, selectAllModelos } from '../../features/vehiculos/modelosSlice'
 import { MDBDataTable } from "mdbreact"
 import toast from "react-hot-toast"
+import { getMarcas, getMarcasError, getMarcasStatus, selectAllMarcas } from "../../features/vehiculos/marcasSlice"
+import Select from "react-select"
+import { Link } from "react-router-dom"
 
 const AdminModelos = () => {
+  const dispatch = useDispatch()
 
   const [nombre, setNombre] = useState('');
+  const [marcaId, setMarcaId] = useState('');
 
-  const dispatch = useDispatch()
+  const marcas = useSelector(selectAllMarcas)
+  const statusMarcas = useSelector(getMarcasStatus)
+  const errorMarcas = useSelector(getMarcasError)
+
   const modelos = useSelector(selectAllModelos)
-  const status = useSelector(getModelosStatus)
-  const error = useSelector(getModelosError)
+  const statusModelos = useSelector(getModelosStatus)
+  const errorModelos = useSelector(getModelosError)
 
   useEffect(() => {
-    if (status === 'idle') {
+    if (statusMarcas === 'idle') {
+      dispatch(getMarcas())
+    }
+
+    if (statusModelos === 'idle') {
       dispatch(getModelos())
     }
-  }, [status, dispatch])
+  }, [statusMarcas, statusModelos, dispatch])
+
+  const CustomMenu = ({ innerRef, innerProps, isDisabled, children }) =>
+    !isDisabled ? (
+      <div ref={innerRef} {...innerProps}>
+        {children}
+        <Link
+          className="btn btn-primary btn-sm w-100"
+          style={{ zIndex: 1000 }}
+          to={"/vehiculos/marcas"}
+        >
+          <i className="fa fa-plus" />
+          {" "}
+          Nueva marca
+        </Link>
+      </div>
+    ) : null;
 
   let contenido;
 
-  if (status === 'loading') {
+  if (statusModelos === 'loading') {
     contenido = <div className="w-100 text-center">
       <div className="spinner-border text-danger" role="status">
         <span className="sr-only">Loading...</span>
       </div>
     </div>
-  } else if (status === 'succeeded') {
+  } else if (statusModelos === 'succeeded') {
 
     const setModelos = () => {
       const data = {
         columns: [
+          {
+            label: "Marca",
+            field: "marca",
+            sort: "asc",
+          },
           {
             label: "Modelo",
             field: "modelo",
@@ -49,6 +82,7 @@ const AdminModelos = () => {
 
       modelos.forEach((model) => {
         data.rows.push({
+          marca: model.marca.nombre,
           modelo: model.nombre,
           acciones: (
             <div className="d-flex justify-content-center">
@@ -78,18 +112,19 @@ const AdminModelos = () => {
       searchLabel="Buscar"
       paging={modelos.length > 5 ? true : false}
       entries={5}
+      noRecordsFoundLabel="No hay modelos registrados"
     />
-  } else if (status === 'failed') {
+  } else if (statusModelos === 'failed') {
     contenido =
       <div className="alert alert-danger" role="alert">
-        {error}
+        {errorModelos}
       </div>
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(newModelo({ nombre }));
-    if (status === 'succeeded') {
+    dispatch(newModelo({ marcaId, nombre }));
+    if (statusModelos === 'succeeded') {
       setNombre('')
       toast.success('Modelo registrado', { icon: '🚗' })
     }
@@ -109,7 +144,7 @@ const AdminModelos = () => {
           <div className="row ">
             <div className="col-xl-12">
               <div
-                className="card"
+                className="card shadow bg-body rounded"
                 style={{ marginTop: "5rem", marginBottom: "1.5rem" }}
               >
                 <div className="d-flex justify-content-between card-body">
@@ -121,13 +156,29 @@ const AdminModelos = () => {
 
           <div className="row">
             <div className="col-xl-12">
-              <div className="card">
+              <div className="card shadow bg-body rounded">
                 <div className="card-body">
                   <div className='row'>
-                    <div className='col-md-5'>
+                    <div className='col-md-5 pb-3'>
                       <h5>Registrar modelo</h5>
                       <form onSubmit={handleSubmit}>
                         <div className="mb-3">
+                          <label htmlFor="marca" className="form-label">Marca</label>
+                          <Select
+                            aria-label='marca'
+                            placeholder='Seleccionar'
+                            options={marcas.map((marca) => ({
+                              value: marca._id,
+                              label: marca.nombre
+                            }))
+                            }
+                            isLoading={statusMarcas === 'loading'}
+                            components={{ Menu: CustomMenu }}
+                            onChange={(e) => setMarcaId(e.value)}
+                            menuPosition='fixed'
+                            required
+                          />
+
                           <label htmlFor="modelo" className="form-label">Modelo</label>
                           <input
                             type="text"
@@ -138,10 +189,13 @@ const AdminModelos = () => {
                             required
                           />
                         </div>
-                        {status === "failed" && <div className="alert alert-danger" role="alert">
-                          {error}
+                        {statusModelos === "failed" && <div className="alert alert-danger" role="alert">
+                          {errorModelos}
                         </div>}
-                        <button type="submit" className="btn btn-primary" disabled={status === "loading"}>Registrar</button>
+                        {statusMarcas === "failed" && <div className="alert alert-danger" role="alert">
+                          {errorMarcas}
+                        </div>}
+                        <button type="submit" className="btn btn-primary" disabled={statusModelos === "loading"}>Registrar</button>
                       </form>
                     </div>
                     <div className='col-md-7'>
