@@ -107,6 +107,13 @@ function Sidenav({ mainContent }) {
                     { name: "Nuevo", to: "/vehiculos/nuevo" }
                   ]} />
 
+                  <div className="sb-sidenav-menu-heading">Contactos</div>
+                  <Link className="nav-link" to={"/contactos"}>
+                    <div className="sb-nav-link-icon">
+                      <i className="fa fa-paper-plane"></i>
+                    </div>
+                    Todos
+                  </Link>
                 </div>
               </div>
               <div className="sb-sidenav-footer">

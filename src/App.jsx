@@ -20,6 +20,8 @@ import Vehiculos from "./components/admin/Vehiculos";
 import NuevoVehiculo from "./components/admin/NuevoVehiculo";
 import AdminModelos from "./components/admin/AdminModelos";
 import AdminMarcas from "./components/admin/AdminMarcas";
+import AdminContactos from "./components/admin/AdminContactos";
+import DetalleContacto from "./components/admin/DetalleContacto";
 
 function App() {
   const dispatch = useDispatch()
@@ -78,6 +80,15 @@ function App() {
           path="/vehiculos/nuevo"
           element={<NuevoVehiculo />}
         />
+        <Route
+          path="/contactos"
+          element={<AdminContactos />}
+        />
+        <Route
+          path="/contactos/:id"
+          element={<DetalleContacto />}
+        />
+
       </Routes>
     </Router>
   );

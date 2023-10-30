@@ -5,6 +5,8 @@ import userReducer from "../features/user/userSlice";
 import usersReducer from "../features/users/usersSlice";
 import modelosReducer from "../features/vehiculos/modelosSlice";
 import marcasReducer from "../features/vehiculos/marcasSlice";
+import contactosReducer from "../features/contactos/contactosSlice";
+import constactoReducer from "../features/contactos/contactoSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +16,7 @@ export const store = configureStore({
     users: usersReducer,
     modelos: modelosReducer,
     marcas: marcasReducer,
+    contactos: contactosReducer,
+    contacto: constactoReducer,
   },
 });

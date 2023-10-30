@@ -15,6 +15,7 @@ export const NuevoUsuario = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
+    ciudad: "",
     password: "",
     roles: [],
   });
@@ -46,6 +47,7 @@ export const NuevoUsuario = () => {
       setFormData({
         username: "",
         email: "",
+        ciudad: "",
         password: "",
         roles: [],
       });
@@ -101,6 +103,22 @@ export const NuevoUsuario = () => {
                     </div>
 
                     <div className="mb-3">
+                      <label htmlFor="ciudad" className="form-label">Ciudad</label>
+                      <select
+                        className="form-select"
+                        id="ciudad"
+                        name="ciudad"
+                        value={formData.ciudad}
+                        onChange={handleChange}
+                        required
+                      >
+                        <option value="">Seleccione una ciudad</option>
+                        <option value="portoviejo">Portoviejo</option>
+                        <option value="manta">Manta</option>
+                      </select>
+                    </div>
+
+                    <div className="mb-3">
                       <label htmlFor="password" className="form-label">Contraseña</label>
                       <input
                         type="password"
@@ -139,6 +157,18 @@ export const NuevoUsuario = () => {
                             onChange={handleChange}
                           />
                           <label className="form-check-label">Moderator</label>
+                        </div>
+
+                        <div className="form-check">
+                          <input
+                            type="checkbox"
+                            className="form-check-input"
+                            name="roles"
+                            value="asesor"
+                            checked={formData.roles.includes("asesor")}
+                            onChange={handleChange}
+                          />
+                          <label className="form-check-label">Asesor</label>
                         </div>
                       </div>
                     </div>

@@ -43,6 +43,11 @@ const Usuarios = () => {
             sort: "asc",
           },
           {
+            label: "Ciudad",
+            field: "ciudad",
+            sort: "asc",
+          },
+          {
             label: "Roles",
             field: "roles",
             sort: "asc",
@@ -73,6 +78,7 @@ const Usuarios = () => {
         data.rows.push({
           username: user.username,
           email: user.email,
+          ciudad: user.ciudad,
           roles: roles,
           creado: fecha,
           acciones: (
