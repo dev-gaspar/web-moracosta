@@ -12,12 +12,15 @@ const Header = () => {
 
   let contenido;
 
-  if (status === 'loading') {
-    contenido = <div className="w-100 text-center">
-      <div className="spinner-border text-danger" role="status">
-        <span className="sr-only">Loading...</span>
+  if (status === 'loading' || status === 'idle') {
+    contenido =
+      <div className="vh-100 w-100 d-flex justify-content-center align-items-center" style={{
+        background: "#231f20"
+      }}>
+        <div className="spinner-border text-danger" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
       </div>
-    </div>
   } else if (status === 'succeeded') {
 
     //obtener los ultimos vehiculos registrados
