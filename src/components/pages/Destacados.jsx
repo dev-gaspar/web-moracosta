@@ -1,20 +1,13 @@
 import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { getVehiculos, getVehiculosError, getVehiculosStatus, selectAllVehiculos } from "../../features/vehiculos/vehiculosSlice"
+import { getVehiculosError, getVehiculosStatus, selectAllVehiculos } from "../../features/vehiculos/vehiculosSlice"
 
 const Destacados = () => {
 
-  const dispatch = useDispatch()
   const vehiculos = useSelector(selectAllVehiculos)
   const status = useSelector(getVehiculosStatus)
   const error = useSelector(getVehiculosError)
-
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(getVehiculos())
-    }
-  }, [status, dispatch])
 
   let contenido;
 
@@ -31,7 +24,7 @@ const Destacados = () => {
 
     contenido =
       vehiculosDestacados.map(vehiculo => (
-        <div className="col-12 col-lg-4">
+        <div key={vehiculo._id} className="col-12 col-lg-4">
           <div className="box-car">
             <img src={vehiculo.imagen_principal.url} />
             <h2>{vehiculo.nombre}</h2>
