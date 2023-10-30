@@ -130,7 +130,7 @@ const Cotizador = () => {
               {vehiculo.precio === 0 && <div className="capa-negra" />}
               <div className="row fact-top">
                 <h3 className="text-uppercase" >
-                  {vehiculo.modelo.marca.nombre} {vehiculo.modelo.nombre} {vehiculo.nombre} {f.format(vehiculo.precio)}
+                  {vehiculo.nombre} {f.format(vehiculo.precio)}
                 </h3>
                 <div className="col-6">
                   <img src={vehiculo?.imagen_principal.url} alt="Imagen del vehículo" className="img-fluid mb-3" />
