@@ -75,7 +75,7 @@ const Cotizador = () => {
                   placeholder='Seleccionar'
                   options={vehiculos.map((vehiculo) => ({
                     value: vehiculo,
-                    label: `${vehiculo.modelo.marca.nombre} ${vehiculo.modelo.nombre} ${vehiculo.nombre}`
+                    label: vehiculo.nombre
                   }))
                   }
                   isLoading={statusVehiculos === 'loading'}

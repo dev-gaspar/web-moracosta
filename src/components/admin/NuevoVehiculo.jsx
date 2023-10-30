@@ -255,7 +255,7 @@ const NuevoVehiculo = () => {
                     encType="multipart/form-data"
                   >
                     <div className='col-md-4'>
-                      <h5>Selecciona modelo</h5>
+                      <h5>Selecciona marca y modelo</h5>
                       <label htmlFor="modelo" className="form-label">Modelo</label>
                       <Select
                         aria-label='modelo'
@@ -300,6 +300,11 @@ const NuevoVehiculo = () => {
                       <div className="mb-3">
                         <label htmlFor="nombre">Nombre</label>
                         <input type="text" className="form-control" id="nombre" name="nombre" required
+                          placeholder={
+                            modeloId ? (
+                              `Ej: ${modelos.find(modelo => modelo._id === modeloId).marca.nombre} ${modelos.find(modelo => modelo._id === modeloId).nombre}`
+                            ) : "Ej: Chery Tiggo 7 Pro"
+                          }
                           onChange={(e) => setNombre(e.target.value)} value={nombre}
                         />
                       </div>
