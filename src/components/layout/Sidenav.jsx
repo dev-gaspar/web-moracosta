@@ -10,8 +10,9 @@ function Sidenav({ mainContent }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const status = useSelector(getUserStatus)
   const user = useSelector(selectUser)
+
+  const userRoles = user.roles.map(role => role.name);
 
   let fecha = new Date(user.createdAt).toLocaleDateString();
 
@@ -24,13 +25,6 @@ function Sidenav({ mainContent }) {
     createdAt: fecha,
     roles: user.roles
   }
-
-  useEffect(() => {
-    if (status === 'idle' || status === 'failed') {
-      navigate('/login')
-    }
-  }, [status, navigate])
-
 
   useEffect(() => {
     const sidebarToggle = document.body.querySelector("#sidebarToggle");
@@ -87,40 +81,49 @@ function Sidenav({ mainContent }) {
                     </div>
                     Dashboard
                   </Link>
-                  <div className="sb-sidenav-menu-heading">USUARIOS</div>
-                  <CollapseSidenav icon="fa fa-user" name="Usuarios" links={[
-                    { name: "Todos", to: "/usuarios" },
-                    { name: "Nuevo", to: "/usuarios/nuevo" }
-                  ]} />
 
-                  <div className="sb-sidenav-menu-heading">AUTOS</div>
+                  {userRoles.includes("admin") && <>
+                    <div className="sb-sidenav-menu-heading">USUARIOS</div>
+                    <CollapseSidenav icon="fa fa-user" name="Usuarios" links={[
+                      { name: "Todos", to: "/usuarios" },
+                      { name: "Nuevo", to: "/usuarios/nuevo" }
+                    ]} />
+                  </>}
 
-                  <Link className="nav-link" to={"/vehiculos/marcas"}>
-                    <div className="sb-nav-link-icon">
-                      <i className="fa fa-suitcase"></i>
-                    </div>
-                    Marcas
-                  </Link>
+                  {(userRoles.includes("admin") || userRoles.includes("moderator")) && <>
+                    <div className="sb-sidenav-menu-heading">AUTOS</div>
+                    <Link className="nav-link" to={"/vehiculos/marcas"}>
+                      <div className="sb-nav-link-icon">
+                        <i className="fa fa-suitcase"></i>
+                      </div>
+                      Marcas
+                    </Link>
 
-                  <Link className="nav-link" to={"/vehiculos/modelos"}>
-                    <div className="sb-nav-link-icon">
-                      <i className="fa fa-tag"></i>
-                    </div>
-                    Modelos
-                  </Link>
+                    <Link className="nav-link" to={"/vehiculos/modelos"}>
+                      <div className="sb-nav-link-icon">
+                        <i className="fa fa-tag"></i>
+                      </div>
+                      Modelos
+                    </Link>
 
-                  <CollapseSidenav icon="fa fa-car" name={"Vehiculos"} links={[
-                    { name: "Todos", to: "/vehiculos" },
-                    { name: "Nuevo", to: "/vehiculos/nuevo" }
-                  ]} />
+                    <CollapseSidenav icon="fa fa-car" name={"Vehiculos"} links={[
+                      { name: "Todos", to: "/vehiculos" },
+                      { name: "Nuevo", to: "/vehiculos/nuevo" }
+                    ]} />
+                  </>}
 
-                  <div className="sb-sidenav-menu-heading">Contactos</div>
-                  <Link className="nav-link" to={"/contactos"}>
-                    <div className="sb-nav-link-icon">
-                      <i className="fa fa-paper-plane"></i>
-                    </div>
-                    Todos
-                  </Link>
+                  {(userRoles.includes("admin") ||
+                    userRoles.includes("moderator") ||
+                    userRoles.includes("asesor")
+                  ) && <>
+                      <div className="sb-sidenav-menu-heading">Contactos</div>
+                      <Link className="nav-link" to={"/contactos"}>
+                        <div className="sb-nav-link-icon">
+                          <i className="fa fa-paper-plane"></i>
+                        </div>
+                        Todos
+                      </Link>
+                    </>}
                 </div>
               </div>
               <div className="sb-sidenav-footer">

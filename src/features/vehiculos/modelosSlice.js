@@ -81,7 +81,6 @@ export const modelosSlice = createSlice({
     });
     builder.addCase(newModelo.fulfilled, (state, action) => {
       state.status = "succeeded";
-      console.log(action.payload);
       state.modelos.push(action.payload);
     });
     builder.addCase(newModelo.rejected, (state, action) => {

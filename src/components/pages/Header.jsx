@@ -1,42 +1,61 @@
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { getVehiculosError, getVehiculosStatus, selectAllVehiculos } from "../../features/vehiculos/vehiculosSlice";
 
 const Header = () => {
 
-  return (
-    <>
+  const navigate = useNavigate();
+
+  const vehiculos = useSelector(selectAllVehiculos)
+  const status = useSelector(getVehiculosStatus)
+  const error = useSelector(getVehiculosError)
+
+  let contenido;
+
+  if (status === 'loading' || status === 'idle') {
+    contenido =
+      <div className="vh-100 w-100 d-flex justify-content-center align-items-center" style={{
+        background: "#231f20"
+      }}>
+        <div className="spinner-border text-danger" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+  } else if (status === 'succeeded') {
+
+    //obtener los ultimos vehiculos registrados
+    let vehiculosReverse = [...vehiculos].reverse()
+    let vehiculo = vehiculosReverse[0]
+
+    console.log(vehiculo)
+
+    contenido = <>
       <section className="banner" style={{ height: "100vh" }}>
         <div className="banner-background">
           <video className="video-background" loop autoPlay="autoplay" muted playsInline defaultmuted="true">
-            <source src="https://res.cloudinary.com/dxuauzyp9/video/upload/v1697326776/pacesivmm4jjwv2aavra.webm" type="video/webm" />
+            <source src={vehiculo.video_banner.url} type="video/webm" />
             Your browser does not support HTML5 video
           </video>
         </div>
       </section>
 
       <div className="container banner-titulo">
-        <h1 className="text-center mb-3 mb-md-4">LB-Silhouette R35 GTR</h1>
-        <h4 className="text-center mb-3 mb-md-3">EMOCIÓN PURA EN RUEDAS POTENTES</h4>
+        <h1 className="text-center mb-3 mb-md-4">{vehiculo.nombre}</h1>
+        <h4 className="text-center text-uppercase mb-3 mb-md-3">{vehiculo.descripcion}</h4>
       </div>
 
       <div className="container banner-pie">
+        {Object.keys(vehiculo.caracteristicas).map(key => (
+          <div key={key}>
+            <p className="caract_titulo text-uppercase">{vehiculo.caracteristicas[key].titulo}</p>
+            <p className="caract_subtitulo text-uppercase">{vehiculo.caracteristicas[key].subtitulo}</p>
+          </div>
+        ))}
+
         <div>
-          <p className="caract_titulo">300 CABALLOS</p>
-          <p className="caract_subtitulo">DE POTENCIA</p>
-        </div>
-        <div>
-          <p className="caract_titulo">PLUG IN</p>
-          <p className="caract_subtitulo">HYBRID</p>
-        </div>
-        <div>
-          <p className="caract_titulo">SEGURIDAD +10</p>
-          <p className="caract_subtitulo">SISTEMA ADAS</p>
-        </div>
-        <div>
-          <p className="caract_titulo">DESDE</p>
-          <p className="caract_subtitulo">$199,999</p>
-        </div>
-        <div>
-          <button>
+          <button
+            onClick={() => navigate(`/modelos/${vehiculo._id}`)}
+          >
             Ver
           </button>
         </div>
@@ -52,6 +71,16 @@ const Header = () => {
         </div>
       </section>
     </>
+  }
+  else if (status === 'failed') {
+    contenido =
+      <div className="alert alert-danger" role="alert">
+        {error}
+      </div>
+  }
+
+  return (
+    contenido
   )
 }
 

@@ -22,6 +22,7 @@ import AdminModelos from "./components/admin/AdminModelos";
 import AdminMarcas from "./components/admin/AdminMarcas";
 import AdminContactos from "./components/admin/AdminContactos";
 import DetalleContacto from "./components/admin/DetalleContacto";
+import RutaProtegida from "./components/rutas/RutaProtegida";
 
 function App() {
   const dispatch = useDispatch()
@@ -54,39 +55,76 @@ function App() {
         />
         <Route
           path="/dashboard"
-          element={<Dashboard />}
+          element={
+            <RutaProtegida requiredRoles={["admin", "asesor", "moderator"]}>
+              <Dashboard />
+            </RutaProtegida>
+          }
         />
         <Route
           path="/usuarios"
-          element={<Usuarios />}
+          element={
+            <RutaProtegida requiredRoles={["admin"]}>
+              <Usuarios />
+            </RutaProtegida>
+          }
         />
         <Route
           path="/usuarios/nuevo"
-          element={<NuevoUsuario />}
+          element={
+            <RutaProtegida requiredRoles={["admin"]}>
+              <NuevoUsuario />
+            </RutaProtegida>
+          }
         />
         <Route
           path="/vehiculos/marcas"
-          element={<AdminMarcas />}
+          element={
+            <RutaProtegida requiredRoles={["admin", "moderator"]}>
+              <AdminMarcas />
+            </RutaProtegida>
+          }
         />
         <Route
           path="/vehiculos/modelos"
-          element={<AdminModelos />}
+          element={
+            <RutaProtegida requiredRoles={["admin", "moderator"]}>
+              <AdminModelos />
+            </RutaProtegida>
+          }
         />
         <Route
+
           path="/vehiculos"
-          element={<Vehiculos />}
+          element={
+            <RutaProtegida requiredRoles={["admin", "moderator"]}>
+              <Vehiculos />
+            </RutaProtegida>
+          }
         />
         <Route
           path="/vehiculos/nuevo"
-          element={<NuevoVehiculo />}
+          element={
+            <RutaProtegida requiredRoles={["admin", "moderator"]}>
+              <NuevoVehiculo />
+            </RutaProtegida>
+          }
         />
         <Route
           path="/contactos"
-          element={<AdminContactos />}
+          element={
+            <RutaProtegida requiredRoles={["admin", "moderator", "asesor"]}>
+              <AdminContactos />
+            </RutaProtegida>
+          }
         />
         <Route
           path="/contactos/:id"
-          element={<DetalleContacto />}
+          element={
+            <RutaProtegida requiredRoles={["admin", "moderator", "asesor"]}>
+              <DetalleContacto />
+            </RutaProtegida>
+          }
         />
 
       </Routes>
