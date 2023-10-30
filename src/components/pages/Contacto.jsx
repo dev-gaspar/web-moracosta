@@ -1,6 +1,28 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import toast from "react-hot-toast"
+import Select from "react-select"
+import { getContactosError, getContactosStatus, newContacto } from '../../features/contactos/contactosSlice';
+import { getVehiculos, getVehiculosError, getVehiculosStatus, selectAllVehiculos } from '../../features/vehiculos/vehiculosSlice';
+import { useEffect } from 'react';
 
 const Contacto = () => {
+
+  const dispatch = useDispatch()
+
+  const vehiculos = useSelector(selectAllVehiculos)
+  const statusVehiculos = useSelector(getVehiculosStatus)
+  const errorVehiculos = useSelector(getVehiculosError)
+
+  const statusContacto = useSelector(getContactosStatus)
+  const errorContacto = useSelector(getContactosError)
+
+  useEffect(() => {
+    if (statusVehiculos === 'idle') {
+      dispatch(getVehiculos())
+    }
+  }, [statusVehiculos, dispatch])
+
   const [formData, setFormData] = useState({
     modelo: '',
     nombre: '',
@@ -15,7 +37,6 @@ const Contacto = () => {
       whatsapp: false,
       llamada: false,
     },
-
   });
 
   const handleChange = (e) => {
@@ -38,8 +59,35 @@ const Contacto = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here, e.g., send the data to a server
-    console.log(formData);
+    if (statusContacto !== "succeeded") {
+      dispatch(newContacto(formData))
+      toast.success("Enviado, pronto nos pondremos en contacto contigo!", {
+        icon: "📞",
+      })
+    } else {
+      toast.success("Ya se ha enviado la información de contacto", {
+        icon: "📨",
+      })
+    }
+
+    if (statusContacto === 'succeeded') {
+      setFormData({
+        modelo: '',
+        nombre: '',
+        apellido: '',
+        tipoDocumento: '',
+        numeroDocumento: '',
+        correo: '',
+        telefono: '',
+        direccion: '',
+        ciudad: '',
+        check: {
+          whatsapp: false,
+          llamada: false,
+        },
+      });
+    }
+
   };
   return (
     <>
@@ -54,18 +102,28 @@ const Contacto = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label htmlFor="modelo">Modelo de interés *</label>
-                    <select
-                      className="form-control selectpicker"
-                      id="modelo"
-                      name="modelo"
-                      value={formData.modelo}
-                      onChange={handleChange}
+                    <Select
+                      aria-label='modelo'
+                      placeholder='Seleccionar'
+                      options={vehiculos.map((vehiculo) => ({
+                        value: vehiculo._id,
+                        label: `${vehiculo.modelo.marca.nombre} ${vehiculo.modelo.nombre} ${vehiculo.nombre}`
+                      }))
+                      }
+                      isLoading={statusVehiculos === 'loading'}
+                      onChange={(e) => setFormData({ ...formData, modelo: e.value })}
+                      menuPosition='fixed'
+                      styles={{
+                        control: (styles) => ({
+                          ...styles,
+                          backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                          border: 'none',
+                          borderRadius: '0',
+                          boxShadow: 'none',
+                        }),
+                      }}
                       required
-                    >
-                      <option value="">Selecciona un modelo</option>
-                      {/* Add model options here */}
-                      <option value="123">MAZDA CX-90</option>
-                    </select>
+                    />
                   </div>
                   <div className="form-row">
                     <div className="form-group">
@@ -94,16 +152,18 @@ const Contacto = () => {
                     </div>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="tipoDocumento">Tipo de Documento</label>
+                    <label htmlFor="tipoDocumento">Tipo de Documento *</label>
                     <select
                       className="form-control"
                       id="tipoDocumento"
                       name="tipoDocumento"
                       value={formData.tipoDocumento}
                       onChange={handleChange}
+                      required
                     >
-                      <option value="">Selecciona un tipo de documento</option>
-                      {/* Add document type options here */}
+                      <option value="">Selecciona un tipo de documento *</option>
+                      <option value="cedula">Cédula</option>
+                      <option value="ruc">RUC</option>
                     </select>
                   </div>
                   <div className="form-group">
@@ -144,7 +204,7 @@ const Contacto = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="direccion">Direccion</label>
+                    <label htmlFor="direccion">Direccion *</label>
                     <input
                       type="tel"
                       className="form-control"
@@ -152,20 +212,23 @@ const Contacto = () => {
                       name="direccion"
                       value={formData.direccion}
                       onChange={handleChange}
+                      required
                     />
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="ciudad">Ciudad</label>
+                    <label htmlFor="ciudad">Ciudad *</label>
                     <select
                       className="form-control"
                       id="ciudad"
                       name="ciudad"
                       value={formData.ciudad}
                       onChange={handleChange}
+                      required
                     >
                       <option value="">Selecciona una ciudad</option>
-                      {/* Add city options here */}
+                      <option value="portoviejo">Portoviejo</option>
+                      <option value="manta">Manta</option>
                     </select>
                   </div>
                   <div className="form-group">
@@ -199,8 +262,8 @@ const Contacto = () => {
                       </div>
                     </div>
                   </div>
-                  <button type="submit" className="button-submit">
-                    CONTACTARME
+                  <button type="submit" className="button-submit" disabled={statusContacto === "loading"} >
+                    {statusContacto === "loading" ? "Enviando..." : "Enviar"}
                   </button>
                 </form>
               </div>
