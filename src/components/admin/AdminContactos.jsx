@@ -80,7 +80,7 @@ const AdminContactos = () => {
 
       contactos.forEach((contacto) => {
 
-        if (admin || contacto.ciudad === user.ciudad) {
+        if (admin || contacto.ciudad === user.ciudad || user.ciudad === "global" ) {
 
           let atendido = contacto.isAtendido ? 'Si ✅' : 'No ❌'
           data.rows.push({

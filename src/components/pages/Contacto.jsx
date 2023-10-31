@@ -227,8 +227,9 @@ const Contacto = () => {
                       required
                     >
                       <option value="">Selecciona una ciudad</option>
-                      <option value="portoviejo">Portoviejo</option>
                       <option value="manta">Manta</option>
+                      <option value="portoviejo">Portoviejo</option>
+                      <option value="esmeraldas">Esmeraldas</option>
                     </select>
                   </div>
                   <div className="form-group">
