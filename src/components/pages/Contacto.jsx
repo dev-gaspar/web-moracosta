@@ -206,7 +206,7 @@ const Contacto = () => {
                   <div className="form-group">
                     <label htmlFor="direccion">Direccion *</label>
                     <input
-                      type="tel"
+                      type="text"
                       className="form-control"
                       id="direccion"
                       name="direccion"
