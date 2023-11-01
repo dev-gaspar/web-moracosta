@@ -112,9 +112,11 @@ export const NuevoUsuario = () => {
                         onChange={handleChange}
                         required
                       >
-                        <option value="">Seleccione una ciudad</option>
-                        <option value="portoviejo">Portoviejo</option>
+                        <option value="">Asigne una ciudad</option>
+                        <option value="global">Todas</option>
                         <option value="manta">Manta</option>
+                        <option value="portoviejo">Portoviejo</option>
+                        <option value="esmeraldas">Esmeraldas</option>
                       </select>
                     </div>
 

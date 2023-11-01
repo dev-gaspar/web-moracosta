@@ -38,12 +38,20 @@ const AdminContactos = () => {
       </div>
     </div>
   } else if (status === 'succeeded') {
+
+    let contactosReverse = [...contactos].reverse()
+
     const setContactos = () => {
       const data = {
         columns: [
           {
             label: "Nombre",
             field: "nombre",
+            sort: "asc",
+          },
+          {
+            label: "Apellido",
+            field: "apellido",
             sort: "asc",
           },
           {
@@ -78,13 +86,14 @@ const AdminContactos = () => {
 
       const admin = user.roles?.some((rol) => rol.name === 'admin');
 
-      contactos.forEach((contacto) => {
+      contactosReverse.forEach((contacto) => {
 
-        if (admin || contacto.ciudad === user.ciudad) {
+        if (admin || contacto.ciudad === user.ciudad || user.ciudad === "global") {
 
           let atendido = contacto.isAtendido ? 'Si ✅' : 'No ❌'
           data.rows.push({
             nombre: contacto.nombre,
+            apellido: contacto.apellido,
             telefono: contacto.telefono,
             correo: contacto.correo,
             ciudad: contacto.ciudad,
