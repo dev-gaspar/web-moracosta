@@ -27,8 +27,6 @@ const Header = () => {
     let vehiculosReverse = [...vehiculos].reverse()
     let vehiculo = vehiculosReverse[0]
 
-    console.log(vehiculo)
-
     contenido = <>
       <section className="banner" style={{ height: "100vh" }}>
         <div className="banner-background">

@@ -12,7 +12,6 @@ const Contacto = () => {
 
   const vehiculos = useSelector(selectAllVehiculos)
   const statusVehiculos = useSelector(getVehiculosStatus)
-  const errorVehiculos = useSelector(getVehiculosError)
 
   const statusContacto = useSelector(getContactosStatus)
   const errorContacto = useSelector(getContactosError)
@@ -40,6 +39,26 @@ const Contacto = () => {
   });
 
   const handleChange = (e) => {
+
+    if (e.target.name === "numeroDocumento") {
+      if (formData.tipoDocumento === "cedula") {
+        if (e.target.value.length > 10) {
+          return
+        }
+      }
+      if (formData.tipoDocumento === "ruc") {
+        if (e.target.value.length > 13) {
+          return
+        }
+      }
+    }
+
+    if (e.target.name === "telefono") {
+      if (e.target.value.length > 10) {
+        return
+      }
+    }
+
     const { name, value, type, checked } = e.target;
     if (type === 'checkbox') {
       setFormData({
@@ -59,13 +78,17 @@ const Contacto = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (statusContacto !== "succeeded") {
+    if (statusContacto !== "succeeded" && statusContacto === "idle") {
       dispatch(newContacto(formData))
       toast.success("Enviado, pronto nos pondremos en contacto contigo!", {
         icon: "📞",
       })
-    } else {
+    } else if (statusContacto === "succeeded") {
       toast.success("Ya se ha enviado la información de contacto", {
+        icon: "📨",
+      })
+    } else if (statusContacto === "loading") {
+      toast.loading("Se esta enviando la información de contacto, pronto nos pondremos en contacto contigo", {
         icon: "📨",
       })
     }
@@ -176,6 +199,7 @@ const Contacto = () => {
                       value={formData.numeroDocumento}
                       onChange={handleChange}
                       required
+                      disabled={formData.tipoDocumento === ""}
                     />
                   </div>
                   <div className="form-group">
@@ -263,6 +287,11 @@ const Contacto = () => {
                       </div>
                     </div>
                   </div>
+                  {statusContacto === "failed" && (
+                    <div className="alert alert-danger" role="alert">
+                      {errorContacto}
+                    </div>
+                  )}
                   <button type="submit" className="button-submit" disabled={statusContacto === "loading"} >
                     {statusContacto === "loading" ? "Enviando..." : "Enviar"}
                   </button>

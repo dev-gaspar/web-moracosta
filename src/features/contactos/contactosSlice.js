@@ -88,6 +88,11 @@ export const contactosSlice = createSlice({
           : contacto
       );
     },
+    resetContactos(state) {
+      state.contactos = [];
+      state.status = "idle";
+      state.error = null;
+    },
   },
   extraReducers(builder) {
     //getContactos

@@ -175,7 +175,6 @@ const AdminModelos = () => {
                             isLoading={statusMarcas === 'loading'}
                             components={{ Menu: CustomMenu }}
                             onChange={(e) => setMarcaId(e.value)}
-                            menuPosition='fixed'
                             required
                           />
 
