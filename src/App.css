@@ -450,7 +450,7 @@ footer .fab:hover {
   width: 35%;
   max-width: 36rem;
   height: 74vh;
-  background-color: rgba(35, 31, 32, 0.7);
+  background-color: rgba(18, 14, 15, 0.7);
   backdrop-filter: blur(10px);
   color: var(--secondary);
   overflow-y: auto;
@@ -494,6 +494,10 @@ footer .fab:hover {
   display: none;
 }
 
+.maps-label{
+
+}
+
 body,
 .maps-sucursales::-webkit-scrollbar:horizontal {
   height: 5px;
@@ -526,6 +530,14 @@ body,
 
 .direccion {
   font-size: 1.2rem !important;
+}
+
+.direccion-sm {
+  font-size: 1rem !important;
+}
+
+.maps-search{
+  color: var(--primary);
 }
 
 .marker > li {

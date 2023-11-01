@@ -1,32 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import mapboxgl, { Map, Marker } from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import { useState } from "react";
+import Mapbox from "./Mapbox";
 
 const Sucursales = () => {
 
-  mapboxgl.accessToken = import.meta.env.VITE_MAPSBOX_TOKEN;
-  const mapContainer = useRef(null);
-  const [mapa, setMapa] = useState(null);
-
-  useEffect(() => {
-
-    if (mapContainer.current) {
-      setMapa(
-        new Map({
-          container: mapContainer.current, // container ID
-          style: 'mapbox://styles/mapbox/dark-v11', // style URL
-          center: [-80.60, -1.01], // starting position [lng, lat]
-          zoom: 10, // starting zoom
-        }));
-
-      //setear marker
-      new Marker()
-        .setLngLat([-80.60, -1.01])
-        .addTo(mapa);
-
-    }
-
-  }, [mapContainer]);
+  const [selectCity, setSelectCity] = useState({
+    latitude: -0.115575,
+    longitude: -80.699268,
+  });
 
   return (
     <>
@@ -40,50 +20,110 @@ const Sucursales = () => {
           <li className="direccion">
             <i className="fa fa-map-pin" />
             <a>
-              Moracosta Portoviejo (Vitrina, Servicio)
+              Grupo Moracosta Portoviejo
             </a>
           </li>
           <li>
-            <i className="fa fa-mobile" /> +593 526 20767 <br />
-            <i className="fa fa-phone" /> Linea 01-8000-000000 <br />
-            <i className="fab fa-whatsapp" /> +593 526 20767
+            <i className="fa fa-mobile" /> 0958622755
           </li>
-          <li><i className="fa fa-map"></i> Portoviejo</li>
-          <li><i className="fa fa-car-alt"></i> Av. Universitaria</li>
+          <li> <p style={{ cursor: "pointer" }} className="direccion-sm" onClick={(e) => {
+            e.preventDefault()
+            setSelectCity({
+              latitude: -1.0419389265638237,
+              longitude: -80.45867089559725,
+            })
+          }}> Agencia 1 <i className="fa fa-search maps-search"/> </p></li>
+          <li><i className="fa fa-car-alt"></i> Av Universitaria y Calle Edulfo Cedeño</li>
+          <li> <p style={{ cursor: "pointer" }} className="direccion-sm" onClick={(e) => {
+            e.preventDefault()
+            setSelectCity({
+              latitude: -1.0716981041874716,
+              longitude: -80.49127551395723,
+            })
+          }}> Agencia 2 <i className="fa fa-search maps-search"/></p></li>
+          <li><i className="fa fa-car-alt"></i> Paso Lateral frente al Hemiciclo de las banderas</li>
         </ul>
+
         <ul className="marker">
           <li className="direccion">
             <i className="fa fa-map-pin" />
             <a>
-              Moracosta Portoviejo (Vitrina, Servicio)
+              Grupo Moracosta Manta
             </a>
           </li>
           <li>
-            <i className="fa fa-mobile" /> +593 526 20767 <br />
-            <i className="fa fa-phone" /> Linea 01-8000-000000 <br />
-            <i className="fab fa-whatsapp" /> +593 526 20767
+            <i className="fa fa-mobile" /> 0958622755 <br />
+            <i className="fa fa-phone" /> 2620767 / 2613922 <br />
           </li>
-          <li><i className="fa fa-map"></i> Portoviejo</li>
-          <li><i className="fa fa-car-alt"></i> Av. Universitaria</li>
+          <li> <p style={{ cursor: "pointer" }} className="direccion-sm" onClick={(e) => {
+            e.preventDefault()
+            setSelectCity({
+              latitude: -0.9437349350668671,
+              longitude: -80.72436524269801,
+            })
+          }}> Agencia 1 <i className="fa fa-search maps-search"/></p></li>
+          <li><i className="fa fa-car-alt"></i> Av. 1era Entre calles 14 y 15 </li>
+          <li> <p style={{ cursor: "pointer" }} className="direccion-sm" onClick={(e) => {
+            e.preventDefault()
+            setSelectCity({
+              latitude: -0.9713032712607078,
+              longitude: -80.7027329198074,
+            })
+          }}> Agencia 2 <i className="fa fa-search maps-search"/></p></li>
+          <li><i className="fa fa-car-alt"></i> Av. 4 de noviembre diagonal a Solca</li>
         </ul>
+
         <ul className="marker">
           <li className="direccion">
             <i className="fa fa-map-pin" />
-            <a>
-              Moracosta Portoviejo (Vitrina, Servicio)
+            <a style={{ cursor: "pointer" }} onClick={(e) => {
+              e.preventDefault()
+              setSelectCity({
+                latitude: 0.9620437825322907,
+                longitude: -79.65083648899987
+              })
+            }}>
+              Grupo Moracosta Esmeraldas <i className="fa fa-search maps-search"/>
             </a>
           </li>
           <li>
-            <i className="fa fa-mobile" /> +593 526 20767 <br />
-            <i className="fa fa-phone" /> Linea 01-8000-000000 <br />
-            <i className="fab fa-whatsapp" /> +593 526 20767
+            <i className="fa fa-mobile" /> 0958622755
           </li>
-          <li><i className="fa fa-map"></i> Portoviejo</li>
-          <li><i className="fa fa-car-alt"></i> Av. Universitaria</li>
+          <li><i className="fa fa-map"></i> Esmeraldas</li>
+          <li><i className="fa fa-car-alt"></i> Av Pedro Vicente Maldonado</li>
         </ul>
       </div>
 
-      <div id="map" className="maps" ref={mapContainer}>
+      <div id="map" className="maps">
+        <Mapbox
+          initialCoordenadas={{
+            latitude: -1.0419389265638237,
+            longitude: -80.45867089559725,
+          }}
+          markers={[{
+            latitude: -1.0419389265638237,
+            longitude: -80.45867089559725,
+            label: 'Moracosta Portoviejo Agencia 1',
+          }, {
+
+            latitude: -1.0716981041874716,
+            longitude: -80.49127551395723,
+            label: 'Moracosta Portoviejo Agencia 2',
+          }, {
+            latitude: -0.9437349350668671,
+            longitude: -80.72436524269801,
+            label: 'Moracosta Manta Agencia 1',
+          }, {
+            latitude: -0.9713032712607078,
+            longitude: -80.7027329198074,
+            label: 'Moracosta Manta Agencia 2',
+          }, {
+            latitude: 0.9620437825322907,
+            longitude: -79.65083648899987,
+            label: 'Moracosta Esmeraldas',
+          }]}
+          selectCity={selectCity}
+        />
       </div>
 
     </>
