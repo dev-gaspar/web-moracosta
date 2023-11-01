@@ -1,28 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-
+import React, { useState, useEffect, useRef } from "react";
+import mapboxgl, { Map } from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const Sucursales = () => {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-  });
 
-  const [sucursales, setSucursales] = useState([]);
+  mapboxgl.accessToken = import.meta.env.VITE_MAPSBOX_TOKEN;
+  const mapContainer = useRef(null);
+  const [mapa, setMapa] = useState(null);
 
   useEffect(() => {
-    // Simular carga
-    setTimeout(() => {
-      setSucursales([,
-        { lat: -1.041934, lng: -80.458660, label: "MORACOSTA PORTOVIEJO" },
-        { lat: -0.943819, lng: -80.724366, label: "MORACOSTA MANTA" },
-        { lat: -0.971597, lng: -80.702740, label: "MORACOSTA MATRIZ" }
-      ]);
-    }, 1000);
 
-  }, []);
+    if (mapContainer.current) {
+      setMapa(
+        new Map({
+          container: mapContainer.current, // container ID
+          style: 'mapbox://styles/mapbox/streets-v12', // style URL
+          center: [-74.5, 40], // starting position [lng, lat]
+          zoom: 9, // starting zoom
+        }));
+    }
 
-  if (!isLoaded) return <div>Error al cargar el mapa. Por favor, inténtalo de nuevo más tarde.</div>;
-
+  }, [mapContainer]);
 
   return (
     <>
@@ -79,38 +77,11 @@ const Sucursales = () => {
         </ul>
       </div>
       <div className="maps">
-        <Map sucursales={sucursales} />
+        <div id="map" className="map" ref={mapContainer}>
+        </div>
       </div>
     </>
   );
 };
-
-function Map({ sucursales }) {
-  return (
-    <GoogleMap
-      zoom={10}
-      center={{
-        lat: -1.01,
-        lng: -80.60
-      }}
-      mapContainerStyle={{
-        width: "100%",
-        height: "100%",
-      }}
-
-    >
-      {sucursales && sucursales.map((sucursal, index) => (
-        <Marker
-          key={index}
-          position={{
-            lat: sucursal.lat,
-            lng: sucursal.lng
-          }}
-        />
-      ))}
-
-    </GoogleMap>
-  );
-}
 
 export default Sucursales;
