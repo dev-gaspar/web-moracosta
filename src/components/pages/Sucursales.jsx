@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import mapboxgl, { Map } from 'mapbox-gl';
+import mapboxgl, { Map, Marker } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const Sucursales = () => {
@@ -14,10 +14,16 @@ const Sucursales = () => {
       setMapa(
         new Map({
           container: mapContainer.current, // container ID
-          style: 'mapbox://styles/mapbox/streets-v12', // style URL
-          center: [-74.5, 40], // starting position [lng, lat]
-          zoom: 9, // starting zoom
+          style: 'mapbox://styles/mapbox/dark-v11', // style URL
+          center: [-80.60, -1.01], // starting position [lng, lat]
+          zoom: 10, // starting zoom
         }));
+
+      //setear marker
+      new Marker()
+        .setLngLat([-80.60, -1.01])
+        .addTo(mapa);
+
     }
 
   }, [mapContainer]);
@@ -76,10 +82,10 @@ const Sucursales = () => {
           <li><i className="fa fa-car-alt"></i> Av. Universitaria</li>
         </ul>
       </div>
-      <div className="maps">
-        <div id="map" className="map" ref={mapContainer}>
-        </div>
+
+      <div id="map" className="maps" ref={mapContainer}>
       </div>
+
     </>
   );
 };
