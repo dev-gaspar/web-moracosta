@@ -23,6 +23,7 @@ import AdminMarcas from "./components/admin/AdminMarcas";
 import AdminContactos from "./components/admin/AdminContactos";
 import DetalleContacto from "./components/admin/DetalleContacto";
 import RutaProtegida from "./components/rutas/RutaProtegida";
+import { FloatingWhatsApp } from 'react-floating-whatsapp'
 
 function App() {
   const dispatch = useDispatch()
@@ -38,6 +39,20 @@ function App() {
               <Nav />
               <Outlet />
               <Footer />
+              <FloatingWhatsApp
+                phoneNumber="593958622755"
+                accountName="Moracosta S.A."
+                avatar="./assets/wa.jpg"
+                darkMode={true}
+                chatMessage="Hola, en que podemos ayudarte? 🚗"
+                statusMessage="en linea"
+                allowClickAway={true}
+                notification={true}
+                messageDelay={0}
+                notificationDelay={5}
+                placeholder="Escribe un mensaje..."
+
+              />
             </div>
           }
         >
