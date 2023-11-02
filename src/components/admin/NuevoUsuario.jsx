@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidenav from '../layout/Sidenav'
-import { getUsersError, getUsersStatus, newUser } from '../../features/users/usersSlice';
+import { getUsers, getUsersError, getUsersStatus, newUser } from '../../features/users/usersSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +11,12 @@ export const NuevoUsuario = () => {
 
   const status = useSelector(getUsersStatus)
   const error = useSelector(getUsersError)
+
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(getUsers())
+    }
+  }, [status, dispatch])
 
   const [formData, setFormData] = useState({
     username: "",

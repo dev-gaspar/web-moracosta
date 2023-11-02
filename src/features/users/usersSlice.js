@@ -76,6 +76,9 @@ export const usersSlice = createSlice({
     getUserById(state, action) {
       state.user = state.users.find((user) => user._id === action.payload);
     },
+    resetStatus(state, action) {
+      state.status = "idle";
+    },
   },
   extraReducers(builder) {
     //getUsers
@@ -139,5 +142,5 @@ export const selectUser = (state) => state.users.user;
 export const getUsersStatus = (state) => state.users.status;
 export const getUsersError = (state) => state.users.error;
 
-export const { usersAdded, getUserById } = usersSlice.actions;
+export const { usersAdded, getUserById, resetStatus } = usersSlice.actions;
 export default usersSlice.reducer;
