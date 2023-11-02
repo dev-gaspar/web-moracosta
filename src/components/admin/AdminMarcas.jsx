@@ -6,10 +6,12 @@ import { MDBDataTable } from "mdbreact"
 import toast from "react-hot-toast"
 import { getModelos, getModelosStatus, modelosAdded, selectAllModelos } from "../../features/vehiculos/modelosSlice"
 import { getVehiculos, getVehiculosStatus, selectAllVehiculos, vehiculosAdded } from "../../features/vehiculos/vehiculosSlice"
+import { selectUser } from "../../features/user/userSlice"
 
 const AdminMarcas = () => {
 
   const [nombre, setNombre] = useState('');
+  const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
   const marcas = useSelector(selectAllMarcas);
@@ -68,12 +70,14 @@ const AdminMarcas = () => {
           marca: model.nombre,
           acciones: (
             <div className="d-flex justify-content-center">
-              <button
-                onClick={() => handleDelete(model._id)}
-                className="btn btn-sm btn-danger py-1 px-2 me-1"
-              >
-                <i className="fas fa-trash"></i>
-              </button>
+              {user.roles.some((role) => role.name === 'admin') && (
+                <button
+                  onClick={() => handleDelete(model._id)}
+                  className="btn btn-sm btn-danger py-1 px-2 me-1"
+                >
+                  <i className="fas fa-trash"></i>
+                </button>
+              )}
             </div>
           ),
         });

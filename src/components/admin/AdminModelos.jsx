@@ -8,12 +8,14 @@ import { getMarcas, getMarcasError, getMarcasStatus, selectAllMarcas } from "../
 import Select from "react-select"
 import { Link } from "react-router-dom"
 import { getVehiculos, getVehiculosStatus, selectAllVehiculos, vehiculosAdded } from "../../features/vehiculos/vehiculosSlice"
+import { selectUser } from "../../features/user/userSlice"
 
 const AdminModelos = () => {
   const dispatch = useDispatch()
 
   const [nombre, setNombre] = useState('');
   const [marcaId, setMarcaId] = useState('');
+  const user = useSelector(selectUser);
 
   const marcas = useSelector(selectAllMarcas)
   const statusMarcas = useSelector(getMarcasStatus)
@@ -96,12 +98,14 @@ const AdminModelos = () => {
           modelo: model.nombre,
           acciones: (
             <div className="d-flex justify-content-center">
-              <button
-                onClick={() => handleDelete(model._id)}
-                className="btn btn-sm btn-danger py-1 px-2 me-1"
-              >
-                <i className="fas fa-trash"></i>
-              </button>
+              {user.roles.some((role) => role.name === 'admin') && (
+                <button
+                  onClick={() => handleDelete(model._id)}
+                  className="btn btn-sm btn-danger py-1 px-2 me-1"
+                >
+                  <i className="fas fa-trash"></i>
+                </button>
+              )}
             </div>
           ),
         });
