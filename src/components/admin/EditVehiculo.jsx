@@ -671,7 +671,7 @@ const NuevoVehiculo = () => {
                 style={{ marginTop: "5rem", marginBottom: "1.5rem" }}
               >
                 <div className="d-flex justify-content-between card-body">
-                  <h4 className="page-title">Nuevo vehiculo</h4>
+                  <h4 className="page-title">Editar vehiculo</h4>
                   <a className="btn btn-sm btn-primary"
                     href="/assets/instructivo-registro-vehiculos.pdf"
                     target="_blank"

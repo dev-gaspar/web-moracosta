@@ -83,6 +83,12 @@ const Usuarios = () => {
           creado: fecha,
           acciones: (
             <div className="d-flex justify-content-center">
+              <Link
+                to={`/usuarios/edit/${user._id}`}
+                className="btn btn-sm btn-warning py-1 px-2 me-1"
+              >
+                <i className="fas fa-edit"></i>
+              </Link>
               <button
                 onClick={() => handleDelete(user._id)}
                 className="btn btn-sm btn-danger py-1 px-2 me-1"
