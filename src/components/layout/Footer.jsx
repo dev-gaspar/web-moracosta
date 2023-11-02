@@ -34,7 +34,7 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-3">
-              <img src="../assets/moracosta-manabi.png" alt="logo" height="150" />
+              <img src="/assets/moracosta-manabi.png" alt="logo" height="150" />
             </div>
             <div className="col-md-3">
               <h3><strong>Servicio al cliente</strong></h3>
