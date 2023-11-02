@@ -19,11 +19,16 @@ const Destacados = () => {
     </div>
   } else if (status === 'succeeded') {
 
-    //obtener los ultimos vehiculos registrados
-    let vehiculosDestacados = [...vehiculos].reverse().slice(0, 3)
+    // Obtener los vehículos con la propiedad isDestacado en true
+    const vehiculosDestacados = vehiculos.filter(vehiculo => vehiculo.isDestacado === true);
 
-    contenido =
-      vehiculosDestacados.map(vehiculo => (
+
+    if (vehiculosDestacados.length === 0) {
+      contenido = <div className="alert alert-warning" role="alert">
+        No hay vehículos destacados
+      </div>
+    } else {
+      contenido = vehiculosDestacados.map(vehiculo => (
         <div key={vehiculo._id} className="col-12 col-lg-4">
           <div className="box-car">
             <img src={vehiculo.imagen_principal.url} />
@@ -37,6 +42,7 @@ const Destacados = () => {
           </div>
         </div>
       ))
+    }
   } else if (status === 'failed') {
     contenido =
       <div className="alert alert-danger" role="alert">

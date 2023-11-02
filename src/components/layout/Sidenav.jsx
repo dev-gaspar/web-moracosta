@@ -83,6 +83,14 @@ function Sidenav({ mainContent }) {
                   </Link>
 
                   {userRoles.includes("admin") && <>
+
+                    <Link className="nav-link" to={"/principal"}>
+                      <div className="sb-nav-link-icon">
+                        <i className="fa fa-file "></i>
+                      </div>
+                      Principal
+                    </Link>
+
                     <div className="sb-sidenav-menu-heading">USUARIOS</div>
                     <CollapseSidenav icon="fa fa-user" name="Usuarios" links={[
                       { name: "Todos", to: "/usuarios" },

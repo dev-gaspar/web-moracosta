@@ -1,18 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
 import Sidenav from '../layout/Sidenav'
-import { deleteVehiculo, getVehiculos, getVehiculosError, getVehiculosStatus, selectAllVehiculos } from '../../features/vehiculos/vehiculosSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { getVehiculos, getVehiculosError, getVehiculosStatus, selectAllVehiculos, updateIsBanner, updateIsDestacado } from '../../features/vehiculos/vehiculosSlice'
 import { MDBDataTable } from 'mdbreact'
-import toast from 'react-hot-toast'
 
-const Vehiculos = () => {
-
-  const f = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 0,
-  });
+const AdminPrincipal = () => {
 
   const dispatch = useDispatch()
   const vehiculos = useSelector(selectAllVehiculos)
@@ -33,19 +26,14 @@ const Vehiculos = () => {
         <span className="sr-only">Loading...</span>
       </div>
     </div>
-  } else if (status === 'succeeded') {
-
+  }
+  else if (status === 'succeeded') {
     const setVehiculos = () => {
       const data = {
         columns: [
           {
-            label: "Marca",
-            field: "marca",
-            sort: "asc",
-          },
-          {
-            label: "Modelo",
-            field: "modelo",
+            label: "Imagen",
+            field: "imagen",
             sort: "asc",
           },
           {
@@ -54,13 +42,8 @@ const Vehiculos = () => {
             sort: "asc",
           },
           {
-            label: "Precio",
-            field: "precio",
-            sort: "asc",
-          },
-          {
-            label: "Creado",
-            field: "creado",
+            label: "Descripcion",
+            field: "descripcion",
             sort: "asc",
           },
           {
@@ -73,36 +56,37 @@ const Vehiculos = () => {
       };
 
       vehiculos.forEach((vehiculo) => {
-        let fecha = new Date(vehiculo.createdAt).toLocaleDateString();
-
-        let precio = f.format(vehiculo.precio);
-
         data.rows.push({
-          marca: vehiculo.modelo.marca.nombre,
-          modelo: vehiculo.modelo.nombre,
+          imagen: <img src={vehiculo.imagen_principal.url} alt={vehiculo.nombre} className='img-fluid' width={100} />,
           nombre: vehiculo.nombre,
-          precio: precio,
-          creado: fecha,
+          descripcion: vehiculo.descripcion,
           acciones: (
             <div className="d-flex justify-content-center">
-
-              <Link
-                className="btn btn-sm btn-primary py-1 px-2 me-1"
-                to={`/modelos/${vehiculo._id}`}
-              >
-                <i className="fas fa-eye"></i>
-              </Link>
-              <Link
-                to={`/vehiculos/edit/${vehiculo._id}`}
-                className="btn btn-sm btn-warning py-1 px-2 me-1"
-              >
-                <i className="fas fa-edit"></i>
-              </Link>
               <button
-                onClick={() => handleDelete(vehiculo._id)}
-                className="btn btn-sm btn-danger py-1 px-2 me-1"
+                onClick={(e) => {
+                  e.preventDefault()
+                  dispatch(updateIsDestacado({
+                    id: vehiculo._id,
+                    isDestacado: !vehiculo.isDestacado
+                  }))
+                }}
+                className={`btn btn-sm py-1 px-2 me-1 btn-${(!vehiculo.isDestacado ? "outline-" : "")}warning`}
               >
-                <i className="fas fa-trash"></i>
+                <i className="fa fa-star"></i>
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.preventDefault()
+                  dispatch(updateIsBanner({
+                    id: vehiculo._id,
+                    isBanner: (vehiculo.isBanner ? true : true)
+                  }))
+
+                }}
+                className={`btn btn-sm py-1 px-2 me-1 btn-${(!vehiculo.isBanner ? "outline-" : "")}secondary`}
+              >
+                <i className="fa fa-home"></i>
               </button>
             </div>
           ),
@@ -118,25 +102,20 @@ const Vehiculos = () => {
       striped
       hover
       displayEntries={false}
-      paging={true}
       info={false}
       noBottomColumns={true}
       paginationLabel={["<", ">"]}
       searchLabel="Buscar"
-      entries={10}
+      paging={vehiculos.length > 5 ? true : false}
+      entries={5}
+      noRecordsFoundLabel="No hay vehiculos registrados"
     />
-  } else if (status === 'failed') {
+  }
+  else if (status === 'failed') {
     contenido =
       <div className="alert alert-danger" role="alert">
         {error}
       </div>
-  }
-
-  const handleDelete = async (id) => {
-    const res = await dispatch(deleteVehiculo(id))
-    if (res.payload !== undefined) {
-      toast.success('Vehiculo eliminado', { icon: '🗑️' })
-    }
   }
 
   return (
@@ -150,12 +129,7 @@ const Vehiculos = () => {
                 style={{ marginTop: "5rem", marginBottom: "1.5rem" }}
               >
                 <div className="d-flex justify-content-between card-body">
-                  <h4 className="page-title">Vehiculos</h4>
-                  <Link className='btn btn-sm btn-primary'
-                    to={"/vehiculos/nuevo"}
-                  >
-                    <i className="fas fa-plus"></i> Nuevo
-                  </Link>
+                  <h4 className="page-title">Pagina principal</h4>
                 </div>
               </div>
             </div>
@@ -165,6 +139,7 @@ const Vehiculos = () => {
             <div className="col-xl-12">
               <div className="card shadow bg-body rounded">
                 <div className="card-body">
+                  <h5>Vehiculos</h5>
                   {contenido}
                 </div>
               </div>
@@ -176,4 +151,4 @@ const Vehiculos = () => {
   )
 }
 
-export default Vehiculos
+export default AdminPrincipal

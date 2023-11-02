@@ -25,6 +25,7 @@ import AdminContactos from "./components/admin/AdminContactos";
 import DetalleContacto from "./components/admin/DetalleContacto";
 import RutaProtegida from "./components/rutas/RutaProtegida";
 import { FloatingWhatsApp } from 'react-floating-whatsapp'
+import AdminPrincipal from "./components/admin/AdminPrincipal";
 
 function App() {
   const dispatch = useDispatch()
@@ -74,6 +75,14 @@ function App() {
           element={
             <RutaProtegida requiredRoles={["admin", "asesor", "moderator"]}>
               <Dashboard />
+            </RutaProtegida>
+          }
+        />
+        <Route
+          path="/principal"
+          element={
+            <RutaProtegida requiredRoles={["admin"]}>
+              <AdminPrincipal />
             </RutaProtegida>
           }
         />

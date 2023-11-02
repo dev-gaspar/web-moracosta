@@ -2,7 +2,6 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { getMarcas, getMarcasError, getMarcasStatus, selectAllMarcas } from "../../features/vehiculos/marcasSlice"
-import Panda from "./panda.svg"
 const Footer = () => {
 
   const dispatch = useDispatch()
@@ -63,13 +62,6 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-        </div>
-        <div className="copyright">
-          Developed by <a href="https://github.com/dev-gaspar/" target="_blank">
-            @dev-gaspar
-            {" "}
-            <img height={15} src={Panda} alt="dev-gaspar" />
-          </a>
         </div>
       </footer>
 
