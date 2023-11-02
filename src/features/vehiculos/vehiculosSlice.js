@@ -62,7 +62,7 @@ export const vehiculosSlice = createSlice({
   initialState,
   reducers: {
     vehiculosAdded(state, action) {
-      state.vehiculos.push(action.payload);
+      state.vehiculos = action.payload;
     },
   },
   extraReducers(builder) {

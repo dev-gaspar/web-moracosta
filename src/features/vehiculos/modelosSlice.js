@@ -57,7 +57,7 @@ export const modelosSlice = createSlice({
   initialState,
   reducers: {
     modelosAdded(state, action) {
-      state.modelos.push(action.payload);
+      state.modelos = action.payload;
     },
   },
   extraReducers(builder) {
