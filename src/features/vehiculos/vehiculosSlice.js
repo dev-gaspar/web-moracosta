@@ -79,6 +79,46 @@ export const updateVehiculo = createAsyncThunk(
   }
 );
 
+export const updateIsDestacado = createAsyncThunk(
+  "vehiculos/updateIsDestacado",
+  async (data) => {
+    try {
+      const response = await axios.put(
+        `${BASE_URL}/api/vehiculos/isDestacado/${data.id}`,
+        data,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+export const updateIsBanner = createAsyncThunk(
+  "vehiculos/updateIsBanner",
+  async (data) => {
+    try {
+      const response = await axios.put(
+        `${BASE_URL}/api/vehiculos/isBanner/${data.id}`,
+        data,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 export const vehiculosSlice = createSlice({
   name: "vehiculos",
   initialState,
@@ -141,6 +181,47 @@ export const vehiculosSlice = createSlice({
       );
     });
     builder.addCase(updateVehiculo.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+    // Update isDestacado
+    builder.addCase(updateIsDestacado.pending, (state, action) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(updateIsDestacado.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.vehiculos = state.vehiculos.map((vehiculo) =>
+        vehiculo._id === action.payload._id ? action.payload : vehiculo
+      );
+    });
+    builder.addCase(updateIsDestacado.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+    // Update isBanner
+    builder.addCase(updateIsBanner.pending, (state, action) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(updateIsBanner.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      const vehiculoId = action.payload.vehiculo._id;
+      const anterior = action.payload.anterior?._id;
+
+      if (anterior) {
+        state.vehiculos = state.vehiculos.map((vehiculo) =>
+          vehiculo._id === anterior
+            ? { ...vehiculo, isBanner: false }
+            : vehiculo
+        );
+      }
+
+      state.vehiculos = state.vehiculos.map((vehiculo) =>
+        vehiculo._id === vehiculoId ? { ...vehiculo, isBanner: true } : vehiculo
+      );
+    });
+    builder.addCase(updateIsBanner.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });
