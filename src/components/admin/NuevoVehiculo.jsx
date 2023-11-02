@@ -346,7 +346,7 @@ const NuevoVehiculo = () => {
                           <div className="d-flex flex-column justify-content-center align-items-center">
                             <i className="text-secondary fa fa-video fa-2x mb-0" />
                             <p className="text-secondary mb-0">Vista previa</p>
-                            <p className='text-secondary mb-0' >Tamaño maximo 100MB</p>
+                            <p className='text-secondary mb-0' >Tamaño maximo 30mb</p>
                           </div>
                         }
                       </div>
