@@ -100,12 +100,14 @@ const AdminContactos = () => {
             atendido: atendido,
             acciones: (
               <div className="d-flex justify-content-center">
-                <button
-                  onClick={() => handleDelete(contacto._id)}
-                  className="btn btn-sm btn-danger py-1 px-2 me-1"
-                >
-                  <i className="fas fa-trash"></i>
-                </button>
+                {user.roles.some((role) => role.name === 'admin') && (
+                  <button
+                    onClick={() => handleDelete(contacto._id)}
+                    className="btn btn-sm btn-danger py-1 px-2 me-1"
+                  >
+                    <i className="fas fa-trash"></i>
+                  </button>
+                )}
                 {contacto.isAtendido ? (
                   <button
                     onClick={() => {

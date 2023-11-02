@@ -14,10 +14,11 @@ import Dashboard from "./components/admin/Dashboard";
 import Usuarios from "./components/admin/Usuarios";
 import { loadUser } from "./features/user/userSlice";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { NuevoUsuario } from "./components/admin/NuevoUsuario";
+import EditUsuario from "./components/admin/EditUsuario";
 import Vehiculos from "./components/admin/Vehiculos";
 import NuevoVehiculo from "./components/admin/NuevoVehiculo";
+import EditVehiculo from "./components/admin/EditVehiculo";
 import AdminModelos from "./components/admin/AdminModelos";
 import AdminMarcas from "./components/admin/AdminMarcas";
 import AdminContactos from "./components/admin/AdminContactos";
@@ -42,7 +43,7 @@ function App() {
               <FloatingWhatsApp
                 phoneNumber="593958622755"
                 accountName="Moracosta S.A."
-                avatar="./assets/wa.jpg"
+                avatar="/assets/wa.jpg"
                 darkMode={true}
                 chatMessage="Hola, en que podemos ayudarte? 🚗"
                 statusMessage="en linea"
@@ -93,6 +94,14 @@ function App() {
           }
         />
         <Route
+          path="/usuarios/edit/:id"
+          element={
+            <RutaProtegida requiredRoles={["admin"]}>
+              <EditUsuario />
+            </RutaProtegida>
+          }
+        />
+        <Route
           path="/vehiculos/marcas"
           element={
             <RutaProtegida requiredRoles={["admin", "moderator"]}>
@@ -126,9 +135,17 @@ function App() {
           }
         />
         <Route
+          path="/vehiculos/edit/:id"
+          element={
+            <RutaProtegida requiredRoles={["admin", "moderator"]}>
+              <EditVehiculo />
+            </RutaProtegida>
+          }
+        />
+        <Route
           path="/contactos"
           element={
-            <RutaProtegida requiredRoles={["admin", "moderator", "asesor"]}>
+            <RutaProtegida requiredRoles={["admin", "asesor"]}>
               <AdminContactos />
             </RutaProtegida>
           }
@@ -136,7 +153,7 @@ function App() {
         <Route
           path="/contactos/:id"
           element={
-            <RutaProtegida requiredRoles={["admin", "moderator", "asesor"]}>
+            <RutaProtegida requiredRoles={["admin", "asesor"]}>
               <DetalleContacto />
             </RutaProtegida>
           }

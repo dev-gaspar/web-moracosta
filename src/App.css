@@ -409,6 +409,12 @@ footer .fab:hover {
   font-size: 0.7rem;
 }
 
+.copyright a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 800;
+}
+
 /*SUCURSALES*/
 .top-fixed {
   background-color: var(--black);
@@ -494,8 +500,7 @@ footer .fab:hover {
   display: none;
 }
 
-.maps-label{
-
+.maps-label {
 }
 
 body,
@@ -536,7 +541,7 @@ body,
   font-size: 1rem !important;
 }
 
-.maps-search{
+.maps-search {
   color: var(--primary);
 }
 
@@ -553,7 +558,7 @@ body,
 
 /*Contacto*/
 .page-general {
-  background-image: url("../assets/bg-contacto.jpg");
+  background-image: url("/assets/bg-contacto.jpg");
   margin-top: -9rem;
   padding-top: 11rem;
   width: 100%;
@@ -647,7 +652,7 @@ body,
 /*MODELOS*/
 
 .section_banner {
-  background-image: url("../assets/modelos-banner.jpg");
+  background-image: url("/assets/modelos-banner.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidenav from '../layout/Sidenav'
 import Select from 'react-select'
 import { useDispatch, useSelector } from 'react-redux'
@@ -227,7 +227,7 @@ const NuevoVehiculo = () => {
                 <div className="d-flex justify-content-between card-body">
                   <h4 className="page-title">Nuevo vehiculo</h4>
                   <a className="btn btn-sm btn-primary"
-                    href="../assets/instructivo-registro-vehiculos.pdf"
+                    href="/assets/instructivo-registro-vehiculos.pdf"
                     target="_blank"
                     rel="noreferrer"
                     download={true}
@@ -346,7 +346,7 @@ const NuevoVehiculo = () => {
                           <div className="d-flex flex-column justify-content-center align-items-center">
                             <i className="text-secondary fa fa-video fa-2x mb-0" />
                             <p className="text-secondary mb-0">Vista previa</p>
-                            <p className='text-secondary mb-0' >Tamaño maximo 100MB</p>
+                            <p className='text-secondary mb-0' >Tamaño maximo 30mb</p>
                           </div>
                         }
                       </div>

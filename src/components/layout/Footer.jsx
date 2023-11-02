@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { getMarcas, getMarcasError, getMarcasStatus, selectAllMarcas } from "../../features/vehiculos/marcasSlice"
-
+import Panda from "./panda.svg"
 const Footer = () => {
 
   const dispatch = useDispatch()
@@ -34,7 +34,7 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-3">
-              <img src="../assets/moracosta-manabi.png" alt="logo" height="150" />
+              <img src="/assets/moracosta-manabi.png" alt="logo" height="150" />
             </div>
             <div className="col-md-3">
               <h3><strong>Servicio al cliente</strong></h3>
@@ -65,7 +65,11 @@ const Footer = () => {
           </div>
         </div>
         <div className="copyright">
-          <small>2023 © Todos los derechos reservados.</small>
+          Developed by <a href="https://github.com/dev-gaspar/" target="_blank">
+            @dev-gaspar
+            {" "}
+            <img height={15} src={Panda} alt="dev-gaspar" />
+          </a>
         </div>
       </footer>
 

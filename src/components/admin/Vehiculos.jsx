@@ -85,25 +85,25 @@ const Vehiculos = () => {
           creado: fecha,
           acciones: (
             <div className="d-flex justify-content-center">
-              <button
-                onClick={() => handleDelete(vehiculo._id)}
-                className="btn btn-sm btn-danger py-1 px-2 me-1"
-              >
-                <i className="fas fa-trash"></i>
-              </button>
+
               <Link
                 className="btn btn-sm btn-primary py-1 px-2 me-1"
                 to={`/modelos/${vehiculo._id}`}
               >
                 <i className="fas fa-eye"></i>
               </Link>
-              <button
+              <Link
+                to={`/vehiculos/edit/${vehiculo._id}`}
                 className="btn btn-sm btn-warning py-1 px-2"
-                disabled
               >
                 <i className="fas fa-edit"></i>
+              </Link>
+              <button
+                onClick={() => handleDelete(vehiculo._id)}
+                className="btn btn-sm btn-danger py-1 px-2 me-1"
+              >
+                <i className="fas fa-trash"></i>
               </button>
-
             </div>
           ),
         });
