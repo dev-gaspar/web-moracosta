@@ -57,6 +57,28 @@ export const deleteVehiculo = createAsyncThunk(
   }
 );
 
+export const updateVehiculo = createAsyncThunk(
+  "vehiculos/updateVehiculo",
+  async (formData) => {
+    const vehiculoId = formData.get("_id");
+
+    try {
+      const response = await axios.put(
+        `${BASE_URL}/api/vehiculos/${vehiculoId}`,
+        formData,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 export const vehiculosSlice = createSlice({
   name: "vehiculos",
   initialState,
@@ -104,6 +126,21 @@ export const vehiculosSlice = createSlice({
       state.vehiculos.push(action.payload);
     });
     builder.addCase(createVehiculo.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+    // Update
+    builder.addCase(updateVehiculo.pending, (state, action) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(updateVehiculo.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.vehiculos = state.vehiculos.map((vehiculo) =>
+        vehiculo._id === action.payload._id ? action.payload : vehiculo
+      );
+    });
+    builder.addCase(updateVehiculo.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });

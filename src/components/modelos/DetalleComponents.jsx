@@ -119,13 +119,13 @@ const DetalleComponents = ({ vehiculo }) => {
             </div>
           </div>
           <div className="col-md-6 img-box">
-            <img src={vehiculo.detalles.imagen1.url} alt="Mazda CX-90" className="img-parallax" />
+            <img src={vehiculo.detalles.imagen1.url} alt="imagen" className="img-parallax" />
           </div>
         </div>
 
         <div id='descripcion' className="row my-boxes-rev">
           <div className="col-md-6 img-box">
-            <img src={vehiculo.detalles.imagen2.url} alt="Mazda CX-90" className="img-parallax" />
+            <img src={vehiculo.detalles.imagen2.url} alt="imagen" className="img-parallax" />
           </div>
           <div className="col-md-6 description-box">
             <div className="detalle-box-text">
