@@ -409,6 +409,12 @@ footer .fab:hover {
   font-size: 0.7rem;
 }
 
+.copyright a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 800;
+}
+
 /*SUCURSALES*/
 .top-fixed {
   background-color: var(--black);
@@ -494,8 +500,7 @@ footer .fab:hover {
   display: none;
 }
 
-.maps-label{
-
+.maps-label {
 }
 
 body,
@@ -536,7 +541,7 @@ body,
   font-size: 1rem !important;
 }
 
-.maps-search{
+.maps-search {
   color: var(--primary);
 }
 
