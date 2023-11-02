@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import { NuevoUsuario } from "./components/admin/NuevoUsuario";
 import Vehiculos from "./components/admin/Vehiculos";
 import NuevoVehiculo from "./components/admin/NuevoVehiculo";
+import EditVehiculo from "./components/admin/EditVehiculo";
 import AdminModelos from "./components/admin/AdminModelos";
 import AdminMarcas from "./components/admin/AdminMarcas";
 import AdminContactos from "./components/admin/AdminContactos";
@@ -126,9 +127,17 @@ function App() {
           }
         />
         <Route
+          path="/vehiculos/edit/:id"
+          element={
+            <RutaProtegida requiredRoles={["admin", "moderator"]}>
+              <EditVehiculo />
+            </RutaProtegida>
+          }
+        />
+        <Route
           path="/contactos"
           element={
-            <RutaProtegida requiredRoles={["admin", "moderator", "asesor"]}>
+            <RutaProtegida requiredRoles={["admin", "asesor"]}>
               <AdminContactos />
             </RutaProtegida>
           }
@@ -136,7 +145,7 @@ function App() {
         <Route
           path="/contactos/:id"
           element={
-            <RutaProtegida requiredRoles={["admin", "moderator", "asesor"]}>
+            <RutaProtegida requiredRoles={["admin", "asesor"]}>
               <DetalleContacto />
             </RutaProtegida>
           }

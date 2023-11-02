@@ -113,7 +113,6 @@ function Sidenav({ mainContent }) {
                   </>}
 
                   {(userRoles.includes("admin") ||
-                    userRoles.includes("moderator") ||
                     userRoles.includes("asesor")
                   ) && <>
                       <div className="sb-sidenav-menu-heading">Contactos</div>

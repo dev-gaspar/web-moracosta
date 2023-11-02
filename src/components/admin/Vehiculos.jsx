@@ -97,12 +97,12 @@ const Vehiculos = () => {
               >
                 <i className="fas fa-eye"></i>
               </Link>
-              <button
+              <Link
+                to={`/vehiculos/edit/${vehiculo._id}`}
                 className="btn btn-sm btn-warning py-1 px-2"
-                disabled
               >
                 <i className="fas fa-edit"></i>
-              </button>
+              </Link>
 
             </div>
           ),
