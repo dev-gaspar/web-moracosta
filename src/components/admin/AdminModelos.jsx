@@ -7,6 +7,7 @@ import toast from "react-hot-toast"
 import { getMarcas, getMarcasError, getMarcasStatus, selectAllMarcas } from "../../features/vehiculos/marcasSlice"
 import Select from "react-select"
 import { Link } from "react-router-dom"
+import { getVehiculos, getVehiculosStatus, selectAllVehiculos, vehiculosAdded } from "../../features/vehiculos/vehiculosSlice"
 
 const AdminModelos = () => {
   const dispatch = useDispatch()
@@ -22,6 +23,10 @@ const AdminModelos = () => {
   const statusModelos = useSelector(getModelosStatus)
   const errorModelos = useSelector(getModelosError)
 
+  const vehiculos = useSelector(selectAllVehiculos)
+  const statusVehiculos = useSelector(getVehiculosStatus)
+
+
   useEffect(() => {
     if (statusMarcas === 'idle') {
       dispatch(getMarcas())
@@ -30,6 +35,11 @@ const AdminModelos = () => {
     if (statusModelos === 'idle') {
       dispatch(getModelos())
     }
+
+    if (statusVehiculos === 'idle') {
+      dispatch(getVehiculos())
+    }
+
   }, [statusMarcas, statusModelos, dispatch])
 
   const CustomMenu = ({ innerRef, innerProps, isDisabled, children }) =>
@@ -134,6 +144,11 @@ const AdminModelos = () => {
     const res = await dispatch(deleteModelo(id))
     if (res.payload !== undefined) {
       toast.success('Modelo eliminado', { icon: '🗑️' })
+
+      //Elimina los vehículos asociados al modelo eliminado
+      const vehiculosUpdated = vehiculos.filter((vehiculo) => vehiculo.modelo?._id !== id);
+
+      dispatch(vehiculosAdded(vehiculosUpdated));
     }
   }
 
