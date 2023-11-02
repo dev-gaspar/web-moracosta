@@ -19,9 +19,11 @@ const RutaProtegida = ({ children, requiredRoles }) => {
 
   if (status === "loading") {
     return (
-      <div className="w-100 text-center">
+      <div className="vh-100 w-100 d-flex justify-content-center align-items-center" style={{
+        background: "#fff"
+      }}>
         <div className="spinner-border text-danger" role="status">
-          <span className="sr-only">Loading...</span>
+          <span className="visually-hidden">Loading...</span>
         </div>
       </div>
     );
