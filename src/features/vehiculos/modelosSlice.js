@@ -32,7 +32,7 @@ export const newModelo = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      throw error;
+      throw new Error(error.response.data.message);
     }
   }
 );

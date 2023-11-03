@@ -128,19 +128,16 @@ const AdminModelos = () => {
       entries={5}
       noRecordsFoundLabel="No hay modelos registrados"
     />
-  } else if (statusModelos === 'failed') {
-    contenido =
-      <div className="alert alert-danger" role="alert">
-        {errorModelos}
-      </div>
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    dispatch(newModelo({ marcaId, nombre }));
-    if (statusModelos === 'succeeded') {
+    const res = await dispatch(newModelo({ marcaId, nombre }));
+    if (res.payload !== undefined) {
       setNombre('')
       toast.success('Modelo registrado', { icon: '🚗' })
+    } else {
+      toast.error('el modelo ya esta ingresado')
     }
   };
 
@@ -207,9 +204,6 @@ const AdminModelos = () => {
                             required
                           />
                         </div>
-                        {statusModelos === "failed" && <div className="alert alert-danger" role="alert">
-                          {errorModelos}
-                        </div>}
                         {statusMarcas === "failed" && <div className="alert alert-danger" role="alert">
                           {errorMarcas}
                         </div>}
