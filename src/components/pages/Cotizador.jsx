@@ -72,7 +72,7 @@ const Cotizador = () => {
       <div className="container my-5">
         <div className="row simulacion">
           <div className="col-md-6">
-            <h2>Simular Cotización</h2>
+            <h2>Cotización</h2>
             <form>
               <div className="form-group">
                 <label htmlFor="modelo">Modelo de interes</label>

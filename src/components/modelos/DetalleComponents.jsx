@@ -229,9 +229,9 @@ const DetalleComponents = ({ vehiculo }) => {
                 </table>
               </div>
             </div>
-
-            <Link to={"/cotizador"} className="btn btn-solodev-red-reversed">Simular cotizacion</Link>
-
+            <div className='d-flex justify-content-center w-100'>
+              <Link to={"/cotizador"} className="btn btn-solodev-red-reversed">Cotizar</Link>
+            </div>
           </div>
         </div>
       </div>
