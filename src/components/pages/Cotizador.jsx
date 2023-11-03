@@ -40,14 +40,20 @@ const Cotizador = () => {
   const [valor_cuota, setValor_cuota] = useState(0)
 
   useEffect(() => {
-    let entrada_double = parseFloat(entrada_minima)
-    let cuotas_int = parseInt(cuotas)
-    let valor_entrada = vehiculo?.precio * (entrada_double / 100)
-    let total = vehiculo?.precio + valor_entrada
-    let monto_financiado = vehiculo?.precio - valor_entrada
-    let valor_cuota = monto_financiado / cuotas_int
 
-    setValor_entrada(valor_entrada)
+    const tasa_interes = 0.156 // 15.6% anual
+    const valor_auto = vehiculo.precio;
+    const entrada = valor_auto * (parseInt(entrada_minima) / 100)
+    const anios = parseInt(cuotas) / 12
+
+    const monto_financiado = valor_auto - entrada
+    const interes_anio = monto_financiado * tasa_interes;
+    const interes = interes_anio * anios;
+    const total = monto_financiado + interes;
+    const valor_cuota = total / parseInt(cuotas)
+
+
+    setValor_entrada(entrada)
     setTotal(total)
     setMonto_financiado(monto_financiado)
     setValor_cuota(valor_cuota)
@@ -130,7 +136,7 @@ const Cotizador = () => {
               {vehiculo.precio === 0 && <div className="capa-negra" />}
               <div className="row fact-top">
                 <h3 className="text-uppercase" >
-                  {vehiculo.nombre} {f.format(vehiculo.precio)}
+                  Modelo {vehiculo.nombre} {f.format(vehiculo.precio)}
                 </h3>
                 <div className="col-6">
                   <img src={vehiculo?.imagen_principal.url} alt="Imagen del vehículo" className="img-fluid mb-3" />
@@ -138,7 +144,7 @@ const Cotizador = () => {
                 <div className="col-6">
                   <p><strong>Total:</strong> {f.format(total)}</p>
                   <p><strong>Financiados:</strong> {f.format(monto_financiado)}</p>
-                  <p><strong>Cuotas de:</strong> {f.format(valor_cuota)}</p>
+                  <p><strong>Cuotas de:</strong> <span className="display-6">{f.format(valor_cuota)}</span></p>
                   {/*
                   <p><strong>Seguro:</strong> $1,000</p>
                   */}
