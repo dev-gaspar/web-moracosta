@@ -4,7 +4,7 @@ import { getUserById, getUsers, getUsersError, getUsersStatus, newUser, selectUs
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-export const EditUsuario = () => {
+export const PassUsuario = () => {
 
   const dispatch = useDispatch()
   const params = useParams()
@@ -80,7 +80,7 @@ export const EditUsuario = () => {
 
           <div className="row">
             <div className="col-xl-12">
-              <div className="card shadow bg-body rounded" style={{marginBottom: "1.5rem"}}>
+              <div className="card shadow bg-body rounded" style={{ marginBottom: "1.5rem" }}>
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
                     <div className="mb-3">
@@ -115,11 +115,10 @@ export const EditUsuario = () => {
                         className="form-select"
                         id="ciudad"
                         name="ciudad"
-                        value={formData.ciudad}
                         disabled
                         required
                       >
-                        <option value="">Asigne una ciudad</option>
+                        <option value={formData.ciudad}>{formData.ciudad}</option>
                         <option value="global">Todas</option>
                         <option value="manta">Manta</option>
                         <option value="portoviejo">Portoviejo</option>
@@ -157,4 +156,4 @@ export const EditUsuario = () => {
   )
 }
 
-export default EditUsuario
+export default PassUsuario
