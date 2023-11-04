@@ -138,9 +138,7 @@ const DetalleComponents = ({ vehiculo }) => {
 
       <div id='especficaciones' className="row">
         <div className='col-md-6'>
-          <div className='img-box'>
-            <img src={vehiculo.imagen_especificaciones.url} />
-          </div>
+          <img src={vehiculo.imagen_especificaciones.url} className='img-fluid' />
         </div>
         <div className='col-md-6'>
           <div className='especificaciones'>
