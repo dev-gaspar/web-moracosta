@@ -40,7 +40,7 @@ const Mapbox = ({ initialCoordenadas, markers, selectCity }) => {
           <div style={{ position: 'relative', width: 35, height: 35 }}>
             <img
               style={{ width: '100%', height: '100%' }}
-              src="/assets/marker.png"
+              src="/assets/marker.webp"
               alt='marker'
             />
             <p

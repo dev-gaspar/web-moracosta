@@ -558,7 +558,7 @@ body,
 
 /*Contacto*/
 .page-general {
-  background-image: url("/assets/bg-contacto.jpg");
+  background-image: url("/assets/bg-contacto.webp");
   margin-top: -9rem;
   padding-top: 11rem;
   width: 100%;
@@ -652,7 +652,7 @@ body,
 /*MODELOS*/
 
 .section_banner {
-  background-image: url("/assets/modelos-banner.jpg");
+  background-image: url("/assets/modelos-banner.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

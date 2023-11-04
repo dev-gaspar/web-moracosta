@@ -26,7 +26,7 @@ const Cotizador = () => {
       nombre: ''
     },
     imagen_principal: {
-      url: '/assets/auto.jpg'
+      url: '/assets/auto.webp'
     },
     nombre: 'Selecciona un vehículo',
     precio: 0

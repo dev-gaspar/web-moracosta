@@ -35,7 +35,7 @@ const Login = () => {
           <div className="text-center">
             <Link to="/">
               <img
-                src="/assets/logo.png"
+                src="/assets/logo.webp"
                 alt="Logo"
                 width="50"
                 height="50"
@@ -87,7 +87,7 @@ const Login = () => {
         </div>
         <div className="col-md-7 d-md-block d-none p-0">
           <img
-            src="/assets/concesionario2.png"
+            src="/assets/concesionario2.webp"
             alt="Imagen de ingresar"
             className="img-fluid full-height-image"
           />

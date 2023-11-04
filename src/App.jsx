@@ -44,7 +44,7 @@ function App() {
               <FloatingWhatsApp
                 phoneNumber="593958622755"
                 accountName="Moracosta S.A."
-                avatar="/assets/wa.jpg"
+                avatar="/assets/wa.webp"
                 darkMode={true}
                 chatMessage="Hola, en que podemos ayudarte? 🚗"
                 statusMessage="en linea"
