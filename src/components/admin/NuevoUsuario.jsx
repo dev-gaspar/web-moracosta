@@ -79,7 +79,7 @@ export const NuevoUsuario = () => {
 
           <div className="row">
             <div className="col-xl-12">
-              <div className="card shadow bg-body rounded">
+              <div className="card shadow bg-body rounded" style={{marginBottom: "1.5rem"}}>
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
                     <div className="mb-3">
