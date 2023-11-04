@@ -4,7 +4,7 @@ import Select from 'react-select'
 import { useDispatch, useSelector } from 'react-redux'
 import { getModelos, getModelosError, getModelosStatus, selectAllModelos } from '../../features/vehiculos/modelosSlice'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { createVehiculo, getVehiculosError, getVehiculosStatus, updateVehiculo } from '../../features/vehiculos/vehiculosSlice'
+import { getVehiculos, getVehiculosError, getVehiculosStatus, updateVehiculo } from '../../features/vehiculos/vehiculosSlice'
 import { getVehiculoById, getVehiculoError, getVehiculoStatus, selectVehiculo } from '../../features/vehiculos/vehiculoSlice'
 
 const NuevoVehiculo = () => {
@@ -33,6 +33,10 @@ const NuevoVehiculo = () => {
       dispatch(getModelos())
     }
 
+    if (statusVehiculos === "succeeded") {
+      dispatch(getVehiculos())
+    }
+
     if (vehiculo && vehiculo._id !== vehiculoId || statusVehiculo === 'idle') {
       dispatch(getVehiculoById(vehiculoId))
     } else {
@@ -40,9 +44,9 @@ const NuevoVehiculo = () => {
       setNombre(vehiculo.nombre)
       setDescripcion(vehiculo.descripcion)
       setPrecio(vehiculo.precio)
-      setImagen_principal(vehiculo.imagen_principal.url)
+      setOld_imagen_principal(vehiculo.imagen_principal.url)
 
-      setVideo_banner(vehiculo.video_banner.url)
+      setOld_video_banner(vehiculo.video_banner.url)
       setDetalle_banner_one(vehiculo.detalles_banner.one)
       setDetalle_banner_two(vehiculo.detalles_banner.two)
       setDetalle_banner_tree(vehiculo.detalles_banner.tree)
@@ -50,12 +54,13 @@ const NuevoVehiculo = () => {
       setFicha_tecnica(vehiculo.ficha_tecnica)
       setTitulo1(vehiculo.detalles.titulo1)
       setTexto1(vehiculo.detalles.texto1)
-      setImagen1(vehiculo.detalles.imagen1.url)
+      setOld_imagen1(vehiculo.detalles.imagen1.url)
+
       setTitulo2(vehiculo.detalles.titulo2)
       setTexto2(vehiculo.detalles.texto2)
-      setImagen2(vehiculo.detalles.imagen2.url)
+      setOld_imagen2(vehiculo.detalles.imagen2.url)
 
-      setImagenEspe(vehiculo.imagen_especificaciones.url)
+      setOld_imagenEspe(vehiculo.imagen_especificaciones.url)
       setPotencia_motor(vehiculo.especificaciones.potencia.potencia_motor)
       setTorque(vehiculo.especificaciones.potencia.torque)
       setVelocidad_maxima(vehiculo.especificaciones.potencia.velocidad_maxima)
@@ -88,13 +93,17 @@ const NuevoVehiculo = () => {
 
   }, [vehiculoId, status, dispatch, vehiculo])
 
-  const [imagen_principal, setImagen_principal] = useState(null);
+  const [imagen_principal, setImagen_principal] = useState();
+  const [old_imagen_principal, setOld_imagen_principal] = useState();
+
   const [modeloId, setModeloId] = useState(null)
   const [nombre, setNombre] = useState('')
   const [descripcion, setDescripcion] = useState('')
   const [precio, setPrecio] = useState(0)
 
-  const [video_banner, setVideo_banner] = useState(null);
+  const [video_banner, setVideo_banner] = useState();
+  const [old_video_banner, setOld_video_banner] = useState();
+
   const [detalle_banner_one, setDetalle_banner_one] = useState('')
   const [detalle_banner_two, setDetalle_banner_two] = useState('')
   const [detalle_banner_tree, setDetalle_banner_tree] = useState('')
@@ -102,12 +111,17 @@ const NuevoVehiculo = () => {
   const [ficha_tecnica, setFicha_tecnica] = useState('')
   const [titulo1, setTitulo1] = useState('')
   const [texto1, setTexto1] = useState('')
-  const [imagen1, setImagen1] = useState(null);
+  const [imagen1, setImagen1] = useState();
+  const [old_imagen1, setOld_imagen1] = useState();
+
   const [titulo2, setTitulo2] = useState('')
   const [texto2, setTexto2] = useState('')
-  const [imagen2, setImagen2] = useState(null);
+  const [imagen2, setImagen2] = useState();
+  const [old_imagen2, setOld_imagen2] = useState();
 
-  const [imagenEspe, setImagenEspe] = useState(null);
+  const [imagenEspe, setImagenEspe] = useState();
+  const [old_imagenEspe, setOld_imagenEspe] = useState();
+
   const [potencia_motor, setPotencia_motor] = useState('')
   const [torque, setTorque] = useState('')
   const [velocidad_maxima, setVelocidad_maxima] = useState('')
@@ -148,7 +162,13 @@ const NuevoVehiculo = () => {
     formData.append('nombre', nombre)
     formData.append('descripcion', descripcion)
     formData.append('precio', precio)
+    if (imagen_principal) {
+      formData.append('imagen_principal', imagen_principal)
+    }
 
+    if (video_banner) {
+      formData.append('video_banner', video_banner)
+    }
     formData.append('detalles_banner.one', detalle_banner_one)
     formData.append('detalles_banner.two', detalle_banner_two)
     formData.append('detalles_banner.tree', detalle_banner_tree)
@@ -156,13 +176,19 @@ const NuevoVehiculo = () => {
     formData.append('ficha_tecnica', ficha_tecnica)
     formData.append('detalles.titulo1', titulo1)
     formData.append('detalles.texto1', texto1)
-    formData.append('detalles.imagen1.public_id', vehiculo.detalles.imagen1.public_id)
-    formData.append('detalles.imagen1.url', vehiculo.detalles.imagen1.url)
+    if(imagen1){
+      formData.append('detalles.imagen1', imagen1)
+    }
+
     formData.append('detalles.titulo2', titulo2)
     formData.append('detalles.texto2', texto2)
-    formData.append('detalles.imagen2.public_id', vehiculo.detalles.imagen2.public_id)
-    formData.append('detalles.imagen2.url', vehiculo.detalles.imagen2.url)
+    if(imagen2){
+      formData.append('detalles.imagen2', imagen2)
+    }
 
+    if(imagenEspe){
+      formData.append('imagen_especificaciones', imagenEspe)
+    }
     formData.append('especificaciones.potencia.potencia_motor', potencia_motor)
     formData.append('especificaciones.potencia.torque', torque)
     formData.append('especificaciones.potencia.velocidad_maxima', velocidad_maxima)
@@ -220,6 +246,68 @@ const NuevoVehiculo = () => {
     };
   };
 
+
+  const handleImagenPrincipalChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setOld_imagen_principal(null)
+        setImagen_principal(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleVideoChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setOld_video_banner(null)
+        setVideo_banner(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleImagen1Change = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setOld_imagen1(null)
+        setImagen1(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleImagen2Change = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setOld_imagen2(null)
+        setImagen2(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleImagenEspeChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setOld_imagenEspe(null)
+        setImagenEspe(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+
   let contenido;
   if (statusVehiculo === 'loading') {
     contenido = <div className="w-100 text-center">
@@ -232,7 +320,7 @@ const NuevoVehiculo = () => {
       <>
         <div className="row">
           <div className="col-xl-12">
-            <div className="card shadow bg-body rounded" style={{marginBottom: "1.5rem"}}>
+            <div className="card shadow bg-body rounded" style={{ marginBottom: "1.5rem" }}>
               <div className="card-body">
 
                 <form className='row'
@@ -265,17 +353,28 @@ const NuevoVehiculo = () => {
                     <h5>Informacion principal</h5>
                     <div className="mb-3">
                       <label htmlFor="imagen_principal">Imagen Principal</label>
-                      <div className="d-flex justify-content-center mb-3 img-thumbnail w-100" style={{ height: "200px" }}>
-                        {imagen_principal ? (
-                          <img src={imagen_principal} alt="Vista Previa" className='img-fluid' />
-                        ) :
-                          <div className="d-flex flex-column justify-content-center align-items-center">
-                            <i className="text-secondary fa fa-image fa-2x mb-0" />
-                            <p className="text-secondary mb-0">Vista previa no disponible</p>
-                          </div>
-                        }
-                      </div>
+                      <input
+                        type="file"
+                        className="form-control"
+                        id="imagen_principal"
+                        name="imagen_principal"
+                        onChange={handleImagenPrincipalChange}
+                        
+                      />
                     </div>
+                    <div className="d-flex justify-content-center mb-3 img-thumbnail w-100" style={{ height: "200px" }}>
+                      {old_imagen_principal ? (
+                        <img src={old_imagen_principal} alt="Vista Previa" className='img-fluid' />
+                      ) : imagen_principal ? (
+                        <img src={imagen_principal} alt="Vista Previa" className='img-fluid' />
+                      ) : (
+                        <div className="d-flex flex-column justify-content-center align-items-center">
+                          <i className="text-secondary fa fa-image fa-2x mb-0" />
+                          <p className="text-secondary mb-0">Vista previa no disponible</p>
+                        </div>
+                      )}
+                    </div>
+
 
                     <div className="mb-3">
                       <label htmlFor="nombre">Nombre</label>
@@ -306,21 +405,36 @@ const NuevoVehiculo = () => {
 
                     <div className="mb-3">
                       <label htmlFor="video_banner">Video Banner</label>
-                      <div className="d-flex justify-content-center mb-3 img-thumbnail w-100" style={{ height: "200px" }}>
-                        {video_banner ? (
-                          <video
-                            src={video_banner}
-                            controls
-                            className='img-fluid'
-                          />
-                        ) :
-                          <div className="d-flex flex-column justify-content-center align-items-center">
-                            <i className="text-secondary fa fa-video fa-2x mb-0" />
-                            <p className="text-secondary mb-0">Vista previa no disponible</p>
-                          </div>
-                        }
-                      </div>
+                      <input
+                        type="file"
+                        className="form-control"
+                        id="video_banner"
+                        name="video_banner"
+                        onChange={handleVideoChange}
+                        
+                      />
                     </div>
+                    <div className="d-flex justify-content-center mb-3 img-thumbnail w-100" style={{ height: "200px" }}>
+                      {old_video_banner ? (
+                        <video
+                          src={old_video_banner}
+                          controls
+                          className='img-fluid'
+                        />
+                      ) : video_banner ? (
+                        <video
+                          src={video_banner}
+                          controls
+                          className='img-fluid'
+                        />
+                      ) : (
+                        <div className="d-flex flex-column justify-content-center align-items-center">
+                          <i className="text-secondary fa fa-image fa-2x mb-0" />
+                          <p className="text-secondary mb-0">Vista previa no disponible</p>
+                        </div>
+                      )}
+                    </div>
+
 
                     <div className="mb-3">
                       <label htmlFor="aspecto1">Aspecto 1</label>
@@ -366,19 +480,30 @@ const NuevoVehiculo = () => {
                         onChange={(e) => setTexto1(e.target.value)} value={texto1} required
                       />
                     </div>
+
                     <div className="mb-3">
                       <label htmlFor="imagen1">Imagen 1</label>
-                      <div className="d-flex justify-content-center mb-3 img-thumbnail w-100" style={{ height: "200px" }}>
-                        {imagen1 ? (
-                          <img src={imagen1} alt="Vista Previa" className='img-fluid' />
-                        ) :
-                          <div className="d-flex flex-column justify-content-center align-items-center">
-                            <i className="text-secondary fa fa-image fa-2x mb-0" />
-                            <p className="text-secondary mb-0">Vista previa no disponible</p>
-                          </div>
-                        }
-                      </div>
+                      <input
+                        type="file"
+                        className="form-control"
+                        id="imagen1"
+                        name="imagen1"
+                        onChange={handleImagen1Change}
+                      />
                     </div>
+                    <div className="d-flex justify-content-center mb-3 img-thumbnail w-100" style={{ height: "200px" }}>
+                      {old_imagen1 ? (
+                        <img src={old_imagen1} alt="Vista Previa" className='img-fluid' />
+                      ) : imagen1 ? (
+                        <img src={imagen1} alt="Vista Previa" className='img-fluid' />
+                      ) : (
+                        <div className="d-flex flex-column justify-content-center align-items-center">
+                          <i className="text-secondary fa fa-image fa-2x mb-0" />
+                          <p className="text-secondary mb-0">Vista previa no disponible</p>
+                        </div>
+                      )}
+                    </div>
+
 
                     <div className="mb-3">
                       <label htmlFor="titulo2">Título 2</label>
@@ -394,31 +519,50 @@ const NuevoVehiculo = () => {
                     </div>
                     <div className="mb-3">
                       <label htmlFor="imagen1">Imagen 2</label>
-                      <div className="d-flex justify-content-center mb-3 img-thumbnail w-100" style={{ height: "200px" }}>
-                        {imagen2 ? (
-                          <img src={imagen2} alt="Vista Previa" className='img-fluid' />
-                        ) :
-                          <div className="d-flex flex-column justify-content-center align-items-center">
-                            <i className="text-secondary fa fa-image fa-2x mb-0" />
-                            <p className="text-secondary mb-0">Vista previa no disponible</p>
-                          </div>
-                        }
-                      </div>
+                      <input
+                        type="file"
+                        className="form-control"
+                        id="imagen2"
+                        name="imagen2"
+                        onChange={handleImagen2Change}
+                      />
                     </div>
+                    <div className="d-flex justify-content-center mb-3 img-thumbnail w-100" style={{ height: "200px" }}>
+                      {old_imagen2 ? (
+                        <img src={old_imagen2} alt="Vista Previa" className='img-fluid' />
+                      ) : imagen2 ? (
+                        <img src={imagen2} alt="Vista Previa" className='img-fluid' />
+                      ) : (
+                        <div className="d-flex flex-column justify-content-center align-items-center">
+                          <i className="text-secondary fa fa-image fa-2x mb-0" />
+                          <p className="text-secondary mb-0">Vista previa no disponible</p>
+                        </div>
+                      )}
+                    </div>
+
 
                     <h5>Especificaciones</h5>
                     <div className="mb-3">
                       <label htmlFor="imagen_principal">Imagen Especificaciones</label>
-                      <div className="d-flex justify-content-center mb-3 img-thumbnail w-100" style={{ height: "200px" }}>
-                        {imagenEspe ? (
-                          <img src={imagenEspe} alt="Vista Previa" className='img-fluid' />
-                        ) :
-                          <div className="d-flex flex-column justify-content-center align-items-center">
-                            <i className="text-secondary fa fa-image fa-2x mb-0" />
-                            <p className="text-secondary mb-0">Vista previa no disponible</p>
-                          </div>
-                        }
-                      </div>
+                      <input
+                        type="file"
+                        className="form-control"
+                        id="imagen_principal"
+                        name="imagen_principal"
+                        onChange={handleImagenEspeChange}
+                      />
+                    </div>
+                    <div className="d-flex justify-content-center mb-3 img-thumbnail w-100" style={{ height: "200px" }}>
+                      {old_imagenEspe ? (
+                        <img src={old_imagenEspe} alt="Vista Previa" className='img-fluid' />
+                      ) : imagenEspe ? (
+                        <img src={imagenEspe} alt="Vista Previa" className='img-fluid' />
+                      ) : (
+                        <div className="d-flex flex-column justify-content-center align-items-center">
+                          <i className="text-secondary fa fa-image fa-2x mb-0" />
+                          <p className="text-secondary mb-0">Vista previa no disponible</p>
+                        </div>
+                      )}
                     </div>
 
                     <div className="mb-3">
@@ -587,7 +731,7 @@ const NuevoVehiculo = () => {
                 </form>
               </div>
             </div>
-          </div>
+          </div >
         </div >
         {showModal && (
           <div className="modal" data-bs-backdrop="static" tabIndex="-1" role="dialog" style={{ display: "block" }}>
