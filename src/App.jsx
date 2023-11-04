@@ -15,7 +15,7 @@ import Usuarios from "./components/admin/Usuarios";
 import { loadUser } from "./features/user/userSlice";
 import { useDispatch } from "react-redux";
 import { NuevoUsuario } from "./components/admin/NuevoUsuario";
-import EditUsuario from "./components/admin/EditUsuario";
+import PassUsuario from "./components/admin/PassUsuario";
 import Vehiculos from "./components/admin/Vehiculos";
 import NuevoVehiculo from "./components/admin/NuevoVehiculo";
 import EditVehiculo from "./components/admin/EditVehiculo";
@@ -105,10 +105,10 @@ function App() {
           }
         />
         <Route
-          path="/usuarios/edit/:id"
+          path="/usuarios/pass/:id"
           element={
             <RutaProtegida requiredRoles={["admin"]}>
-              <EditUsuario />
+              <PassUsuario />
             </RutaProtegida>
           }
         />

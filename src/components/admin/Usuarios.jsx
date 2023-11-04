@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Sidenav from '../layout/Sidenav'
 import { MDBDataTable } from "mdbreact";
-import { getUsers, deleteUser, getUsersError, getUsersStatus, selectAllUsers } from '../../features/users/usersSlice';
+import { getUsers, getUsersError, getUsersStatus, selectAllUsers, updateIsActivo } from '../../features/users/usersSlice';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
@@ -84,16 +84,16 @@ const Usuarios = () => {
           acciones: (
             <div className="d-flex justify-content-center">
               <Link
-                to={`/usuarios/edit/${user._id}`}
+                to={`/usuarios/pass/${user._id}`}
                 className="btn btn-sm btn-warning py-1 px-2 me-1"
               >
-                <i className="fas fa-edit"></i>
+                <i className="fas fa-key"></i>
               </Link>
               <button
-                onClick={() => handleDelete(user._id)}
-                className="btn btn-sm btn-danger py-1 px-2 me-1"
+                onClick={() => handleIsActivo({ id: user._id, isActivo: !user.isActivo })}
+                className={`btn btn-sm btn-outline-danger py-1 px-2 me-1`}
               >
-                <i className="fas fa-trash"></i>
+                <i className={`fa fa-toggle-${user.isActivo ? "on" : "off"}`}></i>
               </button>
             </div>
           ),
@@ -123,10 +123,14 @@ const Usuarios = () => {
       </div>
   }
 
-  const handleDelete = async (id) => {
-    const res = await dispatch(deleteUser(id))
+  const handleIsActivo = async (data) => {
+    const res = await dispatch(updateIsActivo(data))
     if (res.payload !== undefined) {
-      toast.success('Usuario eliminado', { icon: '🗑️' })
+      if (res.payload.isActivo) {
+        toast.success('Usuario activado', { icon: "🚶" })
+      } else {
+        toast.success('Usuario desactivado', { icon: "🚷" })
+      }
     }
   }
 
@@ -154,7 +158,7 @@ const Usuarios = () => {
 
           <div className="row">
             <div className="col-xl-12">
-              <div className="card shadow bg-body rounded" style={{marginBottom: "1.5rem"}}>
+              <div className="card shadow bg-body rounded" style={{ marginBottom: "1.5rem" }}>
                 <div className="card-body">
                   {contenido}
                 </div>

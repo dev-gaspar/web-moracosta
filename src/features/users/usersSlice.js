@@ -35,24 +35,31 @@ export const newUser = createAsyncThunk("users/newUser", async (user) => {
   }
 });
 
-export const deleteUser = createAsyncThunk("users/deleteUser", async (id) => {
-  try {
-    const response = await axios.delete(`${BASE_URL}/api/users/${id}`, {
-      headers: { "Content-Type": "application/json" },
-      withCredentials: true,
-    });
-    return response.data;
-  } catch (error) {
-    throw error;
+export const updateIsActivo = createAsyncThunk(
+  "users/updateIsActivo",
+  async (data) => {
+    try {
+      const response = await axios.put(
+        `${BASE_URL}/api/users/isActivo/${data.id}`,
+        data,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   }
-});
+);
 
 export const updatePassword = createAsyncThunk(
   "users/updatePassword",
   async (data) => {
     try {
       const response = await axios.put(
-        `${BASE_URL}/api/users/${data.id}`,
+        `${BASE_URL}/api/users/pass/${data.id}`,
         data,
         {
           headers: { "Content-Type": "application/json" },
@@ -107,21 +114,6 @@ export const usersSlice = createSlice({
       state.status = "failed";
       state.error = action.error.message;
     });
-    //deleteUser
-    builder.addCase(deleteUser.pending, (state, action) => {
-      state.status = "loading";
-      state.error = null;
-    });
-    builder.addCase(deleteUser.fulfilled, (state, action) => {
-      state.status = "succeeded";
-      state.users = state.users.filter(
-        (user) => user._id !== action.payload._id
-      );
-    });
-    builder.addCase(deleteUser.rejected, (state, action) => {
-      state.status = "failed";
-      state.error = action.error.message;
-    });
     //updatePassword
     builder.addCase(updatePassword.pending, (state, action) => {
       state.status = "loading";
@@ -131,6 +123,21 @@ export const usersSlice = createSlice({
       state.status = "succeeded";
     });
     builder.addCase(updatePassword.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+    //updateIsActivo
+    builder.addCase(updateIsActivo.pending, (state, action) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(updateIsActivo.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.users = state.users.map((user) =>
+        user._id === action.payload._id ? action.payload : user
+      );
+    });
+    builder.addCase(updateIsActivo.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });
