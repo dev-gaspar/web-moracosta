@@ -19,7 +19,7 @@ const Header = () => {
         <div className="container py-sm-3">
 
           <Link className="navbar-brand" to={"/"}>
-            <img src="/assets/logo-letras.png" alt="logo" height="30" />
+            <img src="/assets/logo-letras.webp" alt="logo" height="30" />
           </Link>
 
 
