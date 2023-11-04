@@ -137,7 +137,7 @@ const DetalleComponents = ({ vehiculo }) => {
       </div>
 
       <div id='especficaciones' className="row">
-        <div className='col-md-6'>
+        <div className='col-md-6 d-flex align-items-center'>
           <img src={vehiculo.imagen_especificaciones.url} className='img-fluid' />
         </div>
         <div className='col-md-6'>
