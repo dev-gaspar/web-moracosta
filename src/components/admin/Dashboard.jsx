@@ -108,35 +108,68 @@ const Dashboard = () => {
         <h5>Enlaces rapidos</h5>
         <div className="row">
           {user.roles.some((role) => role.name === 'admin') && (
-            <div className="col-md-6 col-xl-3 p-2">
-              <div className="card">
+            <div className="col-xl-3 col-sm-6 p-2">
+              <div className="card o-hidden h-100">
                 <div className="card-body">
-                  <h5 className="card-title">Gestión de Usuarios</h5>
-                  <p className="card-text">Administra los registros de los usuarios.</p>
-                  <Link to={"/usuarios"} className="btn btn-primary">Ir a Gestión</Link>
+                  <div className="card-font-size">
+                    <h5 className="card-title">Gestión de Usuarios</h5>
+                    <p className="card-text">Administra los registros de los usuarios.</p>
+                  </div>
                 </div>
+
+                <Link
+                  className="card-footer clearfix small z-1 bg-primary text-white border-primary shadow-sm"
+                  to="/usuarios"
+                >
+                  <span className="float-left">Ir a gestion</span>
+                  <span className="float-right">
+                    <i className="fa fa-angle-right"></i>
+                  </span>
+                </Link>
               </div>
             </div>
           )}
           {user.roles.some((role) => role.name === 'moderator') && (
-            <div className="col-md-6 col-xl-3 p-2">
-              <div className="card">
+            <div className="col-xl-3 col-sm-6 p-2">
+              <div className="card o-hidden h-100">
                 <div className="card-body">
-                  <h5 className="card-title">Gestión de Vehículos</h5>
-                  <p className="card-text">Administra los registros de los vehículos.</p>
-                  <Link to={"/vehiculos"} className="btn btn-primary">Ir a Gestión</Link>
+                  <div className="card-font-size">
+                    <h5 className="card-title">Gestión de Vehiculos</h5>
+                    <p className="card-text">Administra los registros de los vehiculos.</p>
+                  </div>
                 </div>
+
+                <Link
+                  className="card-footer clearfix small z-1 bg-primary text-white border-primary shadow-sm"
+                  to="/vehiculos"
+                >
+                  <span className="float-left">Ir a gestion</span>
+                  <span className="float-right">
+                    <i className="fa fa-angle-right"></i>
+                  </span>
+                </Link>
               </div>
             </div>
           )}
           {user.roles.some((role) => role.name === 'asesor') && (
-            <div className="col-md-6 col-xl-3 p-2">
-              <div className="card">
+            <div className="col-xl-3 col-sm-6 p-2">
+              <div className="card o-hidden h-100">
                 <div className="card-body">
-                  <h5 className="card-title">Gestión de contactos</h5>
-                  <p className="card-text">Administra la informacion de los contactos.</p>
-                  <Link to={"/contactos"} className="btn btn-primary">Ir a Gestión</Link>
+                  <div className="card-font-size">
+                    <h5 className="card-title">Gestión de Contactos</h5>
+                    <p className="card-text">Administra la informacion de los contactos.</p>
+                  </div>
                 </div>
+
+                <Link
+                  className="card-footer clearfix small z-1 bg-primary text-white border-primary shadow-sm"
+                  to="/contactos"
+                >
+                  <span className="float-left">Ir a gestion</span>
+                  <span className="float-right">
+                    <i className="fa fa-angle-right"></i>
+                  </span>
+                </Link>
               </div>
             </div>
           )}
