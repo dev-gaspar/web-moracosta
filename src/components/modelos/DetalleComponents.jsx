@@ -138,7 +138,7 @@ const DetalleComponents = ({ vehiculo }) => {
 
       <div id='especficaciones' className="row">
         <div className='col-md-6 d-flex align-items-center'>
-          <img src={vehiculo.imagen_especificaciones.url} className='img-fluid' />
+          <img src={vehiculo.imagen_especificaciones.url} className='img-fluid py-3' />
         </div>
         <div className='col-md-6'>
           <div className='especificaciones'>

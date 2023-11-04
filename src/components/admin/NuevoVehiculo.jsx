@@ -4,7 +4,7 @@ import Select from 'react-select'
 import { useDispatch, useSelector } from 'react-redux'
 import { getModelos, getModelosError, getModelosStatus, selectAllModelos } from '../../features/vehiculos/modelosSlice'
 import { Link, useNavigate } from 'react-router-dom'
-import { createVehiculo, getVehiculosError, getVehiculosStatus } from '../../features/vehiculos/vehiculosSlice'
+import { createVehiculo, getVehiculos, getVehiculosError, getVehiculosStatus } from '../../features/vehiculos/vehiculosSlice'
 
 const NuevoVehiculo = () => {
 
@@ -34,6 +34,11 @@ const NuevoVehiculo = () => {
     if (status === 'idle') {
       dispatch(getModelos())
     }
+
+    if (statusVehiculos === "succeeded") {
+      dispatch(getVehiculos())
+    }
+
   }, [status, dispatch])
 
   const [imagen_principal, setImagen_principal] = useState(null);
@@ -242,7 +247,7 @@ const NuevoVehiculo = () => {
 
           <div className="row">
             <div className="col-xl-12">
-              <div className="card shadow bg-body rounded" style={{marginBottom: "1.5rem"}}>
+              <div className="card shadow bg-body rounded" style={{ marginBottom: "1.5rem" }}>
                 <div className="card-body">
                   {status === "failed" &&
                     <div className="alert alert-danger" role="alert">
@@ -403,6 +408,7 @@ const NuevoVehiculo = () => {
                           id="imagen1"
                           name="imagen1"
                           onChange={handleImagen1Change}
+                          required
                         />
                       </div>
 
@@ -438,6 +444,7 @@ const NuevoVehiculo = () => {
                           id="imagen2"
                           name="imagen2"
                           onChange={handleImagen2Change}
+                          required
                         />
                       </div>
 
@@ -462,6 +469,7 @@ const NuevoVehiculo = () => {
                           id="imagen_principal"
                           name="imagen_principal"
                           onChange={handleImagenEspeChange}
+                          required
                         />
                       </div>
 
