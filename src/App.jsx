@@ -53,7 +53,9 @@ function App() {
                 messageDelay={0}
                 notificationDelay={5}
                 placeholder="Escribe un mensaje..."
-
+                style={{
+                  zIndex: 9999999999,
+                }}
               />
             </div>
           }
