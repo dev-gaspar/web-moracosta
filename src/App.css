@@ -213,6 +213,7 @@ h4 {
 }
 
 .presentacion > .container > p {
+  position: absolute;
   margin-bottom: 1rem;
   color: var(--black);
   font-size: 0.9rem;
