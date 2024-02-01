@@ -8,7 +8,8 @@
     "server": "json-server --watch db.json --port 3001",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "run": "npm run build && npm run preview"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.19.2",
