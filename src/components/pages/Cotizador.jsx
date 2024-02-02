@@ -26,7 +26,7 @@ const Cotizador = () => {
       nombre: ''
     },
     imagen_principal: {
-      url: '/assets/auto.webp'
+      url: '/assets/auto.png'
     },
     nombre: 'Selecciona un vehículo',
     precio: 0
@@ -162,7 +162,7 @@ const Cotizador = () => {
                 </p>
               </div>
             </div>
-            <Link type="submit" to={"/contacto"} className="btn btn-solodev-red-reversed" >Contactenos</Link>
+            <Link type="submit" to={"/contactanos"} className="btn btn-solodev-red-reversed" >Contáctanos</Link>
           </div>
         </div>
       </div>

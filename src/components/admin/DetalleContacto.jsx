@@ -73,13 +73,18 @@ const DetalleContacto = () => {
                   </td>
                 </tr>
                 <tr>
+                  <th>Ciudad</th>
+                  <td>{contacto.ciudad}</td>
+                </tr>
+                <tr>
                   <th>Dirección</th>
                   <td>{contacto.direccion}</td>
                 </tr>
                 <tr>
-                  <th>Ciudad</th>
-                  <td>{contacto.ciudad}</td>
+                  <th>Agencia</th>
+                  <td>{contacto.agencia}</td>
                 </tr>
+
                 <tr>
                   <th>Atendido</th>
                   <td>{contacto.isAtendido ? "Sí ✅" : "No ❌"}</td>
@@ -202,7 +207,7 @@ const DetalleContacto = () => {
 
           <div className="row">
             <div className="col-xl-12">
-              <div className="card shadow bg-body rounded" style={{marginBottom: "1.5rem"}}>
+              <div className="card shadow bg-body rounded" style={{ marginBottom: "1.5rem" }}>
                 <div className="card-body">
                   {contenido}
                 </div>

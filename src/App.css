@@ -13,7 +13,7 @@
   width: 100%;
   background-color: rgba(35, 31, 32, 0.6);
   backdrop-filter: blur(10px);
-  border-top: 3px solid var(--primary);
+  border-bottom: 3px solid var(--secondary);
   z-index: 10000;
 }
 
@@ -183,9 +183,10 @@ h4 {
 
 /*presentacion*/
 .presentacion {
-  background-color: var(--white);
-  color: var(--black);
-  padding: 8rem 0;
+  color: var(--white);
+  background-color: var(--black);
+  padding: 8rem 1rem;
+  border-top: 2px solid var(--primary);
 }
 
 .presentacion > .container {
@@ -196,7 +197,7 @@ h4 {
   position: relative;
   font-family: var(--medium);
   font-size: 1.4rem;
-  color: var(--black);
+  color: var(--white);
   margin-bottom: 2rem;
 }
 
@@ -214,15 +215,14 @@ h4 {
 
 .presentacion > .container > p {
   margin-bottom: 1rem;
-  color: var(--black);
-  font-size: 0.9rem;
+  color: var(--white);
 }
 
 .cta {
   padding: 0px 10px;
-  border-right: 2px solid var(--black);
+  border-right: 2px solid var(--white);
   text-decoration: none;
-  color: var(--black);
+  color: var(--white);
   font-weight: 700;
   font-size: 0.9rem;
 
@@ -239,22 +239,23 @@ h4 {
 /*Destacados*/
 
 .destacados {
-  background-color: var(--white);
-  color: var(--black);
+  border-top: 2px solid var(--primary);
+  background-color: var(--black);
+  color: var(--white);
 }
 
 .destacados > .container > h1 {
   position: relative;
   font-family: var(--medium);
   font-size: 1.5rem;
-  color: var(--black);
+  color: var(--white);
 }
 
 .destacados > .container > h2 {
   position: relative;
   font-family: var(--medium);
   font-size: 1.1rem;
-  color: var(--black);
+  color: var(--white);
 }
 
 .destacados > .container > h2:before {
@@ -271,7 +272,7 @@ h4 {
 
 .destacados > .container > p {
   margin-bottom: 1rem;
-  color: var(--black);
+  color: var(--white);
   font-size: 0.9rem;
 }
 
@@ -289,6 +290,27 @@ h4 {
   margin-bottom: 1rem;
 }
 
+/**
+.box-car-bg {
+  position: absolute;
+  width: 100%;
+  height: 15rem;
+  max-width: 18rem;
+  overflow: hidden;
+}
+
+.box-car-bg::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  bottom: 0%;
+  left: 20%;
+  background-color: rgba(18, 14, 15, 0.2);
+  z-index: 0;
+}
+*/
+
 .box-car > img {
   width: 100%;
   height: 15rem;
@@ -296,6 +318,7 @@ h4 {
   object-fit: contain;
   vertical-align: middle;
   border-style: none;
+  cursor: pointer;
 
   -webkit-transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -moz-transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -311,7 +334,7 @@ h4 {
   position: relative;
   font-family: var(--medium);
   font-size: 1.1rem;
-  color: var(--black);
+  color: var(--white);
 }
 
 .box-car > h2:before {
@@ -334,7 +357,7 @@ h4 {
 .box-text > p {
   font-size: 0.9rem;
   margin: 0;
-  color: var(--black);
+  color: var(--white);
   max-width: 18rem;
 }
 
@@ -359,6 +382,7 @@ h4 {
 
 /*Footer*/
 footer {
+  border-top: var(--primary) solid 3px;
   color: var(--secondary);
   background-color: var(--black);
 }
@@ -498,9 +522,6 @@ footer .fab:hover {
 .maps-sucursales::-webkit-scrollbar-button:increment,
 .maps-sucursales::-webkit-scrollbar-button {
   display: none;
-}
-
-.maps-label {
 }
 
 body,
@@ -665,7 +686,6 @@ body,
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
 }
 
 .section_banner h1 {
@@ -707,19 +727,19 @@ body,
 
 .box-items h3 {
   font-size: 1rem;
-  color: var(--black);
+  color: var(--white);
 }
 
 .box-items p {
   font-size: 0.8rem;
-  color: var(--black);
+  color: var(--white);
 }
 
 .btn-custom {
   padding: 0px 10px;
-  border-right: 2px solid var(--black);
+  border-right: 2px solid var(--white);
   text-decoration: none;
-  color: var(--black);
+  color: var(--white);
   font-weight: 700;
   font-size: 0.9rem;
 
@@ -896,6 +916,17 @@ body,
 }
 
 /*QUIENES SOMOS*/
+
+.company-sections {
+  background-color: var(--black);
+  color: #fff;
+}
+
+.culture-section {
+  border-top: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
 .two-content {
   flex-direction: column;
   display: flex;
@@ -1092,4 +1123,8 @@ body,
   100% {
     background-position: 0% 50%;
   }
+}
+
+.bg-dark {
+  background-color: var(--black) !important;
 }

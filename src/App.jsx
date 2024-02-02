@@ -4,11 +4,11 @@ import Nav from "./components/layout/Nav";
 import Footer from "./components/layout/Footer";
 import Home from "./components/pages/Home";
 import Sucursales from "./components/pages/Sucursales";
-import Contacto from "./components/pages/Contacto";
+import CotizadorForm from "./components/pages/CotizadorForm";
 import Modelos from "./components/modelos/Modelos";
 import { DetalleModelo } from "./components/modelos/DetalleModelo";
 import Nosotros from "./components/pages/Nosotros";
-import Cotizador from "./components/pages/Cotizador";
+import Contactanos from "./components/pages/Contactanos";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/admin/Dashboard";
 import Usuarios from "./components/admin/Usuarios";
@@ -51,7 +51,7 @@ function App() {
                 allowClickAway={true}
                 notification={true}
                 messageDelay={0}
-                notificationDelay={5}
+                notificationDelay={10}
                 placeholder="Escribe un mensaje..."
                 style={{
                   zIndex: 9999999999,
@@ -62,11 +62,12 @@ function App() {
         >
           <Route path="/" element={<Home />} />
           <Route path="/sucursales" element={<Sucursales />} />
-          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/cotizador" element={<CotizadorForm />} />
           <Route path="/modelos" element={<Modelos />} />
           <Route path="/modelos/:id" element={<DetalleModelo />} />
           <Route path="/nosotros" element={<Nosotros />} />
-          <Route path="/cotizador" element={<Cotizador />} />
+          <Route path="/contactanos" element={<Contactanos />} />
+
         </Route>
         <Route
           path="/login"

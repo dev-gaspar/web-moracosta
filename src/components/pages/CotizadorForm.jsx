@@ -2,11 +2,29 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from "react-hot-toast"
 import Select from "react-select"
-import { getContactosError, getContactosStatus, newContacto } from '../../features/contactos/contactosSlice';
-import { getVehiculos, getVehiculosError, getVehiculosStatus, selectAllVehiculos } from '../../features/vehiculos/vehiculosSlice';
+import { getContactosError, getContactosStatus, newContacto, resetContactos } from '../../features/contactos/contactosSlice';
+import { getVehiculos, getVehiculosStatus, selectAllVehiculos } from '../../features/vehiculos/vehiculosSlice';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-const Contacto = () => {
+const agencias = {
+  manta: [
+    "Agencia 1 - Av. 1era entre calles 14 y 15.",
+    "Agencia 2 - Av. 4 de noviembre, diagonal a Solca.",
+    "Agencia 3 - Ciudadela Universitaria"
+  ],
+  portoviejo: [
+    "Agencia 1 - Av. Universitaria y calle Edulfo Cedeño, esquina.",
+    "Agencia 2 - Paso lateral frente al Hemiciclo de las Banderas."
+  ],
+  esmeraldas: [
+    "Agencia - Av Pedro Vicente Maldonado"
+  ]
+}
+
+const CotizadorForm = () => {
+
+  const [isRender, setIsRender] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -15,6 +33,28 @@ const Contacto = () => {
 
   const statusContacto = useSelector(getContactosStatus)
   const errorContacto = useSelector(getContactosError)
+
+  useEffect(() => {
+    statusContacto === 'succeeded' && dispatch(resetContactos())
+    setIsRender(true)
+  }, [])
+
+
+  useEffect(() => {
+    if (!isRender) return
+    if (statusContacto === 'succeeded') {
+      toast.success("Enviado, pronto nos pondremos en contacto contigo!", {
+        icon: "📞",
+      })
+    }
+
+    if (statusContacto === 'failed') {
+      toast.error("Ocurrió un error, por favor intenta de nuevo", {
+        icon: "🚨",
+      })
+    }
+
+  }, [statusContacto, isRender])
 
   useEffect(() => {
     if (statusVehiculos === 'idle') {
@@ -32,11 +72,33 @@ const Contacto = () => {
     telefono: '',
     direccion: '',
     ciudad: '',
+    agencia: '',
     check: {
       whatsapp: false,
       llamada: false,
     },
   });
+
+  const [vehiculo, setVehiculo] = useState({
+    modelo: {
+      marca: {
+        nombre: ''
+      },
+      nombre: ''
+    },
+    imagen_principal: {
+      url: '/assets/auto.png'
+    },
+    nombre: 'Selecciona un vehículo',
+    precio: 0
+  })
+
+  useEffect(() => {
+    if (formData.modelo !== "") {
+      const vehiculo = vehiculos.find((vehiculo) => vehiculo._id === formData.modelo)
+      setVehiculo(vehiculo)
+    }
+  }, [formData])
 
   const handleChange = (e) => {
 
@@ -78,53 +140,55 @@ const Contacto = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (formData.modelo === '') {
+      toast.error("Por favor selecciona el modelo en el que estas interesado", {
+        icon: "🚨",
+      })
+      return
+    }
+
+    if (formData.numeroDocumento.length < 10 && formData.tipoDocumento === "cedula") {
+      toast.error("El número de cédula debe tener 10 dígitos", {
+        icon: "🚨",
+      })
+      return
+    }
+
+    if (formData.numeroDocumento.length < 13 && formData.tipoDocumento === "ruc") {
+      toast.error("El número de RUC debe tener 13 dígitos", {
+        icon: "🚨",
+      })
+      return
+    }
+
+    if (formData.telefono.length < 10) {
+      toast.error("El número de teléfono debe tener 10 dígitos", {
+        icon: "🚨",
+      })
+      return
+    }
+
     if (statusContacto !== "succeeded" && statusContacto === "idle") {
       dispatch(newContacto(formData))
-      toast.success("Enviado, pronto nos pondremos en contacto contigo!", {
-        icon: "📞",
-      })
-    } else if (statusContacto === "succeeded") {
-      toast.success("Ya se ha enviado la información de contacto", {
-        icon: "📨",
-      })
-    } else if (statusContacto === "loading") {
-      toast.loading("Se esta enviando la información de contacto, pronto nos pondremos en contacto contigo", {
-        icon: "📨",
-      })
     }
-
-    if (statusContacto === 'succeeded') {
-      setFormData({
-        modelo: '',
-        nombre: '',
-        apellido: '',
-        tipoDocumento: '',
-        numeroDocumento: '',
-        correo: '',
-        telefono: '',
-        direccion: '',
-        ciudad: '',
-        check: {
-          whatsapp: false,
-          llamada: false,
-        },
-      });
-    }
-
   };
+
   return (
     <>
       <div className="top-fixed" />
       <div className='page-general'>
         <div className="contacto container">
           <div className="row">
-            <div className="col-12 col-md-7 col-lg-5">
-              <h3>CONTACTO</h3>
-              <h1 className="text-uppercase text-white" >Solicitar contacto en moracosta</h1>
-              <div className="box-form">
-                <form onSubmit={handleSubmit}>
+            <div className="col-12 col-md-5 col-lg-7">
+              <h3>Cotizador</h3>
+              <h1 className="text-uppercase text-white" >Modelo</h1>
+              <div className="box-form" style={{
+                marginBottom: "0",
+              }}>
+                <form>
                   <div className="form-group">
-                    <label htmlFor="modelo">Modelo de interés *</label>
+                    <label htmlFor="modelo">Modelo de vehículo *</label>
                     <Select
                       aria-label='modelo'
                       placeholder='Seleccionar'
@@ -148,34 +212,48 @@ const Contacto = () => {
                       required
                     />
                   </div>
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="nombre">Nombre *</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="nombre"
-                        name="nombre"
-                        value={formData.nombre}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="apellido">Apellido *</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="apellido"
-                        name="apellido"
-                        value={formData.apellido}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
+                </form>
+                <img
+                  src={vehiculo.imagen_principal.url}
+                  key={vehiculo.nombre}
+                  alt={vehiculo.nombre}
+                  className='w-100 img-fluid'
+                  style={{ height: '200px', objectFit: 'contain' }}
+                />
+              </div>
+            </div >
+            <div className="col-12 col-md-7 col-lg-5">
+              <h3 style={{ visibility: "hidden" }} >Datos</h3>
+              <h1 className="text-uppercase text-white" >Datos personales</h1>
+              <div className="box-form">
+                <form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="nombre">Nombre *</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="nombre"
+                      name="nombre"
+                      value={formData.nombre}
+                      onChange={handleChange}
+                      required
+                    />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="tipoDocumento">Tipo de Documento *</label>
+                    <label htmlFor="apellido">Apellido *</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="apellido"
+                      name="apellido"
+                      value={formData.apellido}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="tipoDocumento">Tipo de documento *</label>
                     <select
                       className="form-control"
                       id="tipoDocumento"
@@ -190,7 +268,7 @@ const Contacto = () => {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="numeroDocumento">Número de Documento *</label>
+                    <label htmlFor="numeroDocumento">Número de documento *</label>
                     <input
                       type="text"
                       className="form-control"
@@ -228,19 +306,6 @@ const Contacto = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="direccion">Direccion *</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="direccion"
-                      name="direccion"
-                      value={formData.direccion}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <div className="form-group">
                     <label htmlFor="ciudad">Ciudad *</label>
                     <select
                       className="form-control"
@@ -256,8 +321,38 @@ const Contacto = () => {
                       <option value="esmeraldas">Esmeraldas</option>
                     </select>
                   </div>
+
                   <div className="form-group">
-                    <label>¿CUÁL ES TU MEDIO DE CONTACTO DE PREFERENCIA?</label>
+                    <label htmlFor="direccion">Direccion *</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="direccion"
+                      name="direccion"
+                      value={formData.direccion}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="agencia">Agencia de su preferencia  *</label>
+                    <select
+                      className="form-control"
+                      id="agencia"
+                      name="agencia"
+                      value={formData.agencia}
+                      onChange={handleChange}
+                      required
+                    >
+                      {formData.ciudad === "" && <option value="">Selecciona una ciudad</option>}
+                      {formData.ciudad !== "" && agencias[formData.ciudad].map((agencia, index) => (
+                        <option key={index} value={agencia}>{agencia}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>¿Cuál es tu medio de contacto de preferencia? </label>
                     <div className='form-row'>
                       <div className="form-check">
                         <input
@@ -269,7 +364,7 @@ const Contacto = () => {
                           onChange={handleChange}
                         />
                         <label className="form-check-label" htmlFor="whatsapp">
-                          WHATSAPP
+                          Whatsapp
                         </label>
                       </div>
                       <div className="form-check">
@@ -282,7 +377,7 @@ const Contacto = () => {
                           onChange={handleChange}
                         />
                         <label className="form-check-label" htmlFor="llamada">
-                          LLAMADA
+                          Llamada
                         </label>
                       </div>
                     </div>
@@ -292,17 +387,19 @@ const Contacto = () => {
                       {errorContacto}
                     </div>
                   )}
-                  <button type="submit" className="button-submit" disabled={statusContacto === "loading"} >
-                    {statusContacto === "loading" ? "Enviando..." : "Enviar"}
-                  </button>
+                  <div className='d-flex justify-content-center' >
+                    <button type="submit" className="btn btn-solodev-red-reversed" style={{ margin: "0 0 1rem 0" }} disabled={statusContacto === "loading"} >
+                      {statusContacto === "loading" ? "Solicitando..." : " Solicitar Cotización "}
+                    </button>
+                  </div>
                 </form>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </div >
+        </div >
+      </div >
     </>
   )
 }
 
-export default Contacto
+export default CotizadorForm

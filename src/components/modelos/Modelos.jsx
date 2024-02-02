@@ -42,7 +42,7 @@ const Modelos = () => {
   }
 
   return (
-    <div>
+    <div className="bg-dark">
       <div className="top-fixed" />
       <Banner text={"MODELOS EN MORACOSTA"} />
       <div className="container">
