@@ -1128,3 +1128,21 @@ body,
 .bg-dark {
   background-color: var(--black) !important;
 }
+
+/* Contactenos */
+.title-contactenos {
+  position: relative;
+  color: var(--white);
+  padding-left: 1rem;
+  font-weight: 500;
+  margin-left: 1rem;
+  margin-bottom: 1.5rem;
+  border-left: var(--primary) 4px solid;
+}
+
+.title {
+  font-size: 1rem;
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}

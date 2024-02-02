@@ -396,6 +396,13 @@ const CotizadorForm = () => {
               </div>
             </div>
           </div >
+          <p className="small p-2" style={{
+            fontSize: '0.7rem',
+            margin: 0,
+            color: 'var(--secondary)'
+          }}>
+            Al usted solicitar cotización autoriza a la recopilación, tratamiento, transferencia y conservación sus datos personales, con la finalidad de recibir información y notificaciones de cotizaciones, promociones y beneficios de parte de NEGOCIOS MORACOSTA S.A. y sus filiales.
+          </p>
         </div >
       </div >
     </>
