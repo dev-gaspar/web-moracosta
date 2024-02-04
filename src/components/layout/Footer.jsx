@@ -34,10 +34,10 @@ const Footer = () => {
             <div className="col-md-3">
               <img src="/assets/moracosta-manabi.webp" alt="logo" height="150" />
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
               <h3><strong>Servicio al cliente</strong></h3>
-              <p><strong>Teléfono: 052620767</strong></p>
-              <p><strong>Email: publicidad@moracosta.com</strong></p>
+              <p><strong>Teléfono:</strong> 052620767</p>
+              <p><strong>Email:</strong> publicidad@moracosta.com</p>
               <ul className="list-unstyled text-xs">
                 <li><Link to={"/sucursales"}> <i className="fa fa-map-pin" /> Encuentranos en maps</Link></li>
                 <li><Link to={"/contactanos"}> <i className="fa fa-envelope" /> Contáctanos</Link></li>
@@ -47,7 +47,7 @@ const Footer = () => {
                 <a href="https://www.instagram.com/moracosta.ec" target="_blank"><i className="fab fa-instagram" /></a>
               </div>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-2">
               <h3>Marcas</h3>
               <ul className="list-unstyled">
                 {contenido}

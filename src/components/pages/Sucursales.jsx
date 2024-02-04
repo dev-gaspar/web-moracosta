@@ -127,8 +127,8 @@ const Sucursales = () => {
             label: 'Moracosta Manta Agencia 2',
           },
           {
-            latitude: -0.9491714655706338,
-            longitude: -80.746092501717294,
+            latitude: -0.9462086346661479,
+            longitude: -80.74206528835222,
             label: 'Moracosta Manta Agencia 3',
           },
           {
