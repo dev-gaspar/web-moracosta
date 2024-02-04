@@ -63,7 +63,7 @@ const Header = () => {
         <section className="call-action">
           <div className="container p-4 pt-9 text-center">
             <div className="row">
-              <div className="col-12 col-md-6 col-lg-6 "><Link className="cta-item" to={"/modelos"}>VER MAS MODELOS</Link></div>
+              <div className="col-12 col-md-6 col-lg-6 "><Link className="cta-item" to={"/cotizador"}>COTÍZALO</Link></div>
               <div className="col-12 col-md-6 col-lg-6"><Link className="cta-item" to={"/contactanos"}>CONTÁCTANOS</Link></div>
             </div>
           </div>

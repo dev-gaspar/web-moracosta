@@ -12,3 +12,7 @@ html::-webkit-scrollbar-thumb {
   background-repeat: no-repeat;
   background-size: 10px;
 }
+
+body {
+  background-color: white !important;
+}

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes, Outlet } from "react-router-dom";
 import './App.css';
 import Nav from "./components/layout/Nav";
+import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Home from "./components/pages/Home";
 import Sucursales from "./components/pages/Sucursales";
@@ -38,7 +39,7 @@ function App() {
           path="/"
           element={
             <div>
-              <Nav />
+              <Header />
               <Outlet />
               <Footer />
               <FloatingWhatsApp
@@ -63,7 +64,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/sucursales" element={<Sucursales />} />
           <Route path="/cotizador" element={<CotizadorForm />} />
-          <Route path="/modelos" element={<Modelos />} />
+          <Route path="/modelos/marca/:marcaId" element={<Modelos />} />
           <Route path="/modelos/:id" element={<DetalleModelo />} />
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/contactanos" element={<Contactanos />} />

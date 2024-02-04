@@ -14,7 +14,7 @@
   background-color: rgba(35, 31, 32, 0.6);
   backdrop-filter: blur(10px);
   border-bottom: 3px solid var(--secondary);
-  z-index: 10000;
+  z-index: 300;
 }
 
 .navbar-toggler,
@@ -36,6 +36,14 @@
 .nav-link:hover {
   border-bottom: 2px solid var(--primary);
   transition: all 0.3s ease-in-out;
+}
+
+.no-border {
+  border-bottom: 2px solid rgba(35, 31, 32, 0) !important;
+}
+
+.no-border:hover {
+  border-bottom: 2px solid rgba(35, 31, 32, 0) !important;
 }
 
 .nav-link.active {
@@ -82,7 +90,6 @@
   position: absolute;
   right: 0;
   top: 20%;
-  z-index: 999;
 }
 
 .banner-titulo > h1,
@@ -443,12 +450,24 @@ footer .fab:hover {
 .top-fixed {
   background-color: var(--black);
   width: 100%;
-  height: 4rem;
+  height: 5.81rem;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 992px) {
   .top-fixed {
-    height: 5.9rem;
+    height: 5.19rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .top-fixed {
+    height: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-fixed {
+    height: 3rem;
   }
 }
 
@@ -485,7 +504,7 @@ footer .fab:hover {
   color: var(--secondary);
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 999;
+  z-index: 299;
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
@@ -760,7 +779,7 @@ body,
   background: rgba(35, 31, 32, 0.6);
   color: var(--secondary);
   width: 100%;
-  z-index: 999;
+  z-index: 299;
   backdrop-filter: blur(10px);
 }
 
@@ -876,6 +895,7 @@ body,
   text-transform: uppercase;
   padding: 0px 0px 0px 97px;
   font-size: 1.5rem;
+  color: var(--black);
 }
 
 .detalle-box-text p {
@@ -906,6 +926,11 @@ body,
 }
 
 /*ESPECIFICACIONES*/
+
+.especificaciones > h2 {
+  color: var(--black);
+}
+
 .row {
   padding: 0;
   margin: 0;
@@ -1090,7 +1115,7 @@ body,
 
 .cotizacion-detalle {
   position: relative;
-  z-index: 9999;
+  z-index: 299;
 }
 .capa-negra {
   position: absolute;
@@ -1098,7 +1123,7 @@ body,
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 9999;
+  z-index: 299;
   border-radius: 10px;
 
   background: rgba(146, 146, 146, 0.9);
@@ -1145,4 +1170,13 @@ body,
   color: var(--white);
   font-weight: 500;
   margin-bottom: 1.5rem;
+}
+
+.hover-nav-sub-links {
+  color: var(--secondary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.hover-nav-sub-links:hover {
+  background-color: var(--mantine-color-dark-5);
 }
