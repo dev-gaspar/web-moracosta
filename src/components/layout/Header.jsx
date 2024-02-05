@@ -96,7 +96,7 @@ function Header() {
           align="center"
           direction="column"
           wrap="wrap" >
-          {vehiculos.slice(0, 2).map((vehiculo) => {
+          {vehiculos.slice(0, 3).map((vehiculo) => {
             if (vehiculo.modelo.marca._id === marca._id) {
               return (
                 <Group wrap="nowrap" key={vehiculo._id} className='w-100' onClick={() => {
