@@ -26,7 +26,7 @@ function DragVehiculo({ vehiculo }) {
             src={vehiculo.imagen_principal.url}
             alt="imagen"
             style={{
-              objectFit: "cover",
+              objectFit: "contain",
               width: "100%",
               maxHeight: "80px",
             }}
