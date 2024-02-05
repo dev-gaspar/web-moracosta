@@ -1,28 +1,29 @@
 import React from 'react'
 
+
 const Contactanos = () => {
 
   const contactenos = [
     {
       id: 1,
       title: "Atención personalizada con un asesor",
-      img: "https://www.kia.com/content/dam/kwcms/ec/es/images/util/contactanos-01.png",
-      link: "https://api.whatsapp.com/send/?phone=593958622755&text=sa",
+      img: "/assets/contactanos.png",
+      img: "/assets/contactanos.png",
     },
     {
       id: 2,
       title: "Asistencia 24/7",
-      img: "https://www.kia.com/content/dam/kwcms/ec/es/images/util/contactanos-02.png",
+      img: "/assets/contactanos.png",
     },
     {
       id: 3,
       title: "Más cerca de ti",
-      img: "https://www.kia.com/content/dam/kwcms/ec/es/images/util/contactanos-03.png",
+      img: "/assets/contactanos.png",
     },
     {
       id: 4,
       title: "Ayúdanos a mejorar",
-      img: "https://www.kia.com/content/dam/kwcms/ec/es/images/util/contactanos-04.png",
+      img: "/assets/contactanos.png",
     }
   ]
 
