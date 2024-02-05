@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Sidenav from '../layout/Sidenav'
 import { getVehiculos, getVehiculosError, getVehiculosStatus, selectAllVehiculos } from '../../features/vehiculos/vehiculosSlice'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
 import { DndContext, closestCenter } from "@dnd-kit/core";
@@ -28,7 +27,14 @@ const OrdenarVehiculos = () => {
     }
 
     if (status === 'succeeded') {
-      setDragVehiculos(vehiculos)
+
+      const dragV = vehiculos.map((vehiculo) => {
+        return {
+          ...vehiculo,
+          id: vehiculo._id,
+        }
+      })
+      setDragVehiculos(dragV)
     }
 
   }, [status, dispatch])

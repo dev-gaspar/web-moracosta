@@ -1,9 +1,16 @@
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
+import React from 'react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 function DragVehiculo({ vehiculo }) {
 
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+  } = useSortable({
     id: vehiculo._id,
   });
 
@@ -14,10 +21,7 @@ function DragVehiculo({ vehiculo }) {
 
   return (
     <div
-      style={style}
-      ref={setNodeRef}
-      {...attributes}
-      {...listeners}
+      ref={setNodeRef} style={style} {...attributes} {...listeners}
       className="card bg-body rounded my-2 px-4"
     >
       <div className="row justify-content-center align-items-center">
