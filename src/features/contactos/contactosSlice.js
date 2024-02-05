@@ -158,5 +158,6 @@ export const selectAllContactos = (state) => state.contactos.contactos;
 export const getContactosStatus = (state) => state.contactos.status;
 export const getContactosError = (state) => state.contactos.error;
 
-export const { contactosAdded, updateIsAtendidoTable } = contactosSlice.actions;
+export const { contactosAdded, updateIsAtendidoTable, resetContactos } =
+  contactosSlice.actions;
 export default contactosSlice.reducer;

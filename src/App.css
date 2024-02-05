@@ -13,8 +13,8 @@
   width: 100%;
   background-color: rgba(35, 31, 32, 0.6);
   backdrop-filter: blur(10px);
-  border-top: 3px solid var(--primary);
-  z-index: 10000;
+  border-bottom: 3px solid var(--secondary);
+  z-index: 300;
 }
 
 .navbar-toggler,
@@ -36,6 +36,14 @@
 .nav-link:hover {
   border-bottom: 2px solid var(--primary);
   transition: all 0.3s ease-in-out;
+}
+
+.no-border {
+  border-bottom: 2px solid rgba(35, 31, 32, 0) !important;
+}
+
+.no-border:hover {
+  border-bottom: 2px solid rgba(35, 31, 32, 0) !important;
 }
 
 .nav-link.active {
@@ -82,7 +90,6 @@
   position: absolute;
   right: 0;
   top: 20%;
-  z-index: 999;
 }
 
 .banner-titulo > h1,
@@ -183,9 +190,10 @@ h4 {
 
 /*presentacion*/
 .presentacion {
-  background-color: var(--white);
-  color: var(--black);
-  padding: 8rem 0;
+  color: var(--white);
+  background-color: var(--black);
+  padding: 8rem 1rem;
+  border-top: 2px solid var(--primary);
 }
 
 .presentacion > .container {
@@ -196,7 +204,7 @@ h4 {
   position: relative;
   font-family: var(--medium);
   font-size: 1.4rem;
-  color: var(--black);
+  color: var(--white);
   margin-bottom: 2rem;
 }
 
@@ -216,15 +224,14 @@ h4 {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
-  color: var(--black);
-  font-size: 0.9rem;
+  color: var(--white);
 }
 
 .cta {
   padding: 0px 10px;
-  border-right: 2px solid var(--black);
+  border-right: 2px solid var(--white);
   text-decoration: none;
-  color: var(--black);
+  color: var(--white);
   font-weight: 700;
   font-size: 0.9rem;
 
@@ -241,22 +248,23 @@ h4 {
 /*Destacados*/
 
 .destacados {
-  background-color: var(--white);
-  color: var(--black);
+  border-top: 2px solid var(--primary);
+  background-color: var(--black);
+  color: var(--white);
 }
 
 .destacados > .container > h1 {
   position: relative;
   font-family: var(--medium);
   font-size: 1.5rem;
-  color: var(--black);
+  color: var(--white);
 }
 
 .destacados > .container > h2 {
   position: relative;
   font-family: var(--medium);
   font-size: 1.1rem;
-  color: var(--black);
+  color: var(--white);
 }
 
 .destacados > .container > h2:before {
@@ -273,7 +281,7 @@ h4 {
 
 .destacados > .container > p {
   margin-bottom: 1rem;
-  color: var(--black);
+  color: var(--white);
   font-size: 0.9rem;
 }
 
@@ -291,6 +299,27 @@ h4 {
   margin-bottom: 1rem;
 }
 
+/**
+.box-car-bg {
+  position: absolute;
+  width: 100%;
+  height: 15rem;
+  max-width: 18rem;
+  overflow: hidden;
+}
+
+.box-car-bg::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  bottom: 0%;
+  left: 20%;
+  background-color: rgba(18, 14, 15, 0.2);
+  z-index: 0;
+}
+*/
+
 .box-car > img {
   width: 100%;
   height: 15rem;
@@ -298,6 +327,7 @@ h4 {
   object-fit: contain;
   vertical-align: middle;
   border-style: none;
+  cursor: pointer;
 
   -webkit-transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -moz-transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -313,7 +343,7 @@ h4 {
   position: relative;
   font-family: var(--medium);
   font-size: 1.1rem;
-  color: var(--black);
+  color: var(--white);
 }
 
 .box-car > h2:before {
@@ -336,7 +366,7 @@ h4 {
 .box-text > p {
   font-size: 0.9rem;
   margin: 0;
-  color: var(--black);
+  color: var(--white);
   max-width: 18rem;
 }
 
@@ -361,6 +391,7 @@ h4 {
 
 /*Footer*/
 footer {
+  border-top: var(--primary) solid 3px;
   color: var(--secondary);
   background-color: var(--black);
 }
@@ -421,12 +452,24 @@ footer .fab:hover {
 .top-fixed {
   background-color: var(--black);
   width: 100%;
-  height: 4rem;
+  height: 5.81rem;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 992px) {
   .top-fixed {
-    height: 5.9rem;
+    height: 5.19rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .top-fixed {
+    height: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-fixed {
+    height: 3rem;
   }
 }
 
@@ -463,7 +506,7 @@ footer .fab:hover {
   color: var(--secondary);
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 999;
+  z-index: 299;
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
@@ -500,9 +543,6 @@ footer .fab:hover {
 .maps-sucursales::-webkit-scrollbar-button:increment,
 .maps-sucursales::-webkit-scrollbar-button {
   display: none;
-}
-
-.maps-label {
 }
 
 body,
@@ -667,7 +707,6 @@ body,
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
 }
 
 .section_banner h1 {
@@ -709,19 +748,19 @@ body,
 
 .box-items h3 {
   font-size: 1rem;
-  color: var(--black);
+  color: var(--white);
 }
 
 .box-items p {
   font-size: 0.8rem;
-  color: var(--black);
+  color: var(--white);
 }
 
 .btn-custom {
   padding: 0px 10px;
-  border-right: 2px solid var(--black);
+  border-right: 2px solid var(--white);
   text-decoration: none;
-  color: var(--black);
+  color: var(--white);
   font-weight: 700;
   font-size: 0.9rem;
 
@@ -742,7 +781,7 @@ body,
   background: rgba(35, 31, 32, 0.6);
   color: var(--secondary);
   width: 100%;
-  z-index: 999;
+  z-index: 299;
   backdrop-filter: blur(10px);
 }
 
@@ -858,6 +897,7 @@ body,
   text-transform: uppercase;
   padding: 0px 0px 0px 97px;
   font-size: 1.5rem;
+  color: var(--black);
 }
 
 .detalle-box-text p {
@@ -888,6 +928,11 @@ body,
 }
 
 /*ESPECIFICACIONES*/
+
+.especificaciones > h2 {
+  color: var(--black);
+}
+
 .row {
   padding: 0;
   margin: 0;
@@ -898,6 +943,17 @@ body,
 }
 
 /*QUIENES SOMOS*/
+
+.company-sections {
+  background-color: var(--black);
+  color: #fff;
+}
+
+.culture-section {
+  border-top: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
 .two-content {
   flex-direction: column;
   display: flex;
@@ -1061,7 +1117,7 @@ body,
 
 .cotizacion-detalle {
   position: relative;
-  z-index: 9999;
+  z-index: 299;
 }
 .capa-negra {
   position: absolute;
@@ -1069,7 +1125,7 @@ body,
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 9999;
+  z-index: 299;
   border-radius: 10px;
 
   background: rgba(146, 146, 146, 0.9);
@@ -1094,4 +1150,35 @@ body,
   100% {
     background-position: 0% 50%;
   }
+}
+
+.bg-dark {
+  background-color: var(--black) !important;
+}
+
+/* Contactenos */
+.title-contactenos {
+  position: relative;
+  color: var(--white);
+  padding-left: 1rem;
+  font-weight: 500;
+  margin-left: 1rem;
+  margin-bottom: 1.5rem;
+  border-left: var(--primary) 4px solid;
+}
+
+.title {
+  font-size: 1rem;
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.hover-nav-sub-links {
+  color: var(--secondary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.hover-nav-sub-links:hover {
+  background-color: var(--mantine-color-dark-5);
 }

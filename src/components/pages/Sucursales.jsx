@@ -32,16 +32,16 @@ const Sucursales = () => {
               latitude: -1.0419389265638237,
               longitude: -80.45867089559725,
             })
-          }}> Agencia 1 <i className="fa fa-search maps-search"/> </p></li>
-          <li><i className="fa fa-car-alt"></i> Av Universitaria y Calle Edulfo Cedeño</li>
+          }}> Agencia 1 <i className="fa fa-search maps-search" /> </p></li>
+          <li><i className="fa fa-car-alt"></i> Av. Universitaria y calle Edulfo Cedeño, esquina.</li>
           <li> <p style={{ cursor: "pointer" }} className="direccion-sm" onClick={(e) => {
             e.preventDefault()
             setSelectCity({
               latitude: -1.0716981041874716,
               longitude: -80.49127551395723,
             })
-          }}> Agencia 2 <i className="fa fa-search maps-search"/></p></li>
-          <li><i className="fa fa-car-alt"></i> Paso Lateral frente al Hemiciclo de las banderas</li>
+          }}> Agencia 2 <i className="fa fa-search maps-search" /></p></li>
+          <li><i className="fa fa-car-alt"></i> Paso lateral frente al Hemiciclo de las Banderas.</li>
         </ul>
 
         <ul className="marker">
@@ -61,16 +61,24 @@ const Sucursales = () => {
               latitude: -0.9437349350668671,
               longitude: -80.72436524269801,
             })
-          }}> Agencia 1 <i className="fa fa-search maps-search"/></p></li>
-          <li><i className="fa fa-car-alt"></i> Av. 1era Entre calles 14 y 15 </li>
+          }}> Agencia 1 <i className="fa fa-search maps-search" /></p></li>
+          <li><i className="fa fa-car-alt"></i> Av. 1era entre calles 14 y 15. </li>
           <li> <p style={{ cursor: "pointer" }} className="direccion-sm" onClick={(e) => {
             e.preventDefault()
             setSelectCity({
               latitude: -0.9713032712607078,
               longitude: -80.7027329198074,
             })
-          }}> Agencia 2 <i className="fa fa-search maps-search"/></p></li>
-          <li><i className="fa fa-car-alt"></i> Av. 4 de noviembre diagonal a Solca</li>
+          }}> Agencia 2 <i className="fa fa-search maps-search" /></p></li>
+          <li><i className="fa fa-car-alt"></i> Av. 4 de noviembre, diagonal a Solca.</li>
+          <li> <p style={{ cursor: "pointer" }} className="direccion-sm" onClick={(e) => {
+            e.preventDefault()
+            setSelectCity({
+              latitude: -0.9491714655706338,
+              longitude: -80.746092501717294,
+            })
+          }}> Agencia 3 <i className="fa fa-search maps-search" /></p></li>
+          <li><i className="fa fa-car-alt"></i> Ciudadela Universitaria</li>
         </ul>
 
         <ul className="marker">
@@ -83,7 +91,7 @@ const Sucursales = () => {
                 longitude: -79.65083648899987
               })
             }}>
-              Grupo Moracosta Esmeraldas <i className="fa fa-search maps-search"/>
+              Grupo Moracosta Esmeraldas <i className="fa fa-search maps-search" />
             </a>
           </li>
           <li>
@@ -117,7 +125,13 @@ const Sucursales = () => {
             latitude: -0.9713032712607078,
             longitude: -80.7027329198074,
             label: 'Moracosta Manta Agencia 2',
-          }, {
+          },
+          {
+            latitude: -0.9462086346661479,
+            longitude: -80.74206528835222,
+            label: 'Moracosta Manta Agencia 3',
+          },
+          {
             latitude: 0.9620437825322907,
             longitude: -79.65083648899987,
             label: 'Moracosta Esmeraldas',

@@ -1,6 +1,5 @@
-import { useEffect } from "react"
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { getVehiculosError, getVehiculosStatus, selectAllVehiculos } from "../../features/vehiculos/vehiculosSlice"
 
 const Destacados = () => {
@@ -8,6 +7,7 @@ const Destacados = () => {
   const vehiculos = useSelector(selectAllVehiculos)
   const status = useSelector(getVehiculosStatus)
   const error = useSelector(getVehiculosError)
+  const navigate = useNavigate();
 
   let contenido;
 
@@ -29,9 +29,12 @@ const Destacados = () => {
       </div>
     } else {
       contenido = vehiculosDestacados.map(vehiculo => (
-        <div key={vehiculo._id} className="col-12 col-lg-4">
+        <div key={vehiculo._id} className="col-12 col-lg-4" style={{ position: "relative" }} >
+          {/** <div className="box-car-bg"/> */}
           <div className="box-car">
-            <img src={vehiculo.imagen_principal.url} />
+            <img src={vehiculo.imagen_principal.url}
+              onClick={() => navigate(`/modelos/${vehiculo._id}`)}
+              alt={vehiculo.nombre} />
             <h2>{vehiculo.nombre}</h2>
             <div className="box-text">
               <p>
@@ -51,7 +54,7 @@ const Destacados = () => {
   }
 
   return (
-    <div className="destacados p-5 mt-3">
+    <div className="destacados p-5">
       <div className="container text-center">
         <h1 className="text-bold" >CARROS Y CAMIONETAS NUEVOS</h1>
         <h2>Vehículos destacados</h2>

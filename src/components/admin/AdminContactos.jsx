@@ -100,14 +100,6 @@ const AdminContactos = () => {
             atendido: atendido,
             acciones: (
               <div className="d-flex justify-content-center">
-                {user.roles.some((role) => role.name === 'admin') && (
-                  <button
-                    onClick={() => handleDelete(contacto._id)}
-                    className="btn btn-sm btn-danger py-1 px-2 me-1"
-                  >
-                    <i className="fas fa-trash"></i>
-                  </button>
-                )}
                 {contacto.isAtendido ? (
                   <button
                     onClick={() => {
@@ -141,6 +133,14 @@ const AdminContactos = () => {
                 >
                   <i className="fas fa-eye"></i>
                 </Link>
+                {user.roles.some((role) => role.name === 'admin') && (
+                  <button
+                    onClick={() => handleDelete(contacto._id)}
+                    className="btn btn-sm btn-danger py-1 px-2 ms-1"
+                  >
+                    <i className="fas fa-trash"></i>
+                  </button>
+                )}
               </div>
             ),
           });
@@ -190,7 +190,7 @@ const AdminContactos = () => {
 
           <div className="row">
             <div className="col-xl-12">
-              <div className="card shadow bg-body rounded" style={{marginBottom: "1.5rem"}}>
+              <div className="card shadow bg-body rounded" style={{ marginBottom: "1.5rem" }}>
                 <div className="card-body">
                   {contenido}
 

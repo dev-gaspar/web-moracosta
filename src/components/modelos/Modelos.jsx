@@ -1,20 +1,47 @@
 import { useSelector, useDispatch } from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { selectAllVehiculos, getVehiculosStatus, getVehiculosError, getVehiculos } from "../../features/vehiculos/vehiculosSlice"
 import Modelo from "./Modelo"
 import Banner from "../layout/Banner"
+import { useLocation, useParams } from "react-router-dom"
+import { getMarcas, getMarcasStatus, selectAllMarcas } from "../../features/vehiculos/marcasSlice"
 
 const Modelos = () => {
+
+  const marcaId = useParams().marcaId;
+  const [marca, setMarca] = useState("")
+  const [filterVehiculos, setFilterVehiculos] = useState([])
+  const { pathname } = useLocation();
+
   const dispatch = useDispatch()
   const vehiculos = useSelector(selectAllVehiculos)
   const status = useSelector(getVehiculosStatus)
   const error = useSelector(getVehiculosError)
 
+  const marcas = useSelector(selectAllMarcas)
+  const marcasStatus = useSelector(getMarcasStatus)
+
   useEffect(() => {
     if (status === 'idle') {
       dispatch(getVehiculos())
     }
-  }, [status, dispatch])
+
+    if (marcasStatus === 'idle') {
+      dispatch(getMarcas())
+    }
+  }, [status, marcasStatus, dispatch])
+
+  useEffect(() => {
+    if (marcasStatus === 'succeeded') {
+      setMarca(marcas.find(marca => marca._id === marcaId).nombre)
+    }
+  }, [pathname])
+
+  useEffect(() => {
+    if (status === 'succeeded') {
+      setFilterVehiculos(vehiculos.filter(vehiculo => vehiculo.modelo.marca._id === marcaId))
+    }
+  }, [marcaId])
 
   let contenido;
 
@@ -25,13 +52,13 @@ const Modelos = () => {
       </div>
     </div>
   } else if (status === 'succeeded') {
-    if (vehiculos.length > 0) {
-      contenido = vehiculos.map((vehiculo) => (
+    if (filterVehiculos.length > 0) {
+      contenido = filterVehiculos.map((vehiculo) => (
         <Modelo key={vehiculo._id} vehiculo={vehiculo} />
       ))
     } else {
-      contenido = <div className="alert alert-warning" role="alert">
-        No hay vehículos registrados
+      contenido = <div className="alert alert-warning my-4" role="alert">
+        No hay vehículos registrados para la marca {marca}
       </div>
     }
   } else if (status === 'failed') {
@@ -42,9 +69,9 @@ const Modelos = () => {
   }
 
   return (
-    <div>
+    <div className="bg-dark">
       <div className="top-fixed" />
-      <Banner text={"MODELOS EN MORACOSTA"} />
+      <Banner text={`MODELOS ${marca} EN MORACOSTA`} />
       <div className="container">
         <div className="row">
           {contenido}

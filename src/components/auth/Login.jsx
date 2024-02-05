@@ -31,7 +31,7 @@ const Login = () => {
   return (
     <>
       <div className="row vh-100">
-        <div className="col-md-5 d-flex p-5 justify-content-center flex-column">
+        <div className="col-md-5 d-flex p-5 justify-content-center flex-column bg-dark">
           <div className="text-center">
             <Link to="/">
               <img

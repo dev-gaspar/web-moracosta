@@ -1,13 +1,12 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { getMarcas, getMarcasError, getMarcasStatus, selectAllMarcas } from "../../features/vehiculos/marcasSlice"
+import { getMarcas, getMarcasStatus, selectAllMarcas } from "../../features/vehiculos/marcasSlice"
 const Footer = () => {
 
   const dispatch = useDispatch()
   const marcas = useSelector(selectAllMarcas)
   const status = useSelector(getMarcasStatus)
-  const error = useSelector(getMarcasError)
 
   useEffect(() => {
     if (status === 'idle') {
@@ -35,20 +34,20 @@ const Footer = () => {
             <div className="col-md-3">
               <img src="/assets/moracosta-manabi.webp" alt="logo" height="150" />
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
               <h3><strong>Servicio al cliente</strong></h3>
-              <p><strong>Teléfono: 052620767</strong></p>
-              <p><strong>Email: publicidad@moracosta.com</strong></p>
+              <p><strong>Teléfono:</strong> 052620767</p>
+              <p><strong>Email:</strong> publicidad@moracosta.com</p>
               <ul className="list-unstyled text-xs">
                 <li><Link to={"/sucursales"}> <i className="fa fa-map-pin" /> Encuentranos en maps</Link></li>
-                <li><Link to={"/contacto"}> <i className="fa fa-envelope" /> Contactenos</Link></li>
+                <li><Link to={"/contactanos"}> <i className="fa fa-envelope" /> Contáctanos</Link></li>
               </ul>
               <div className="social">
                 <a href="https://www.facebook.com/grupomoracosta" target="_blank"> <i className="fab fa-facebook" /> </a>
                 <a href="https://www.instagram.com/moracosta.ec" target="_blank"><i className="fab fa-instagram" /></a>
               </div>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-2">
               <h3>Marcas</h3>
               <ul className="list-unstyled">
                 {contenido}
@@ -57,7 +56,7 @@ const Footer = () => {
             <div className="col-md-3">
               <h3>Herramientas</h3>
               <ul className="list-unstyled">
-                <li><Link to={"/cotizador"}>Cotizador Online</Link></li>
+                <li><Link to={"/cotizador"}>Cotizador</Link></li>
                 <li><Link to={"/login"}>Panel de control</Link></li>
               </ul>
             </div>
