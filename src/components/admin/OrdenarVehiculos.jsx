@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Sidenav from '../layout/Sidenav'
 import { getVehiculos, getVehiculosError, getVehiculosStatus, selectAllVehiculos } from '../../features/vehiculos/vehiculosSlice'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
 import { DndContext, closestCenter } from "@dnd-kit/core";
@@ -28,7 +27,14 @@ const OrdenarVehiculos = () => {
     }
 
     if (status === 'succeeded') {
-      setDragVehiculos(vehiculos)
+
+      const dragV = vehiculos.map((vehiculo) => {
+        return {
+          ...vehiculo,
+          id: vehiculo._id,
+        }
+      })
+      setDragVehiculos(dragV)
     }
 
   }, [status, dispatch])
@@ -80,11 +86,14 @@ const OrdenarVehiculos = () => {
               >
                 <div className="d-flex justify-content-between card-body">
                   <h4 className="page-title">Ordenar vehiculos</h4>
-                  <Link className='btn btn-sm btn-primary'
-                    to={"/vehiculos/nuevo"}
-                  >
-                    <i className="fas fa-save"></i> Guardar
-                  </Link>
+                  <div>
+                    <button className='btn btn-sm btn-warning mx-2'>
+                      <i className="fas fa-circle"></i> Resetear
+                    </button>
+                    <button className='btn btn-sm btn-primary'>
+                      <i className="fas fa-save"></i> Guardar
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
