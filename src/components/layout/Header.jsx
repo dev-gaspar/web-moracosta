@@ -94,26 +94,25 @@ function Header() {
           align="center"
           direction="column"
           wrap="wrap" >
-          {vehiculos.slice(0, 3).map((vehiculo) => {
-            if (vehiculo.modelo.marca._id === marca._id) {
-              return (
-                <Group wrap="nowrap" key={vehiculo._id} className='w-100' onClick={() => {
-                  handleClicVehiculo(vehiculo._id)
-                }} >
-                  <Avatar
-                    src={vehiculo.imagen_principal.url}
-                    size={50}
-                    radius="md"
-                    bg={theme.colors.dark[5]}
-                    alt={vehiculo.nombre}
-                  />
-                  <Text fw={400} size='sm' tt="uppercase" className={classes.name} >
-                    {vehiculo.nombre}
-                  </Text>
-                </Group>
-              )
-            }
-          })}
+          {vehiculos
+            .filter((vehiculo) => vehiculo.modelo.marca._id === marca._id)
+            .slice(0, 3)
+            .map((vehiculo) => (
+              <Group wrap="nowrap" key={vehiculo._id} className='w-100' onClick={() => {
+                handleClicVehiculo(vehiculo._id)
+              }} >
+                <Avatar
+                  src={vehiculo.imagen_principal.url}
+                  size={50}
+                  radius="md"
+                  bg={theme.colors.dark[5]}
+                  alt={vehiculo.nombre}
+                />
+                <Text fw={400} size='sm' tt="uppercase" className={classes.name} >
+                  {vehiculo.nombre}
+                </Text>
+              </Group>
+            ))}
           <div className='d-flex text-center w-100' ta="center" onClick={() => {
             handleClicMarca(marca._id)
           }}>
