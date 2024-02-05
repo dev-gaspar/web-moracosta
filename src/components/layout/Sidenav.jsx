@@ -116,7 +116,8 @@ function Sidenav({ mainContent }) {
 
                     <CollapseSidenav icon="fa fa-car" name={"Vehiculos"} links={[
                       { name: "Todos", to: "/vehiculos" },
-                      { name: "Nuevo", to: "/vehiculos/nuevo" }
+                      { name: "Nuevo", to: "/vehiculos/nuevo" },
+                      { name: "Ordenar", to: "/vehiculos/ordenar" }
                     ]} />
                   </>}
 

@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
 import toast from 'react-hot-toast'
 
-const Vehiculos = () => {
+import { DndContext, closestCenter } from '@dnd-kit/core';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+
+const OrdenarVehiculos = () => {
 
   const f = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -25,6 +28,8 @@ const Vehiculos = () => {
     }
   }, [status, dispatch])
 
+  const handleDragEnd = () => { }
+
   let contenido;
 
   if (status === 'loading') {
@@ -41,32 +46,26 @@ const Vehiculos = () => {
           {
             label: "Marca",
             field: "marca",
-            sort: "asc",
           },
           {
             label: "Modelo",
             field: "modelo",
-            sort: "asc",
           },
           {
             label: "Nombre",
             field: "nombre",
-            sort: "asc",
           },
           {
             label: "Precio",
             field: "precio",
-            sort: "asc",
           },
           {
             label: "Creado",
             field: "creado",
-            sort: "asc",
           },
           {
             label: "Acciones",
             field: "acciones",
-            sort: "asc",
           },
         ],
         rows: [],
@@ -111,20 +110,25 @@ const Vehiculos = () => {
       return data;
     };
 
-    contenido = <MDBDataTable
-      responsive
-      data={setVehiculos()}
-      bordered
-      striped
-      hover
-      displayEntries={false}
-      paging={true}
-      info={false}
-      noBottomColumns={true}
-      paginationLabel={["<", ">"]}
-      searchLabel="Buscar"
-      entries={10}
-    />
+    contenido = <>
+      <MDBDataTable
+        responsive
+        data={setVehiculos()}
+        bordered
+        striped
+        hover
+        displayEntries={false}
+        paging={false}
+        info={false}
+        noBottomColumns={true}
+        searchLabel="Buscar"
+      />
+      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <SortableContext items={vehiculos} strategy={verticalListSortingStrategy} >
+
+        </SortableContext>
+      </DndContext>
+    </>
   } else if (status === 'failed') {
     contenido =
       <div className="alert alert-danger" role="alert">
@@ -163,7 +167,7 @@ const Vehiculos = () => {
 
           <div className="row">
             <div className="col-xl-12">
-              <div className="card shadow bg-body rounded" style={{marginBottom: "1.5rem"}}>
+              <div className="card shadow bg-body rounded" style={{ marginBottom: "1.5rem" }}>
                 <div className="card-body">
                   {contenido}
                 </div>
@@ -176,4 +180,4 @@ const Vehiculos = () => {
   )
 }
 
-export default Vehiculos
+export default OrdenarVehiculos
