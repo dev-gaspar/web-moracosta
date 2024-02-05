@@ -39,7 +39,7 @@ function DragVehiculo({ vehiculo }) {
         <div className="col-9 my-1">
           <div className="d-flex justify-content-between align-items-center">
             <div>
-              <h6 className="card-title">{vehiculo.nombre}</h6>
+              <h6 className="card-title">{vehiculo.modelo.marca.nombre} | {vehiculo.nombre}</h6>
               <p className="card-text">{vehiculo.descripcion}</p>
             </div>
           </div>
