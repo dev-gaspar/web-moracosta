@@ -8,7 +8,6 @@ const Contactanos = () => {
       id: 1,
       title: "Atención personalizada con un asesor",
       img: "/assets/contactanos.png",
-      img: "/assets/contactanos.png",
     },
     {
       id: 2,

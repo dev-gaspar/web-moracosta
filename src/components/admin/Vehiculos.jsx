@@ -41,26 +41,32 @@ const Vehiculos = () => {
           {
             label: "Marca",
             field: "marca",
+            sort: "asc",
           },
           {
             label: "Modelo",
             field: "modelo",
+            sort: "asc",
           },
           {
             label: "Nombre",
             field: "nombre",
+            sort: "asc",
           },
           {
             label: "Precio",
             field: "precio",
+            sort: "asc",
           },
           {
             label: "Creado",
             field: "creado",
+            sort: "asc",
           },
           {
             label: "Acciones",
             field: "acciones",
+            sort: "asc",
           },
         ],
         rows: [],
@@ -112,10 +118,12 @@ const Vehiculos = () => {
       striped
       hover
       displayEntries={false}
-      paging={false}
+      paging={true}
       info={false}
       noBottomColumns={true}
+      paginationLabel={["<", ">"]}
       searchLabel="Buscar"
+      entries={10}
     />
   } else if (status === 'failed') {
     contenido =
@@ -155,7 +163,7 @@ const Vehiculos = () => {
 
           <div className="row">
             <div className="col-xl-12">
-              <div className="card shadow bg-body rounded" style={{ marginBottom: "1.5rem" }}>
+              <div className="card shadow bg-body rounded" style={{marginBottom: "1.5rem"}}>
                 <div className="card-body">
                   {contenido}
                 </div>
