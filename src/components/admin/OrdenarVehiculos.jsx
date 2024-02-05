@@ -80,11 +80,14 @@ const OrdenarVehiculos = () => {
               >
                 <div className="d-flex justify-content-between card-body">
                   <h4 className="page-title">Ordenar vehiculos</h4>
-                  <Link className='btn btn-sm btn-primary'
-                    to={"/vehiculos/nuevo"}
-                  >
-                    <i className="fas fa-save"></i> Guardar
-                  </Link>
+                  <div>
+                    <button className='btn btn-sm btn-warning mx-2'>
+                      <i className="fas fa-circle"></i> Resetear
+                    </button>
+                    <button className='btn btn-sm btn-primary'>
+                      <i className="fas fa-save"></i> Guardar
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
