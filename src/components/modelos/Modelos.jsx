@@ -29,19 +29,17 @@ const Modelos = () => {
     if (marcasStatus === 'idle') {
       dispatch(getMarcas())
     }
-  }, [status, marcasStatus, dispatch])
 
-  useEffect(() => {
     if (marcasStatus === 'succeeded') {
       setMarca(marcas.find(marca => marca._id === marcaId).nombre)
     }
-  }, [pathname])
+  }, [status, marcasStatus, dispatch, pathname])
 
   useEffect(() => {
     if (status === 'succeeded') {
       setFilterVehiculos(vehiculos.filter(vehiculo => vehiculo.modelo.marca._id === marcaId))
     }
-  }, [marcaId])
+  }, [status, marcaId, vehiculos])
 
   let contenido;
 
@@ -72,7 +70,7 @@ const Modelos = () => {
     <div className="bg-dark">
       <div className="top-fixed" />
       <Banner text={`MODELOS ${marca} EN MORACOSTA`} />
-      <div className="container">
+      <div className="container mt-2">
         <div className="row">
           {contenido}
         </div>

@@ -28,9 +28,7 @@ import React, { useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getMarcas, getMarcasStatus, selectAllMarcas } from '../../features/vehiculos/marcasSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { getModelos, getModelosStatus, selectAllModelos } from '../../features/vehiculos/modelosSlice';
-import { selectAllVehiculos } from '../../features/vehiculos/vehiculosSlice';
-import { getVehiculoStatus } from '../../features/vehiculos/vehiculoSlice';
+import { getVehiculos, selectAllVehiculos, getVehiculosStatus } from '../../features/vehiculos/vehiculosSlice';
 
 function Header() {
   const { pathname } = useLocation();
@@ -44,7 +42,7 @@ function Header() {
   const marcasStatus = useSelector(getMarcasStatus)
 
   const vehiculos = useSelector(selectAllVehiculos)
-  const vehiculosStatus = useSelector(getVehiculoStatus)
+  const vehiculosStatus = useSelector(getVehiculosStatus)
 
   useEffect(() => {
     if (marcasStatus === 'idle') {
@@ -52,7 +50,7 @@ function Header() {
     }
 
     if (vehiculosStatus === 'idle') {
-      dispatch(getModelos())
+      dispatch(getVehiculos())
     }
   }, [marcasStatus, vehiculosStatus, dispatch])
 
@@ -116,7 +114,7 @@ function Header() {
               )
             }
           })}
-          <UnstyledButton className='d-flex text-center w-100' ta="center" onClick={() => {
+          <div className='d-flex text-center w-100' ta="center" onClick={() => {
             handleClicMarca(marca._id)
           }}>
             <Text fw={400} size="xs" td="underline" tt="uppercase" className={classes.name} >VER TODOS</Text>
@@ -124,7 +122,7 @@ function Header() {
               style={{ width: rem(16), height: rem(16) }}
               color={theme.colors.red[9]}
             />
-          </UnstyledButton>
+          </div>
         </Flex>
       </UnstyledButton>
     ))
