@@ -6,24 +6,14 @@ const Contactanos = () => {
   const contactenos = [
     {
       id: 1,
-      title: "Atención personalizada con un asesor",
+      title: "Texto de contacto 1",
       img: "/assets/contactanos.png",
     },
     {
       id: 2,
-      title: "Asistencia 24/7",
+      title: "Texto de contacto 2",
       img: "/assets/contactanos.png",
     },
-    {
-      id: 3,
-      title: "Más cerca de ti",
-      img: "/assets/contactanos.png",
-    },
-    {
-      id: 4,
-      title: "Ayúdanos a mejorar",
-      img: "/assets/contactanos.png",
-    }
   ]
 
   return (
