@@ -80,26 +80,6 @@ const Sucursales = () => {
           }}> Agencia 3 <i className="fa fa-search maps-search" /></p></li>
           <li><i className="fa fa-car-alt"></i> Ciudadela Universitaria</li>
         </ul>
-
-        <ul className="marker">
-          <li className="direccion">
-            <i className="fa fa-map-pin" />
-            <a style={{ cursor: "pointer" }} onClick={(e) => {
-              e.preventDefault()
-              setSelectCity({
-                latitude: 0.9620437825322907,
-                longitude: -79.65083648899987
-              })
-            }}>
-              Grupo Moracosta Esmeraldas <i className="fa fa-search maps-search" />
-            </a>
-          </li>
-          <li>
-            <i className="fa fa-mobile" /> 0958622755
-          </li>
-          <li><i className="fa fa-map"></i> Esmeraldas</li>
-          <li><i className="fa fa-car-alt"></i> Av Pedro Vicente Maldonado</li>
-        </ul>
       </div>
 
       <div id="map" className="maps">
@@ -130,12 +110,8 @@ const Sucursales = () => {
             latitude: -0.9462086346661479,
             longitude: -80.74206528835222,
             label: 'Moracosta Manta Agencia 3',
-          },
-          {
-            latitude: 0.9620437825322907,
-            longitude: -79.65083648899987,
-            label: 'Moracosta Esmeraldas',
-          }]}
+          }
+          ]}
           selectCity={selectCity}
         />
       </div>

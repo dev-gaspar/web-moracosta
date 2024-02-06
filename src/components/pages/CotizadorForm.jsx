@@ -5,7 +5,7 @@ import Select from "react-select"
 import { getContactosError, getContactosStatus, newContacto, resetContactos } from '../../features/contactos/contactosSlice';
 import { getVehiculos, getVehiculosStatus, selectAllVehiculos } from '../../features/vehiculos/vehiculosSlice';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const agencias = {
   manta: [
@@ -23,6 +23,8 @@ const agencias = {
 }
 
 const CotizadorForm = () => {
+
+  const navigate = useNavigate()
 
   const [isRender, setIsRender] = useState(false)
 
@@ -46,6 +48,7 @@ const CotizadorForm = () => {
       toast.success("Enviado, pronto nos pondremos en contacto contigo!", {
         icon: "📞",
       })
+      navigate("/")
     }
 
     if (statusContacto === 'failed') {
@@ -207,6 +210,15 @@ const CotizadorForm = () => {
                           border: 'none',
                           borderRadius: '0',
                           boxShadow: 'none',
+                        }),
+                        option: (styles, { isFocused }) => ({
+                          ...styles,
+                          backgroundColor: isFocused ? 'var(--primary)' : 'var(--secondary)',
+                          color: isFocused ? 'var(--secondary)' : 'var(--primary)',
+                        }),
+                        placeholder: (styles) => ({
+                          ...styles,
+                          color: 'var(--secondary)',
                         }),
                       }}
                       required
