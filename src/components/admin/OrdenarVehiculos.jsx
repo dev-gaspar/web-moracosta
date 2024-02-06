@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import Sidenav from '../layout/Sidenav'
-import { getVehiculos, getVehiculosError, getVehiculosStatus, selectAllVehiculos } from '../../features/vehiculos/vehiculosSlice'
+import { getVehiculos, getVehiculosError, getVehiculosStatus, selectAllVehiculos, updateOrden } from '../../features/vehiculos/vehiculosSlice'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -38,6 +38,11 @@ const OrdenarVehiculos = () => {
       })
       setDragVehiculos(dragV)
     }
+
+    if (status === 'failed') {
+      toast.error(error)
+    }
+
   }, [status, dispatch])
 
   const handleDragEnd = (event) => {
@@ -84,7 +89,7 @@ const OrdenarVehiculos = () => {
         })
       })
 
-      console.log(updateData)
+      dispatch(updateOrden(updateData))
 
       toast.success('Orden de vehículos guardado exitosamente');
     } else {

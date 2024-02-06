@@ -99,6 +99,26 @@ export const updateIsDestacado = createAsyncThunk(
   }
 );
 
+export const updateOrden = createAsyncThunk(
+  "vehiculos/updateOrden",
+  async (data) => {
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/api/vehiculos/updateOrden`,
+        data,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 export const updateIsBanner = createAsyncThunk(
   "vehiculos/updateIsBanner",
   async (data) => {
@@ -181,6 +201,19 @@ export const vehiculosSlice = createSlice({
       );
     });
     builder.addCase(updateVehiculo.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+    // Update orden
+    builder.addCase(updateOrden.pending, (state, action) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(updateOrden.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.vehiculos = action.payload;
+    });
+    builder.addCase(updateOrden.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });
