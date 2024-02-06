@@ -36,8 +36,8 @@ const Footer = () => {
             </div>
             <div className="col-md-4">
               <h3><strong>Servicio al cliente</strong></h3>
-              <p><i className="fas fa-phone-alt" /><strong> Chery – Dongfeng - DFSK:</strong> 0958622755</p>
-              <p><i className="fas fa-phone-alt" /><strong> Volkswagen:</strong> 0987579636</p>
+              <p><i className="fas fa-phone-alt" /><strong> Chery – Dongfeng - DFSK:</strong><a href="tel:+593958622755" > 0958622755</a>  </p>
+              <p><i className="fas fa-phone-alt" /><strong> Volkswagen:</strong><a href="tel:+5930987579636"> 0987579636</a></p>
               <ul className="list-unstyled text-xs">
                 <li><Link to={"/sucursales"}> <i className="fa fa-map-pin" /> Encuentranos en maps</Link></li>
                 <li><Link to={"/contactanos"}> <i className="fa fa-envelope" /> Contáctanos</Link></li>
