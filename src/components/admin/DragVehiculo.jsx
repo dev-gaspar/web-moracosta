@@ -25,6 +25,11 @@ function DragVehiculo({ vehiculo }) {
       className="card bg-body rounded my-2 px-4"
     >
       <div className="row justify-content-center align-items-center">
+
+        <div className="col-1">
+          <i className="fas fa-grip-lines" style={{ color: "gray" }} ></i>
+        </div>
+
         <div className="col-3 text-center">
           <img
             src={vehiculo.imagen_principal.url}
@@ -36,12 +41,13 @@ function DragVehiculo({ vehiculo }) {
             }}
           />
         </div>
-        <div className="col-9 my-1">
+        <div className="col-8 my-1">
           <div className="d-flex justify-content-between align-items-center">
             <div>
               <h6 className="card-title">{vehiculo.modelo.marca.nombre} | {vehiculo.nombre}</h6>
               <p className="card-text">{vehiculo.descripcion}</p>
             </div>
+            <p className='card-text' >{vehiculo.orden}</p>
           </div>
         </div>
       </div>
