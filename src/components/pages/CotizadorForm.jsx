@@ -5,7 +5,7 @@ import Select from "react-select"
 import { getContactosError, getContactosStatus, newContacto, resetContactos } from '../../features/contactos/contactosSlice';
 import { getVehiculos, getVehiculosStatus, selectAllVehiculos } from '../../features/vehiculos/vehiculosSlice';
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const agencias = {
   manta: [
