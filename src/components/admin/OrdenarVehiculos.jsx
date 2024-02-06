@@ -34,7 +34,6 @@ const OrdenarVehiculos = () => {
         return {
           ...vehiculo,
           id: vehiculo._id,
-          orden: index + 1
         }
       })
       setDragVehiculos(dragV)
@@ -57,7 +56,6 @@ const OrdenarVehiculos = () => {
       return {
         ...vehiculo,
         id: vehiculo._id,
-        orden: index + 1
       }
     })
     setDragVehiculos(dragV)
