@@ -74,8 +74,8 @@ const Sucursales = () => {
           <li> <p style={{ cursor: "pointer" }} className="direccion-sm" onClick={(e) => {
             e.preventDefault()
             setSelectCity({
-              latitude: -0.9491714655706338,
-              longitude: -80.746092501717294,
+              latitude: -0.9462086346661479,
+              longitude: -80.74206528835222,
             })
           }}> Agencia 3 <i className="fa fa-search maps-search" /></p></li>
           <li><i className="fa fa-car-alt"></i> Ciudadela Universitaria</li>
