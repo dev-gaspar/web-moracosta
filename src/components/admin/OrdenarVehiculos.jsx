@@ -10,9 +10,12 @@ import {
   verticalListSortingStrategy,
   arrayMove,
 } from "@dnd-kit/sortable";
+import useMobileDetection from '../../hooks/useMobileDetection'
+import CodeErrorPage from '../layout/CodeErrorPage'
 import DragVehiculo from './DragVehiculo'
 
 const OrdenarVehiculos = () => {
+  const { isMobile } = useMobileDetection();
 
   const dispatch = useDispatch()
   const vehiculos = useSelector(selectAllVehiculos)
@@ -27,16 +30,15 @@ const OrdenarVehiculos = () => {
     }
 
     if (status === 'succeeded') {
-
-      const dragV = vehiculos.map((vehiculo) => {
+      const dragV = vehiculos.map((vehiculo, index) => {
         return {
           ...vehiculo,
           id: vehiculo._id,
+          orden: index + 1
         }
       })
       setDragVehiculos(dragV)
     }
-
   }, [status, dispatch])
 
   const handleDragEnd = (event) => {
@@ -49,6 +51,48 @@ const OrdenarVehiculos = () => {
       return arrayMove(vehiculo, oldIndex, newIndex)
     })
   }
+
+  const resetVehiculos = () => {
+    const dragV = vehiculos.map((vehiculo, index) => {
+      return {
+        ...vehiculo,
+        id: vehiculo._id,
+        orden: index + 1
+      }
+    })
+    setDragVehiculos(dragV)
+    toast.success('Orden de vehículos reseteado exitosamente');
+  }
+
+  const handleSaveDragVehiculos = () => {
+
+    const vehiculosModificados = dragVehiculos.filter(
+      (vehiculo, index) => vehiculo.orden !== index + 1 || !vehiculo.orden
+    );
+
+    if (vehiculosModificados.length > 0) {
+
+      const dragV = dragVehiculos.map((vehiculo, index) => {
+        return {
+          _id: vehiculo._id,
+          nombre: vehiculo.nombre,
+          orden: index + 1
+        }
+      })
+
+      const updateData = dragV.filter((vehiculo) => {
+        return vehiculosModificados.some((vehiculoModificado) => {
+          return vehiculoModificado._id === vehiculo._id
+        })
+      })
+
+      console.log(updateData)
+
+      toast.success('Orden de vehículos guardado exitosamente');
+    } else {
+      toast.success('Se ha mantenido el mismo orden de los vehículos');
+    }
+  };
 
   let contenido;
 
@@ -86,14 +130,16 @@ const OrdenarVehiculos = () => {
               >
                 <div className="d-flex justify-content-between card-body">
                   <h4 className="page-title">Ordenar vehiculos</h4>
-                  <div>
-                    <button className='btn btn-sm btn-warning mx-2'>
-                      <i className="fas fa-circle"></i> Resetear
-                    </button>
-                    <button className='btn btn-sm btn-primary'>
-                      <i className="fas fa-save"></i> Guardar
-                    </button>
-                  </div>
+                  {!isMobile && (
+                    <div>
+                      <button className='btn btn-sm btn-warning mx-2' onClick={resetVehiculos}>
+                        <i className="fas fa-sync"></i> Resetear
+                      </button>
+                      <button className='btn btn-sm btn-primary' onClick={handleSaveDragVehiculos} >
+                        <i className="fas fa-save"></i> Guardar
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -103,7 +149,10 @@ const OrdenarVehiculos = () => {
             <div className="col-xl-12">
               <div className="card shadow bg-body rounded" style={{ marginBottom: "1.5rem" }}>
                 <div className="card-body">
-                  {contenido}
+                  {!isMobile ? contenido
+                    : (
+                      <CodeErrorPage code="401" title="No puedes acceder a esta funcionalidad desde telefono" />
+                    )}
                 </div>
               </div>
             </div>

@@ -1,0 +1,26 @@
+.root {
+  background-color: var(--mantine-color-red-filled);
+}
+
+.label {
+  text-align: center;
+  font-weight: 900;
+  font-size: 100px;
+  line-height: 1;
+  margin-bottom: calc(var(--mantine-spacing-xl) * 1.5);
+  color: var(--mantine-color-red-3);
+}
+
+.title {
+  text-align: center;
+  font-weight: 900;
+  font-size: 38px;
+  color: var(--mantine-color-white);
+}
+
+.description {
+  margin: auto;
+  margin-top: var(--mantine-spacing-xl);
+  margin-bottom: calc(var(--mantine-spacing-xl) * 1.5);
+  color: var(--mantine-color-red-1);
+}
