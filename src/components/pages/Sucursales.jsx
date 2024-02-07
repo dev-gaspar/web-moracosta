@@ -78,7 +78,7 @@ const Sucursales = () => {
               longitude: -80.74206528835222,
             })
           }}> Agencia 3 <i className="fa fa-search maps-search" /></p></li>
-          <li><i className="fa fa-car-alt"></i> Ciudadela Universitaria</li>
+          <li><i className="fa fa-car-alt"></i> Calle Universitaria 2</li>
         </ul>
       </div>
 
