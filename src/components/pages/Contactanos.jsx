@@ -6,13 +6,13 @@ const Contactanos = () => {
   const contactenos = [
     {
       id: 1,
-      title: "Texto de contacto 1",
-      img: "/assets/contactanos.png",
+      title: "Contacto",
+      img: "/assets/contactanos-01.png",
     },
     {
       id: 2,
-      title: "Texto de contacto 2",
-      img: "/assets/contactanos.png",
+      title: "Talleres",
+      img: "/assets/contactanos-02.png",
     },
   ]
 
