@@ -11,14 +11,11 @@ const agencias = {
   manta: [
     "Agencia 1 - Av. 1era entre calles 14 y 15.",
     "Agencia 2 - Av. 4 de noviembre, diagonal a Solca.",
-    "Agencia 3 - Ciudadela Universitaria"
+    "Agencia 3 - Ciudadela Universitaria, vía a Barbasquillo"
   ],
   portoviejo: [
     "Agencia 1 - Av. Universitaria y calle Edulfo Cedeño, esquina.",
     "Agencia 2 - Paso lateral frente al Hemiciclo de las Banderas."
-  ],
-  esmeraldas: [
-    "Agencia - Av Pedro Vicente Maldonado"
   ]
 }
 
@@ -330,7 +327,6 @@ const CotizadorForm = () => {
                       <option value="">Selecciona una ciudad</option>
                       <option value="manta">Manta</option>
                       <option value="portoviejo">Portoviejo</option>
-                      <option value="esmeraldas">Esmeraldas</option>
                     </select>
                   </div>
 
